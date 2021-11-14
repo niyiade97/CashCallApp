@@ -12,4 +12,4 @@ function SidePage() {
     )
 }
 
-export default SidePage
+export default SidePage;

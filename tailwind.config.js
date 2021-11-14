@@ -6,6 +6,7 @@ module.exports = {
       boxShadow: {
         sideNavShadow: '5px 1px 6px 0px rgba(179,179,179,0.75)',
         btnShadow: '0px 20px 50px rgba(0, 0, 0, 0.12)',
+        transactionBoxShadow: '0px 1px 14px 3px rgba(0,0,0,0.17)',
       },
       colors:{
         "color1": "rgba(255, 255, 255, 0.28)",
@@ -21,17 +22,24 @@ module.exports = {
         "color10": "#ECF102",
         "color11": "#FE8794",
         "color12": "#F5F5F5",
+        "color13": "#22242C",
       },
       fontFamily: {
         'sans': ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
      },
       width: {
-        55: "55%",
+        30: "30%",
+        35: "35%",
         45: "45%",
+        55: "55%",
+        
+        
       },
       height: {
         55: "55%",
         45: "45%",
+        95: "95%",
+        90: "90%",
       },
     },
   },

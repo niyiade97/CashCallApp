@@ -4,16 +4,19 @@ import ForgotPasswordPage from "./Views/ForgotPasswordPage";
 import FundRequestPage from "./Views/FundRequestPage";
 import LoginPage from "./Views/LoginPage";
 import PasswordResetPage from "./Views/PasswordResetPage";
+import TransactionPage from "./Views/TransactionPage";
 
 function App() {
   return (
     <div className="font-sans">
     <Routes>
-      <Route exact path="login" element={<LoginPage />} />
-      <Route exact path="forgot-password" element={<ForgotPasswordPage />} />
-      <Route exact path="reset-password" element={<PasswordResetPage />} />
-      <Route exact path="fund-request" element={<FundRequestPage />} />
-      <Route exact path="cash-request" element={<CashRequestPage />} />
+      <Route exact path="/" element={<LoginPage />} />
+      <Route  path="login" element={<LoginPage />} />
+      <Route  path="forgot-password" element={<ForgotPasswordPage />} />
+      <Route  path="reset-password" element={<PasswordResetPage />} />
+      <Route  path="fund-request" element={<FundRequestPage />} />
+      <Route  path="cash-request" element={<CashRequestPage />} />
+      <Route  path="transaction" element={<TransactionPage />} />
     </Routes>
     </div>
   );

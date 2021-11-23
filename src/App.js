@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
+import AllRequestPage from "./Views/AllRequestPage";
 import CashRequestPage from "./Views/CashRequestPage";
+import ChequeRequestPage from "./Views/ChequeRequest";
 import ForgotPasswordPage from "./Views/ForgotPasswordPage";
 import FundRequestPage from "./Views/FundRequestPage";
 import LoginPage from "./Views/LoginPage";
@@ -16,7 +18,8 @@ function App() {
       <Route  path="reset-password" element={<PasswordResetPage />} />
       <Route  path="fund-request" element={<FundRequestPage />} />
       <Route  path="cash-request" element={<CashRequestPage />} />
-      <Route  path="transaction" element={<TransactionPage />} />
+      <Route  path="all-request" element={<AllRequestPage />} />
+      <Route  path="cheque-request" element={<ChequeRequestPage />} />
     </Routes>
     </div>
   );

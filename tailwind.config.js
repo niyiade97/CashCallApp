@@ -23,6 +23,16 @@ module.exports = {
         "color11": "#FE8794",
         "color12": "#F5F5F5",
         "color13": "#22242C",
+        "color14": "#C5C7CD",
+        "color15": "#4B506D",
+        "color16": "#DFE0EB",
+        "color17": "#252733",
+        "color18": "#5B5D66",
+        "color19": "#9FA2B4",
+        "color20": "rgba(55, 81, 255, 0.04)",
+      },
+      borderWidth: {
+       '1.5': '1.5px',
       },
       fontFamily: {
         'sans': ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],

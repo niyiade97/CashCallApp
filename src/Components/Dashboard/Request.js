@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsSortUp, BsThreeDotsVertical } from "react-icons/bs";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 
 function Request({ requestData }) {

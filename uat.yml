@@ -22,8 +22,8 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-   
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+   Contents: 'build/**' 
+   TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
   inputs:

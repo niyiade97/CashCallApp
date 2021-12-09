@@ -4,11 +4,9 @@ import Transaction from '../Components/Dashboard/Transaction';
 
 function TransactionPage() {
     return (
-        <DashboardContainer>
             <div className="w-full flex">
                 <Transaction />
             </div>
-        </DashboardContainer>
     )
 }
 

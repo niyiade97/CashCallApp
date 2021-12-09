@@ -1,11 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { IoMdArrowDropdown } from 'react-icons/io';
 
-function Nav(props) {
+function Nav({path, text, icon, dropDownIsActive, handleClick}) {
+
+    const handleOnClick = () =>{
+        handleClick();
+    }
     return (
-        <Link to="/fund-request" className="flex justify-start items-center text-color5 my-8 hover:text-color2 focus:text-color2">
-            <i className="text-2xl">{props.icon}</i>
-            <p className="font-bold text-sm pl-5">{props.text}</p>
+        <Link to={path} active className="flex justify-start items-center text-color5 my-8 hover:text-color2 group focus:text-color2" onClick={dropDownIsActive ? handleOnClick : ""}>
+            <i className="text-2xl group-focus:text-color2">{icon}</i>
+            <p className="font-bold text-sm pl-5">{text}</p>
+            {
+                dropDownIsActive &&
+                <i className="pl-3"><IoMdArrowDropdown /></i>
+            }
+            
         </Link>
     )
 }

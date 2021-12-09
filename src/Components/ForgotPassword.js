@@ -18,7 +18,7 @@ function ForgotPassword() {
                <div className="text-center">
                <form onSubmit={handleOnSubmit}>
                     <input className="border-2 rounded-full border-color3 text-color4 w-full mt-6 h-14 px-4" type="email" name="email" placeholder="Email" />
-                    <button type="submit" className="bg-color2 text-white rounded-full w-full mt-6 h-14 mb-6 hover:border-2 hover:border-color2 hover:text-color2 hover:bg-white">Continue</button>
+                    <button type="submit" className="bg-color2 text-white rounded-full w-full mt-6 h-14 mb-6 border border-color2 hover:border-2 hover:text-color2 hover:bg-white">Continue</button>
                </form>
                </div>
             </div>

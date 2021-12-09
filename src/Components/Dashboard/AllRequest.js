@@ -1,18 +1,14 @@
 import React from 'react'
-import  { Link } from "react-router-dom";
-import Select from '../Select';
-import UploadButton from '../UploadButton';
-import TextField from '../TextField';
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
 import image from "../../Assets/images/adepics.jpeg";
 import Request from './Request';
 
 function AllRequest() {
-    const Services = ["Web Development", "IT", "Boat Cruise"]
-    const handleOnChange = (value) =>{
-        console.log(value);
-    }
+    // const Services = ["Web Development", "IT", "Boat Cruise"]
+    // const handleOnChange = (value) =>{
+    //     console.log(value);
+    // }
     const requestData = [
         {
             name: "Adeyemo Afalain",
@@ -146,7 +142,7 @@ function AllRequest() {
                     <tr className="text-left border-1.5 border-t-0 text-color19 font-bold text-sm">
                         <th className="w-2/5 py-2 pl-10">Staff Details/Purpose</th>
                         <th className="w-1/5 py-2">Amount/Request Type</th>
-                        <th className="w-1/5 py-2">Date</th>
+                        <th className="w-1/5 py-2">Date</th>  
                         <th className="w-1/5 py-2">Status</th>
                     </tr>
                     <Request requestData={requestData} />

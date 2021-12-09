@@ -11,7 +11,9 @@ function FundRequest() {
                     <Link to="/cash-request">
                         <button to="/cash-request" className="bg-color2 text-white w-60 h-14 rounded-xl mx-2 text-lg">Cash</button>
                     </Link>
-                    <button className="bg-color2 text-white w-60 h-14 rounded-xl mx-2 text-lg">Cheque</button>
+                    <Link to="/cheque-request">
+                        <button className="bg-color2 text-white w-60 h-14 rounded-xl mx-2 text-lg">Cheque</button>
+                    </Link>
                 </div>
             </div>
         </div>

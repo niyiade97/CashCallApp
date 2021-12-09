@@ -29,6 +29,8 @@ import AdminFundRequestPage from "./Views/AdminView/AdminFundRequestPage";
 import DataContext from "./Utils/DataContext";
 import DataContextprovider from "./Utils/DataContext";
 import DataContextProvider from "./Utils/DataContext";
+import "tailwindcss/tailwind.css";
+
 function App() {
  
   return (

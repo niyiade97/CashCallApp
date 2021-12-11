@@ -1,4 +1,4 @@
-import { Routes, Route, Switch } from "react-router-dom";
+import { Routes, Route, Switch, BrowserRouter } from "react-router-dom";
 import React,{ useState } from "react";
 import DashboardContainer from "./Components/Dashboard/DashboardContainer";
 import UserDashboardContainer from "./Components/User/UserDashboardContainer";
@@ -35,15 +35,15 @@ function App() {
  
   return (
     <div className="font-sans">
-    <DataContextProvider basename={process.env.PUBLIC_URL}>
-    <Routes>
-    
-    {/* <Switch> */}
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <DataContextProvider >
+    <Switch>    
+   
       <Route path="users" element={ <UsersPage  /> }  />
       <Route path="users/addUser" element={<AddUserPage /> } />
     
      
-      <Route exact path="/" element={<FundRequestPage />} />
+      <Route exact path="/" component = {<FundRequestPage />} element={<FundRequestPage />} />
       <Route  path="login" element={<LoginPage />} />
       <Route  path="forgot-password" element={<ForgotPasswordPage />} />
       <Route  path="reset-password" element={<PasswordResetPage />} />
@@ -70,9 +70,9 @@ function App() {
       
       <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
       <Route path="dashboard" element={<AdminFundRequestPage />} />
-      {/* </Switch> */}
-    </Routes>
+    </Switch>
     </DataContextProvider>
+    </BrowserRouter>
     
     
     {/* <DashboardContainer>

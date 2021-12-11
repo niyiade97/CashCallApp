@@ -38,7 +38,7 @@ function App() {
 
     
     <DataContextProvider basename={process.env.PUBLIC_URL}>
-    <Routes>    
+    <Routes  basename={process.env.PUBLIC_URL}>    
    
       <Route path="users" element={ <UsersPage  /> }  />
       <Route path="users/addUser" element={<AddUserPage /> } />

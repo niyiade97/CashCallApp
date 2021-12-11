@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Switch } from "react-router-dom";
 import React,{ useState } from "react";
 import DashboardContainer from "./Components/Dashboard/DashboardContainer";
 import UserDashboardContainer from "./Components/User/UserDashboardContainer";
@@ -35,10 +35,10 @@ function App() {
  
   return (
     <div className="font-sans">
-    <DataContextProvider >
+    <DataContextProvider basename={process.env.PUBLIC_URL}>
     <Routes>
     
-    
+    {/* <Switch> */}
       <Route path="users" element={ <UsersPage  /> }  />
       <Route path="users/addUser" element={<AddUserPage /> } />
     
@@ -70,7 +70,7 @@ function App() {
       
       <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
       <Route path="dashboard" element={<AdminFundRequestPage />} />
-      
+      {/* </Switch> */}
     </Routes>
     </DataContextProvider>
     

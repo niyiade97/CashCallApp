@@ -7,6 +7,7 @@ const DataContextProvider = ( props ) => {
     const REACT_BASE_URL_API = "https://uat.bts.com.ng/cashcallapi/"
     const REACT_GET_DEPARTMENT_API = "api/department/departments";
     const REACT_GET_USERS_API = "api/users/getallusers";
+    const PUBLIC_URL = process.env.PUBLIC_URL;
 
     const [ departments, setDepartments ] = useState([]);
     const [ users, setUsers ] = useState([]);

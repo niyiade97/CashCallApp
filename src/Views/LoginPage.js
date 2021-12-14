@@ -13,9 +13,8 @@ function LoginPage() {
             <Login onLoad={handleOnLoad}>
             {
                 loading &&
-                <Loader color="#163F86" />
+                <Loader color="#FFFFFF" />
             }
-                
             </Login>
        </Container>
     )

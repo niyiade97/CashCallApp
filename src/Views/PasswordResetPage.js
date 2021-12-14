@@ -1,11 +1,21 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Container from '../Components/Container'
 import PasswordReset from '../Components/PasswordReset'
+import Loader from '../Components/Loader';
 
 function PasswordResetPage() {
+    const [ loading, setLoading ] = useState(false);
+    const handleOnLoad = (state) =>{
+        setLoading(state);
+    }
     return (
         <Container>
-            <PasswordReset />
+        <PasswordReset onLoad={handleOnLoad}>
+            {
+                loading &&
+                <Loader color="#FFFFFF" />
+            }
+        </PasswordReset>
         </Container>
     )
 }

@@ -14,6 +14,17 @@ function Login(props) {
         email:"",
         password:""
     })
+    const clearInput = () =>{
+        setLoginDetails({
+            email:"",
+            password:""
+        })
+        setTimeout(() => {
+            setMessage("");
+        }, 4000);
+       
+        
+    }
 
     const validate = (data) =>{
         const errors ={
@@ -42,6 +53,10 @@ function Login(props) {
                
                 if(res.data.isSuccess){
                     setMessage("");
+                    localStorage.setItem("userId", res.data.data.id);
+                    localStorage.setItem("token", res.data.message);
+                    localStorage.setItem("role", res.data.data.userRole);
+                    
                     if(res.data.data.userRole === "User"){
                         navigate("/home");console.log(res);
                     }
@@ -53,10 +68,12 @@ function Login(props) {
                     console.log(res.data.message)
                     setMessage(res.data.message);
                 }
+                clearInput();
             })
             .catch((err) =>{
                 console.log(err.message)
                 props.onLoad(false)
+
             })
         
     }
@@ -90,12 +107,13 @@ function Login(props) {
                 <div className="text-center">
                 <form onSubmit={handleOnSubmit}>
                     <p className={`${message  !== "" && "text-red-500 bg-red-300 p-4 text-left my-3"}`}>{message}</p>
-                    <input className="border-2 rounded-full w-full border-color3 text-color4 mt-6 h-14 px-4" type="email" name="email" placeholder="Email" onChange={handleOnChange}/>
+            
+                    <input className="border-2 rounded-full w-full border-color3 text-color4 mt-6 h-14 px-4" type="email" name="email" placeholder="Email" onChange={handleOnChange} value={loginDetails.email}/>
                     <p className="text-left text-red-500 pt-3 pl-3">{formErrors.email}</p>
-                    <input className="border-2 rounded-full w-full border-color3 text-color4 mt-6 h-14 px-4" type="text" name="password" placeholder="Password" onChange={handleOnChange} />
+                    <input className="border-2 rounded-full w-full border-color3 text-color4 mt-6 h-14 px-4" type="text" name="password" placeholder="Password" onChange={handleOnChange} value={loginDetails.password}/>
                     <p className="text-left text-red-500 pt-3 pl-3">{formErrors.password}</p>
                     <button type="submit" className="bg-color2 text-white rounded-full w-full mt-6 h-14 mb-6 border border-color2 hover:border-2 hover:border-color2 hover:text-color2 hover:bg-white">Login</button>
-                    <Link className="" to="/forgot-password">Forgot Password</Link>
+                    <Link className="" to="/reset-password">Forgot Password</Link>
                 </form>
                 </div>
             </div>

@@ -7,7 +7,7 @@ function DashboardContainer(props) {
     return (
         <div className="w-full h-screen flex relative">
             <SideNav />
-            <div className="w-4/5 h-screen overflow-auto">
+            <div className="w-4/5 h-screen overflow-auto relative">
                 <Header headerText={""} />
                {props.children}
             </div>

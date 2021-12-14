@@ -1,11 +1,14 @@
-import React from 'react'
+import React,{ useContext } from 'react'
 import { GrPowerReset } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import image from "../../Assets/images/adepics.jpeg";
+import { DataContext } from "../../Utils/DataContext";
 
 function UserTemplate({ users }) {
+    const { deteleUser } = useContext(DataContext);
     const handleOnDelete = (id) =>{
-        
+        console.log(id);
+        deteleUser(id);
     }
     const handleOnPassWordReset = (id) =>{
         

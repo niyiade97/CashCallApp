@@ -43,7 +43,7 @@ function App() {
      
       <Route exact path="/" element={<FundRequestPage />} />
       <Route  path="login" element={<LoginPage />} />
-      <Route  path="forgot-password" element={<ForgotPasswordPage />} />
+      {/* <Route  path="forgot-password" element={<ForgotPasswordPage />} /> */}
       <Route  path="reset-password" element={<PasswordResetPage />} />
       <Route  path="requests" element={<AllRequestPage />} />
       <Route  path="approved-requests" element={<ApprovedRequestPage />} />

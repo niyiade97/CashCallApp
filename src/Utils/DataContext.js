@@ -4,11 +4,11 @@ import axios from "axios";
 export const DataContext = createContext({});
 
 const DataContextProvider = ( props ) => {
-    const REACT_BASE_URL_API = "https://uat.bts.com.ng/cashcallapi/"
-    const REACT_GET_DEPARTMENT_API = "api/department/departments";
-    const REACT_GET_USERS_API = "api/users/getallusers";
-    const REACT_GET_SUPERVISOR_API = "api/users/getsupervisors";
-    const REACT_DELETE_USER_API = "api/users/delete/";
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
+    const usersAPI = process.env.REACT_APP_GET_USERS_API;
+    const supervisorAPI = process.env.REACT_APP_GET_SUPERVISOR_API;
+    const deleteUserAPI = process.env.REACT_APP_DELETE_USER_API;
     const token = localStorage.getItem("token");
 
     const [ departments, setDepartments ] = useState([]);
@@ -16,7 +16,7 @@ const DataContextProvider = ( props ) => {
     const [ supervisors, setSupervisors ] = useState([]);
     
     const getDepartment = () =>{
-        axios.get(REACT_BASE_URL_API + REACT_GET_DEPARTMENT_API,
+        axios.get(baseURL + departmentAPI,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -31,7 +31,7 @@ const DataContextProvider = ( props ) => {
         })
     }
     const getUsers = () =>{
-        axios.get(REACT_BASE_URL_API+REACT_GET_USERS_API,
+        axios.get(baseURL + usersAPI,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -46,7 +46,7 @@ const DataContextProvider = ( props ) => {
     }
 
     const deteleUser = (id) =>{
-        axios.delete(REACT_BASE_URL_API + REACT_DELETE_USER_API + id,
+        axios.delete(baseURL + deleteUserAPI + id,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -62,7 +62,7 @@ const DataContextProvider = ( props ) => {
         })
     }
     const getSuperVisor = () =>{
-        axios.get(REACT_BASE_URL_API + REACT_GET_SUPERVISOR_API,
+        axios.get(baseURL + supervisorAPI,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }

@@ -9,6 +9,8 @@ import Loader from '../Loader';
 import Spinner from 'react-bootstrap/Spinner';
 
 function AddUser({ loading }) {
+     const baseURL = process.env.REACT_APP_BASE_URL;
+    const addUserAPI = process.env.REACT_APP_ADD_USER_API;
     const [ message, setMessage ] = useState("");
     const [ formErrors, setFormErrors ] = useState({
         status: false
@@ -120,7 +122,7 @@ function AddUser({ loading }) {
     }
     const AddNewUser = (payload) =>{
         loading(null,true);
-        axios.post("https://uat.bts.com.ng/cashcallapi/api/users/adduser" ,payload)
+        axios.post(baseURL + addUserAPI , payload)
         .then((res)=>{
             if(res.data.isSuccess){
                 getUsers();

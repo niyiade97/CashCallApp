@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const loginAPI = process.env.REACT_APP_LOGIN_API;
     const navigate = useNavigate();
     const [ formErrors, setFormErrors ] = useState({
         status: false
@@ -46,7 +48,7 @@ function Login(props) {
     }
     const login = (payload) =>{
             props.onLoad(true);
-            axios.post("https://uat.bts.com.ng/cashcallapi/api/users/login", payload)
+            axios.post(baseURL + loginAPI, payload)
             .then((res) =>{
                 console.log(res);
                 props.onLoad(false)

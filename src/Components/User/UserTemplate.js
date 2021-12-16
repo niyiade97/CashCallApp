@@ -19,7 +19,7 @@ function UserTemplate({ users }) {
             users.length !== 0 ?
             users.map((user) =>{
                 return(
-                    <tr className="border-1.5 hover:bg-color20 cursor-pointer ">
+                    <tr className="border-1.5 hover:bg-color20 cursor-pointer">
                         <td className="">
                             <div className="flex justify-center items-center">
                                 <input className="border border-color30 rounded-full" type="checkbox" />

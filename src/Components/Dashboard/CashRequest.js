@@ -7,6 +7,8 @@ import { DataContext } from "../../Utils/DataContext";
 import axios from 'axios';
 
 function CashRequest({ onLoad }) {
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const cashRequestAPI = process.env.REACT_APP_CASH_REQUEST_API;
     const { supervisors,departments } = useContext(DataContext);
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
@@ -71,7 +73,7 @@ function CashRequest({ onLoad }) {
     }
     const submitCashRequest = (payload) =>{
         onLoad(true);
-        axios.post("https://uat.bts.com.ng/cashcallapi/api/cash/cashrequest", payload,
+        axios.post(baseURL + cashRequestAPI, payload,
         { 
             headers: {"Authorization" : `Bearer ${token}`} 
         })

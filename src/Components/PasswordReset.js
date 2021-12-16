@@ -4,6 +4,8 @@ import axios from 'axios';
 import {Link} from "react-router-dom";
 
 function PasswordReset(props) {
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const passwordResetAPI = process.env.REACT_APP_PASSWORD_RESET_API;
     const [ passwordResetDetails, setPasswordResetDetails ] = useState({
         newPassword:"",
         confirmPassword:"",
@@ -78,7 +80,7 @@ function PasswordReset(props) {
             newPassword: payload.newPassword
         }
         props.onLoad(true);
-        axios.post("https://uat.bts.com.ng/cashcallapi/api/users/resetpassword",data)
+        axios.post(baseURL + passwordResetAPI, data)
         .then((res)=>{
             props.onLoad(false);
             console.log(res)

@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    cp -f .env.uat 
+    cp -f .env.uat .env
     npm install
     npm run build
   displayName: 'npm install and build'

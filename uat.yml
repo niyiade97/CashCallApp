@@ -16,8 +16,8 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    cp -f .env.uat .env
-    sed -i 's/"homepage": ""/"homepage": "$(public_url)"/' package.json
+    cp -f .env.UAT .env
+    sed -i 's/"homepage": ""/"homepage": "$(subfolder)"/' package.json
     cat package.json
     npm install
     npm run build

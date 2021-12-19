@@ -17,6 +17,8 @@ steps:
 
 - script: |
     cp -f .env.uat .env
+    sed -i 's/"homepage": ""/"homepage": "$(public_url)"/' package.json
+    cat package.json
     npm install
     npm run build
   displayName: 'npm install and build'

@@ -37,8 +37,8 @@ function App() {
     <div className="font-sans">
 
     
-    <DataContextProvider basename={process.env.PUBLIC_URL}>
-    <Routes  basename={process.env.PUBLIC_URL}>    
+    <DataContextProvider basename={process.env.REACT_APP_SUBFOLDER}>
+    <Routes  basename={process.env.REACT_APP_SUBFOLDER}>    
    
       <Route path="users" element={ <UsersPage  /> }  />
       <Route path="users/addUser" element={<AddUserPage /> } />

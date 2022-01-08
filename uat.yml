@@ -17,7 +17,7 @@ steps:
 
 - script: |
     cp -f .env.UAT .env
-    sed -i 's/"homepage": ""/"homepage": "$(subfolder)"/' package.json
+    sed -i 's/"homepage": ""/"homepage": "/cashcall"/' package.json
     cat package.json
     npm install
     npm run build

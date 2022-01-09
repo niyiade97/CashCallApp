@@ -33,11 +33,13 @@ import "tailwindcss/tailwind.css";
 
 function App() {
  
+  console.log("environment", process.env);
+  
   return (
     <div className="font-sans">
 
     
-    <DataContextProvider basename={process.env.REACT_APP_SUBFOLDER}>
+    <DataContextProvider >
     <Routes  basename={process.env.REACT_APP_SUBFOLDER}>    
    
       <Route path="users" element={ <UsersPage  /> }  />
@@ -45,32 +47,32 @@ function App() {
     
      
       <Route  path="/" element={<FundRequestPage />} />
-      <Route  path="login" element={<LoginPage />} />
+      <Route  path="/login" element={<LoginPage />} />
       {/* <Route  path="forgot-password" element={<ForgotPasswordPage />} /> */}
-      <Route  path="reset-password" element={<PasswordResetPage />} />
-      <Route  path="requests" element={<AllRequestPage />} />
-      <Route  path="approved-requests" element={<ApprovedRequestPage />} />
-      <Route  path="rejected-requests" element={<RejectedRequestsPage />} />
-      <Route  path="pending-requests" element={<PendingRequestPage />} />
-      <Route  path="disbursed-requests" element={<DisbursedRequestPage />} />
-      <Route  path="cheque-request" element={<ChequeRequestPage />} />
-      <Route  path="profile" element={<ProfilePage />} />
-      <Route  path="profile/change-password" element={<ChangePasswordPage />} />
+      <Route  path="/reset-password" element={<PasswordResetPage />} />
+      <Route  path="/requests" element={<AllRequestPage />} />
+      <Route  path="/approved-requests" element={<ApprovedRequestPage />} />
+      <Route  path="/rejected-requests" element={<RejectedRequestsPage />} />
+      <Route  path="/pending-requests" element={<PendingRequestPage />} />
+      <Route  path="/disbursed-requests" element={<DisbursedRequestPage />} />
+      <Route  path="/cheque-request" element={<ChequeRequestPage />} />
+      <Route  path="/profile" element={<ProfilePage />}  />
+      <Route  path="/profile/change-password" element={<ChangePasswordPage />} />
       
-      <Route  path="cash-request" element={<CashRequestPage />} />
-      <Route path="home" element={<FundRequestPage />} />
+      <Route  path="/cash-request" element={<CashRequestPage />} />
+      <Route path="/home" element={<FundRequestPage />} />
 
-      <Route  path="admin-requests" element={<AdminRequestPage />} />
-      <Route  path="admin-approved-requests" element={<AdminApprovedRequestPage />} />
-      <Route  path="admin-rejected-requests" element={<AdminRequestPage />} />
-      <Route  path="admin-pending-requests" element={<AdminPendingRequestPage />} />
-      <Route  path="admin-disbursed-requests" element={<AdminDisbursedRequestPage />} />
-      <Route  path="admin-cheque-request" element={<AdminChequeRequestPage />} />
-      <Route  path="admin-profile" element={<AdminProfilePage />} />
-      <Route  path="admin-profile/change-password" element={<AdminChangePasswordPage />} />
+      <Route  path="/admin-requests" element={<AdminRequestPage />} />
+      <Route  path="/admin-approved-requests" element={<AdminApprovedRequestPage />} />
+      <Route  path="/admin-rejected-requests" element={<AdminRequestPage />} />
+      <Route  path="/admin-pending-requests" element={<AdminPendingRequestPage />} />
+      <Route  path="/admin-disbursed-requests" element={<AdminDisbursedRequestPage />} />
+      <Route  path="/admin-cheque-request" element={<AdminChequeRequestPage />} />
+      <Route  path="/admin-profile" element={<AdminProfilePage />} />
+      <Route  path="/admin-profile/change-password" element={<AdminChangePasswordPage />} />
       
-      <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
-      <Route path="dashboard" element={<AdminFundRequestPage />} />
+      <Route  path="/admin-cash-request" element={<AdminCashRequestPage />} />
+      <Route path="/dashboard" element={<AdminFundRequestPage />} />
     </Routes>
     </DataContextProvider>
     

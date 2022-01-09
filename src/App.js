@@ -35,9 +35,6 @@ function App() {
 
   return (
     <div className="font-sans">
-
-
-      <DataContextProvider >
         <BrowserRouter basename={process.env.REACT_APP_SUBFOLDER}>
           <Routes>
 
@@ -74,14 +71,6 @@ function App() {
             <Route path="/dashboard" element={<AdminFundRequestPage />} />
           </Routes>
         </BrowserRouter>
-      </DataContextProvider>
-
-
-      {/* <DashboardContainer>
-      <Routes>
-      <Route  path="dashboard" element={<FundRequestPage />} />
-      </Routes>
-    </DashboardContainer> */}
     </div>
   );
 }

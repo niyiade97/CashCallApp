@@ -3,6 +3,7 @@ import React,{useState} from 'react'
 import { MdWifiProtectedSetup } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Login(props) {
     const baseURL = process.env.REACT_APP_BASE_URL;
@@ -50,9 +51,7 @@ function Login(props) {
             props.onLoad(true);
             axios.post(baseURL + loginAPI, payload)
             .then((res) =>{
-                console.log(res);
-                props.onLoad(false)
-               
+                props.onLoad(false);
                 if(res.data.isSuccess){
                     setMessage("");
                     localStorage.setItem("userId", res.data.data.id);
@@ -93,29 +92,27 @@ function Login(props) {
         e.preventDefault();
         setFormErrors(validate(loginDetails));
         if(!validate(loginDetails).status){
-            console.log(loginDetails);
             login(loginDetails);
         }
         
     }
 
     return (
-        <div className="w-45 h-full relative">
+        <div className="login-container">
         {props.children}
-        <div className="w-full h-screen flex justify-center items-center">
-            <div className="w-2/4">
-                <h1 className="font-bold text-2xl">Hello Again!</h1> 
-                <p className="font-light text-2xl">Welcome Back</p>
-                <div className="text-center">
+        <div className="login-inner-container">
+            <div className="login-wrapper">
+                <h1 className="login-wrapper-header-h1">Hello Again!</h1> 
+                <p className="login-wrapper-header-p">Welcome Back</p>
+                <div className="login-form-container">
                 <form onSubmit={handleOnSubmit}>
                     <p className={`${message  !== "" && "text-red-500 bg-red-300 p-4 text-left my-3"}`}>{message}</p>
-            
-                    <input className="border-2 rounded-full w-full border-color3 text-color4 mt-6 h-14 px-4" type="email" name="email" placeholder="Email" onChange={handleOnChange} value={loginDetails.email}/>
-                    <p className="text-left text-red-500 pt-3 pl-3">{formErrors.email}</p>
-                    <input className="border-2 rounded-full w-full border-color3 text-color4 mt-6 h-14 px-4" type="text" name="password" placeholder="Password" onChange={handleOnChange} value={loginDetails.password}/>
-                    <p className="text-left text-red-500 pt-3 pl-3">{formErrors.password}</p>
-                    <button type="submit" className="bg-color2 text-white rounded-full w-full mt-6 h-14 mb-6 border border-color2 hover:border-2 hover:border-color2 hover:text-color2 hover:bg-white">Login</button>
-                    <Link className="" to="/reset-password">Forgot Password</Link>
+                    <input className="login-form-email" type="email" name="email" placeholder="Email" onChange={handleOnChange} value={loginDetails.email} autoComplete="off"/>
+                    <p className="login-form-p ">{formErrors.email}</p>
+                    <input className="login-form-password" type="text" name="password" placeholder="Password" onChange={handleOnChange} value={loginDetails.password} autoComplete="off"/>
+                    <p className="login-form-p">{formErrors.password}</p>
+                    <button type="submit" className="login-form-btn">Login</button>
+                    <Link className="login-form-reset" to="/reset-password">Forgot Password</Link>
                 </form>
                 </div>
             </div>

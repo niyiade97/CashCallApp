@@ -21,7 +21,7 @@ function SideNav() {
                 </div>
                 <div className="pt-20">
                     <Nav path="/dashboard" text="Dashboard" icon={<BiHomeAlt />} dropDownIsActive={false}/>
-                    <Nav path="" text="Fund Fequests" icon={<BiDollarCircle />} dropDownIsActive={true} handleClick={handleDropDown}/>
+                    <Nav path="/fund-request" text="Fund Requests" icon={<BiDollarCircle />} dropDownIsActive={true} handleClick={handleDropDown}/>
                     <ul className={`${dropDownStatus ? "block" : "hidden" } font-bold text-sm pl-10 text-color5 duration-1000 transition-all ease-in-out`}>
                         <li className="relative py-2 hover:text-color24">
                             <Link to="/admin-requests">All requests</Link>

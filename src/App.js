@@ -30,6 +30,7 @@ import DataContext from "./Utils/DataContext";
 import DataContextprovider from "./Utils/DataContext";
 import DataContextProvider from "./Utils/DataContext";
 import "tailwindcss/tailwind.css";
+import DashboardPage from "./Views/AdminView/DashboardPage";
 
 function App() {
  
@@ -44,7 +45,7 @@ function App() {
       <Route path="users/addUser" element={<AddUserPage /> } />
     
      
-      <Route  path="/" element={<FundRequestPage />} />
+      <Route  path="/" element={<LoginPage />} />
       <Route  path="login" element={<LoginPage />} />
       {/* <Route  path="forgot-password" element={<ForgotPasswordPage />} /> */}
       <Route  path="reset-password" element={<PasswordResetPage />} />
@@ -58,7 +59,7 @@ function App() {
       <Route  path="profile/change-password" element={<ChangePasswordPage />} />
       
       <Route  path="cash-request" element={<CashRequestPage />} />
-      <Route path="home" element={<FundRequestPage />} />
+      <Route path="fund-request" element={<FundRequestPage />} />
 
       <Route  path="admin-requests" element={<AdminRequestPage />} />
       <Route  path="admin-approved-requests" element={<AdminApprovedRequestPage />} />
@@ -70,7 +71,7 @@ function App() {
       <Route  path="admin-profile/change-password" element={<AdminChangePasswordPage />} />
       
       <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
-      <Route path="dashboard" element={<AdminFundRequestPage />} />
+      <Route path="dashboard" element={<DashboardPage />} />
     </Routes>
     </DataContextProvider>
     

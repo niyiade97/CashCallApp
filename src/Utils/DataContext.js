@@ -78,9 +78,14 @@ const DataContextProvider = ( props ) => {
         })
     }
     useEffect(() => {
-        getDepartment();
-        getUsers();
-        getSuperVisor();
+        try {
+            getDepartment();
+            getUsers();
+            getSuperVisor();
+        } catch (error) {
+            console.log("init error", error);
+        }
+        
     }, [])
     return (
         <DataContext.Provider value={{ departments, users, getUsers, supervisors, deteleUser }}>

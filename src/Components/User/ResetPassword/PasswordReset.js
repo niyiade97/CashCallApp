@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import BackButton from './BackButton'
+import BackButton from '../../BackButton'
 import axios from 'axios';
 import {Link} from "react-router-dom";
+import "./ResetPassword.css";
 
 function PasswordReset(props) {
     const baseURL = process.env.REACT_APP_BASE_URL;
@@ -121,34 +122,34 @@ function PasswordReset(props) {
 
     }
     return (
-        <div className="w-45 h-full relative">
+        <div className="reset-container">
             <BackButton bgColor="white" color="black"/>
             {props.children}
             <div className="w-full h-screen flex justify-center items-center">
                 <div className="w-2/4">
                     <h1 className="font-bold text-2xl text-center">Reset Password</h1> 
                     <div className="text-center">
-                    <form onSubmit={handleOnSubmit}>   
+                    <form onSubmit={handleOnSubmit} className='reset-form'>   
                     {
                         message.text &&
                         <p className={`${message.status === 2 && "text-red-500 bg-red-300"} ${message.status === 1 &&  "text-green-600 bg-green-100"} p-4 text-left my-3`}>{message.text}</p>
                     }
-                        <input className="border-2 rounded-full border-color3 text-color4 w-full mt-6 h-14 px-4" type="text" name="emailAddress" placeholder="Email" onChange={handleOnChange} value={passwordResetDetails.emailAddress}/>
+                        <input className="" type="text" name="emailAddress" placeholder="Email" onChange={handleOnChange} value={passwordResetDetails.emailAddress} autoComplete='off'/>
                         {
                             formErrors.email &&
                             <p className="text-left text-red-500 pt-3 pl-3">{formErrors.email}</p>
                         }
-                        <input className="border-2 rounded-full border-color3 text-color4 w-full mt-6 h-14 px-4" type="password" name="newPassword" placeholder="New Password" onChange={handleOnChange} value={passwordResetDetails.newPassword}/>
+                        <input className="" type="password" name="newPassword" placeholder="New Password" onChange={handleOnChange} value={passwordResetDetails.newPassword} autoComplete='off'/>
                         {
                             formErrors.newPassword &&
                             <p className="text-left text-red-500 pt-3 pl-3">{formErrors.newPassword}</p>
                         }
-                        <input className="border-2 rounded-full border-color3 text-color4 w-full mt-6 h-14 px-4" type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleOnChange} value={passwordResetDetails.confirmPassword}/>
+                        <input className="" type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleOnChange} value={passwordResetDetails.confirmPassword} autoComplete='off'/>
                         {
                             formErrors.confirmPassword &&
                             <p className="text-left text-red-500 pt-3 pl-3">{formErrors.confirmPassword}</p>
                         }
-                        <button type="submit" className="bg-color2 text-white rounded-full w-full mt-6 h-14 mb-6 border border-color2 hover:border-2 hover:border-color2 hover:text-color2 hover:bg-white">Reset</button>
+                        <button type="submit" className="">Reset</button>
                         <Link className="" to="/login">Login</Link>
                     </form>
                     </div>

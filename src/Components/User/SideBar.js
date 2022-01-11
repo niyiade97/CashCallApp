@@ -7,6 +7,7 @@ import { CgProfile } from "react-icons/cg"
 import { RiOrganizationChart } from "react-icons/ri";
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { MdOutlineLogout } from 'react-icons/md';
+import "./SideBar.css";
 import {Link} from "react-router-dom"
 
 function SideBar() {
@@ -15,15 +16,15 @@ function SideBar() {
         setDropDownStatus(!dropDownStatus);
     }
     return (
-        <div className="w-1/5 h-screen sticky top-0 bg-white shadow-sideNavShadow">
+        <div className="side-bar-container w-1/5 h-screen sticky top-0 bg-white shadow-sideNavShadow">
             <div className="ml-20">
                 <div className="pt-2">
-                    <img src={logo} alt="logo" className="w-36 h-16" />
+                    <img src={logo} alt="logo" className="w-36 h-16 object-cover" />
                 </div>
-                <div className="pt-20">
+                <div className="side-bar-nav-container pt-20">
                     <Nav path="/dashboard" text="Dashboard" icon={<BiDollarCircle />} dropDownIsActive={false}/>
                     <Nav path="/fund-request" text="Fund Requests" icon={<BiDollarCircle />} dropDownIsActive={true} handleClick={handleDropDown}/>
-                    <ul className={`${dropDownStatus ? "block" : "hidden" } font-bold text-sm pl-10 text-color5 duration-1000 transition-all ease-in-out`}>
+                    <ul className={`${dropDownStatus ? "block" : "hidden" } font-bold text-sm pl-10 duration-1000 transition-all ease-in-out`}>
                         <li className="relative py-2 hover:text-color24">
                             <Link to="/requests">All requests</Link>
                         </li>

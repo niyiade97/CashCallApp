@@ -15,6 +15,7 @@ function Select({ label, onChange, disabled, options, placeholder, name, type, w
                 <select className={`rounded-full w-full mt-4 h-14 px-4 font-semibold ${formError ? " border border-red-400" :"bg-white border border-color5 "} text-color13 placeholder-color13 pr-4`} name={name} onChange={handleOnchange} >
                 <option disabled selected={value === null && true} value="">{label}</option>
                 {
+                    options.length !== 0 &&
                     options.map((option,id) =>{
                         return(
                             <option key={id} value={option[name]}>

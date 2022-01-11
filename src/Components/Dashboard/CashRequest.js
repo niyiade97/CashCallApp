@@ -1,29 +1,30 @@
-import React, {useContext, useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import Select from '../Select';
 import UploadButton from '../UploadButton';
 import TextField from '../TextField';
 import {Link} from "react-router-dom"
 import { DataContext } from "../../Utils/DataContext";
 import axios from 'axios';
+import "./CashRequest.css";
 
-function CashRequest({ onLoad }) {
+function CashRequest({ handleLoader, handleAlertModal }) {
+    const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const baseURL = process.env.REACT_APP_BASE_URL;
+    const supervisorAPI = process.env.REACT_APP_GET_SUPERVISOR_API;
     const cashRequestAPI = process.env.REACT_APP_CASH_REQUEST_API;
-    const { supervisors,departments } = useContext(DataContext);
+    const [ departments, setDepartments ] = useState([]);
+    const [ supervisors, setSupervisors ] = useState([]);
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
-    const [ loading, setLoading ] = useState(false);
-    const Services = ["Web Development", "IT", "Boat Cruise"]
+    const name = localStorage.getItem("name");
     const [ formErrors, setFormErrors ] = useState({
-        
     })
     const [ cashRequest, setCashRequest ] = useState({
-        userID: userId,
+        userID: parseInt(userId),
         departmentID: null,
         supervisorID: null,
-        amount: null,
+        amount: 0,
         purpose: "",
-        name:"",
         ImageFile:""
     })
     
@@ -36,14 +37,40 @@ function CashRequest({ onLoad }) {
         })
     }
     
+    const getDepartment = () =>{
+        axios.get(baseURL + departmentAPI,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            setDepartments(res.data.data.map((data) =>{
+                return{
+                    departmentID: data.departmentID,
+                    department: data.department
+                }
+            }))
+        })
+    }
+    const getSuperVisor = () =>{
+        axios.get(baseURL + supervisorAPI,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            setSupervisors(res.data.data.map((data) =>{
+                return{
+                    supervisorID: data.id,
+                    fullName: data.lastname + " " + data.firstname
+                }
+            }))
+        })
+    }
     const validate = (data) =>{
        const errors ={
         status: false
        }
-        if(!data.name){
-            errors.name = "Name is required";
-            errors.status = true;
-        }
         if(!data.departmentID){
             errors.department = "Department is required";
             errors.status = true;
@@ -72,27 +99,34 @@ function CashRequest({ onLoad }) {
         return errors;
     }
     const submitCashRequest = (payload) =>{
-        onLoad(true);
+        handleLoader(true);
         axios.post(baseURL + cashRequestAPI, payload,
         { 
             headers: {"Authorization" : `Bearer ${token}`} 
         })
         .then((res) =>{
-            onLoad(false);
-            console.log(res);
+            handleLoader(false);
+            handleAlertModal("Cash Request is Successfull !!!" , true);
+            setCashRequest({
+                userID: parseInt(userId),
+                departmentID: null,
+                supervisorID: null,
+                amount: 0,
+                purpose: "",
+                ImageFile:""
+            })
         })
         .catch((err) =>{
-            onLoad(false);
-            console.log(err);
+            handleLoader(false);
+            handleAlertModal("Error has occured", false);
+            console.log(err.response.data);
         })
     }
 
     const handleOnSubmit = (e) =>{
         e.preventDefault();
-        
         setFormErrors(validate(cashRequest));
         const formState = validate(cashRequest).status;
-        console.log(formState);
         if(!formState){
             const formData = new FormData();
             formData.append("userID", cashRequest.userID);
@@ -101,29 +135,32 @@ function CashRequest({ onLoad }) {
             formData.append("amount", cashRequest.amount);
             formData.append("purpose", cashRequest.purpose);
             formData.append("ImageFile", cashRequest.ImageFile);
-
             submitCashRequest(formData);
         }
     }
+    useEffect(() => {
+        getDepartment();
+        getSuperVisor();
+    }, [])
 
     return (
         <>
        
-        <div className="w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5 shadow-transactionBoxShadow"> 
+        <div className="cash-request-container w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5"> 
             <div className="w-11/12 m-auto">
                 <div className="pl-4 pb-3">
                     <h1 className="text-color13 font-bold text-2xl">Submit Cash Request</h1>
                 </div>
                 <form onSubmit={handleOnSubmit}>
                     <div className="flex flex-wrap">
-                        <TextField type="text" name="name" placeholder="Dolapo Obisesan" label="Name" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={cashRequest.name}/>
+                        <TextField type="text" name="name" placeholder="Dolapo Obisesan" label="Name" onChange={handleOnChange} disabled={true} width="2/4"  value={name}/>
                         <Select name="departmentID" label="Department" onChange={handleOnChange} disabled={false} options={departments} width="2/4" formError={formErrors.department} value={cashRequest.departmentID} valueKey="department" />
                         <TextField type="number" name="amount" placeholder="#300,000" label="Amount" onChange={handleOnChange} disabled={false} width="2/4"  formError={formErrors.amount} value={cashRequest.amount} />
                         <Select name="supervisorID" placeholder="Adebayo Salami" label="Supervisor" onChange={handleOnChange} disabled={false} options={supervisors} width="2/4" formError={formErrors.supervisor} value={cashRequest.supervisorID} valueKey="fullName"/>
                         <UploadButton label="Upload" onChange={handleOnChange} name="ImageFile"  formError={formErrors.imageFile} value={cashRequest.ImageFile}/>
                         <TextField type="text" name="purpose" placeholder="Vehicle Repair" label="Purpose" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.purpose} value={cashRequest.purpose} />
-                        <div className="w-45 m-auto py-3">
-                            <button type="submit" className=" border w-full bg-color2 text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Submit</button>
+                        <div className="cash-request-btn-wrapper w-45 m-auto py-3">
+                            <button type="submit" className=" border w-full h-14 rounded-full mx-2 text-lg font-semibold">Submit</button>
                         </div>
                     </div>
                 </form>

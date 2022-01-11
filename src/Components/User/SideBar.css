@@ -1,0 +1,9 @@
+.side-bar-container{
+    box-shadow: 5px 1px 6px 0px rgba(179,179,179,0.75);
+}
+.side-bar-nav-container ul{
+    color: #8E8EA1;
+}
+.side-bar-nav-container li a:hover{
+    color: #013A8E ;
+}

@@ -38,12 +38,17 @@ function App() {
     <div className="font-sans">
         <BrowserRouter basename={process.env.REACT_APP_SUBFOLDER}>
           <Routes>
-            <Route path="users" element={ <UsersPage  /> }  />
-            <Route path="users/addUser" element={<AddUserPage /> } />
+
+            {/* auth routes */}
             <Route  path="/" element={<LoginPage />} />
             <Route  path="login" element={<LoginPage />} />
-            <Route  path="forgot-password" element={<ForgotPasswordPage />} />
             <Route  path="reset-password" element={<PasswordResetPage />} />
+            <Route  path="forgot-password" element={<ForgotPasswordPage />} />
+            
+            {/* admin routes */}
+            <Route path="users" element={ <UsersPage  /> }  />
+            <Route path="users/addUser" element={<AddUserPage /> } />
+           
             <Route  path="requests" element={<AllRequestPage />} />
             <Route  path="approved-requests" element={<ApprovedRequestPage />} />
             <Route  path="rejected-requests" element={<RejectedRequestsPage />} />
@@ -54,7 +59,7 @@ function App() {
             <Route  path="profile/change-password" element={<ChangePasswordPage />} />
             <Route  path="cash-request" element={<CashRequestPage />} />
             <Route path="fund-request" element={<FundRequestPage />} />
-            <Route  path="admin-requests" element={<AdminRequestPage />} />
+            {/* <Route  path="admin-requests" element={<AdminRequestPage />} />
             <Route  path="admin-approved-requests" element={<AdminApprovedRequestPage />} />
             <Route  path="admin-rejected-requests" element={<AdminRequestPage />} />
             <Route  path="admin-pending-requests" element={<AdminPendingRequestPage />} />
@@ -62,7 +67,7 @@ function App() {
             <Route  path="admin-cheque-request" element={<AdminChequeRequestPage />} />
             <Route  path="admin-profile" element={<AdminProfilePage />} />
             <Route  path="admin-profile/change-password" element={<AdminChangePasswordPage />} />
-            <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
+            <Route  path="admin-cash-request" element={<AdminCashRequestPage />} /> */}
             <Route path="dashboard" element={<DashboardPage />} />
           </Routes>
         </BrowserRouter>

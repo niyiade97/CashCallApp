@@ -10,7 +10,7 @@ import UserTemplate from './UserTemplate';
 import { DataContext } from "../../Utils/DataContext";
 function Users(props) {
    
-    const { users } = useContext(DataContext);
+    // const { users } = useContext(DataContext);
 
     return (
         <div className="w-full h-screen mb-8 py-4 mt-5 relative"> 
@@ -52,7 +52,7 @@ function Users(props) {
                         </th>
                         <th className="py-2 w-60 pl-4 text-color17 font-bold text-lg">Role</th>  
                     </tr>
-                    <UserTemplate users={users} />
+                    <UserTemplate users={[]} />
                     
                 </table>
                 

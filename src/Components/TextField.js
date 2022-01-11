@@ -14,7 +14,7 @@ function TextField({label, onChange, disabled, placeholder, name, type, width, v
     }
     return (
         <div className={`w-${width} px-4 py-3`}>
-            <div className="w-full text-color5">
+            <div style={{color:"#8E8EA1"}} className="w-full">
                 <label className="font-normal text-lg">{label}</label> 
                 <input className={`rounded-full w-full mt-4 h-14 px-4 font-semibold ${formError ? " border border-red-400" :"bg-white border border-color5 text-color13 placeholder-color4" }`} type={type} name={name} value={value} placeholder={placeholder} onChange={handleOnchange} disabled={disabled ? true : false} />
                 {

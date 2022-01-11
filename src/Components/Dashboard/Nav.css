@@ -1,0 +1,9 @@
+.nav-container{
+    color:#8E8EA1;
+}
+.nav-container:hover{
+    color: rgba(1, 58, 142, 1);
+}
+.nav-container:focus{
+    color: rgba(1, 58, 142, 1);
+}

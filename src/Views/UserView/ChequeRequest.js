@@ -5,7 +5,7 @@ import UserDashboardContainer from '../../Components/User/UserDashboardContainer
 function ChequeRequestPage() {
     return (
         <UserDashboardContainer>
-            <div className="w-full flex">
+            <div className="w-full h-full flex">
                 <ChequeRequest />
             </div>
         </UserDashboardContainer>

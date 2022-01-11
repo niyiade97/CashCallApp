@@ -93,6 +93,7 @@ function AddUser({ loading }) {
                 <select className="rounded-full w-full mt-4 h-14 px-4 font-semibold bg-white border border-color5 text-color13 placeholder-color13 pr-4" name={name} onChange={handleChange} >
                 <option disabled selected={value === null && true} value="">{label}</option>
                 {
+                    options.length !== 0 &&
                     options.map((option,id) =>{
                         return(
                             <option key={id} value={option.data.departmentID}>
@@ -152,7 +153,7 @@ function AddUser({ loading }) {
                     <TextField type="text" name="lastname" placeholder="Ademola" label="Last Name" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.lastname} formError={formErrors.lastname} />
                     <TextField type="text" name="email" placeholder="niyiade97@gmail.com" label="Email" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.email} formError={formErrors.email}/>
                     <Select name="userRole" label="Role" onChange={handleOnChange} disabled={false} options={["User","Admin","Supervisor"]} width="2/4" value={userDtails.userRole} formError={formErrors.userRole}/>
-                    <DepartmentDropDown name="departmentID" label="Department" onChange={handleOnChange} options={departments} value={userDtails.departmentID} width="2/4" formError={formErrors.departmentID}/>
+                    <DepartmentDropDown name="departmentID" label="Department" onChange={handleOnChange} options={[]} value={userDtails.departmentID} width="2/4" formError={formErrors.departmentID}/>
                     <TextField type="password" name="password" placeholder="" label="Password" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.password} formError={formErrors.password}/>
                     <div className="w-45 m-auto py-3">
                         <button type="submit" className=" border w-full bg-color2 text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">

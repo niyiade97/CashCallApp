@@ -57,12 +57,12 @@ function Login(props) {
                     localStorage.setItem("userId", res.data.data.id);
                     localStorage.setItem("token", res.data.message);
                     localStorage.setItem("role", res.data.data.userRole);
-                    
+                    localStorage.setItem("name", res.data.data.firstname + " " + res.data.data.lastname);
                     if(res.data.data.userRole === "User"){
-                        navigate("/home");console.log(res);
+                        navigate("/home");
                     }
                     else{
-                        navigate("/dashboard");console.log(res);
+                        navigate("/dashboard");
                     }
                 }
                 else{

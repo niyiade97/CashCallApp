@@ -1,0 +1,39 @@
+.fund-request-container{
+    width: 75%;
+    border-radius: 24px;
+    height: 100%;
+    border: 2px solid #F0F0F0;
+    margin: 12px 8px 40px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fund-request-inner-container{
+    font-weight: 700;
+    text-align: center;
+}
+.fund-request-h1{
+    font-size: 36px;
+    line-height: 40px;
+    color: #858585;
+}
+.fund-request-container img{
+    object-fit: cover;
+    padding: 48px 0px;
+    display: inline;
+}
+.fund-request-container button{
+    background-color: rgba(1, 58, 142, 1);
+    color: white;
+    width: 240px;
+    height: 56px;
+    border-radius: 12px;
+    font-size: 18px;
+    line-height: 28px;
+    margin:0 8px;
+}
+.fund-request-container button:hover{
+    background-color: white;
+    color:rgba(1, 58, 142, 1);
+    border: 2px solid rgba(1, 58, 142, 1);
+}

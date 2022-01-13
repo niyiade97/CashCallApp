@@ -1,16 +1,10 @@
 import React,{useState, useEffect} from 'react'
-import { MdFilterListAlt } from "react-icons/md";
-import { BsSortUp } from "react-icons/bs";
-import image from "../../Assets/images/adepics.jpeg";
 import { IoAddOutline } from 'react-icons/io5';
 import { FiSearch } from 'react-icons/fi'
 import { BsArrowUpShort } from 'react-icons/bs'
 import { Link } from "react-router-dom";
 import axios from "axios";
-import UserTemplate from './UserTemplate';
-import "./Users.css";
-import { DataContext } from "../../Utils/DataContext";
-import DepartmentPage from '../../Views/AdminView/DepartmentPage';
+// import "../../userManagement/style/User.css";
 import DepartmentTemplate from './DepartmentTemplate';
 
 

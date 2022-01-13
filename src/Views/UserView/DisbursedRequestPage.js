@@ -1,6 +1,6 @@
 import React from 'react';
-import DisbursedRequest from '../../Components/Dashboard/DisbursedRequest';
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
+import DisbursedRequest from "../../modules/requestStatus/components/DisbursedRequest";
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer"
 
 function DisbursedRequestPage() {
     return (

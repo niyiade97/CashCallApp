@@ -1,11 +1,11 @@
 import React,{useState, useEffect} from 'react';
-import DashboardContainer from '../../Components/Dashboard/DashboardContainer';
-import Users from '../../Components/User/Users';
-import BackDrop from "../../Components/BackDrop";
-import Loader from '../../Components/Loader';
-import AddUser from '../../Components/User/AddUser';
+import DashboardContainer from "../../modules/dashboard/components/DashboardContainer";
+import Users from "../../modules/userManagement/components/Users"
+import BackDrop from "../../modules/customElement/component/BackDrop"
+import Loader from "../../modules/customElement/component/Loader"
+import AddUser from "../../modules/userManagement/components/AddUser"
 import axios from "axios";
-import DeleteModal from '../../Components/DeleteModal';
+import DeleteModal from "../../modules/modal/component/DeleteModal"
 
 function UsersPage(props) {
     const [ loading, setLoading ] = useState(false);

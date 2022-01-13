@@ -1,7 +1,7 @@
 import React from 'react';
-import image from "../../Assets/images/fundRequestImg.png";
+import image from "../../../Assets/images/fundRequestImg.png";
 import { Link } from  "react-router-dom";
-import "./FundRequest.css";
+import "../style/FundRequest.css";
 
 function FundRequest() {
     return (

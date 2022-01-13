@@ -1,9 +1,8 @@
 import React from 'react'
-import profileImage from "../../Assets/images/adepics.jpeg";
+import profileImage from "../../../Assets/images/adepics.jpeg";
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import { Link } from "react-router-dom";
 import ProfileInput from './ProfileInput';
-import "./Profile.css";
+import "../style/Profile.css";
 
 function Profile(props) {
     const Services = ["Web Development", "IT", "Boat Cruise"]

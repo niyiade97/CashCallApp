@@ -1,9 +1,8 @@
 import React from 'react'
-import Header from '../Dashboard/Header';
-import SideBar from './Nav/SideBar';
-import "./UserDashboardContainer.css";
+import Header from "../../dashboard/components/Header"
+import SideBar from '../../dashboard/components/SideBar';
+import "../style/UserDashboardContainer.css";
 function UserDashboardContainer(props) {
-    // const [ activeBackDrop, setActiveBackDrop ] = useState(false);
     return (
         <div className="w-full h-screen flex">
             <SideBar />
@@ -12,7 +11,6 @@ function UserDashboardContainer(props) {
                 <div className='relative main-container '>
                     {props.children}
                 </div>
-               
             </div>
         </div>
     )

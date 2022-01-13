@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from "../../../Assets/images/cashCallLogo.png";
-import "./SidePage.css";
+import "../style/SidePage.css";
 function SidePage() {
     return (
         <div className="side-page-container w-full h-screen bg-gradient-to-b from-color1 to-color2 relative">

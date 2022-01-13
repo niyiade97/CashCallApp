@@ -1,6 +1,6 @@
 import React from 'react';
-import PendingRequest from '../../Components/Dashboard/PendingRequest';
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
+import PendingRequest from "../../modules/requestStatus/components/PendingRequest";
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer";
 
 function PendingRequestPage() {
     return (

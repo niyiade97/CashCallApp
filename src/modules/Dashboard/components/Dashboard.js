@@ -1,12 +1,6 @@
-import React, {useContext, useState } from 'react'
-import Select from '../../../Components/Select';
-import UploadButton from '../../../Components/UploadButton';
-import TextField from '../../../Components/TextField';
-import {Link} from "react-router-dom"
-import { DataContext } from "../../../Utils/DataContext";
-import axios from 'axios';
+import React from 'react'
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import "./Dashboard.css";
+import "../style/Dashboard.css";
 
 function Dashboard() {
     const stats =[
@@ -75,20 +69,7 @@ function Dashboard() {
                         })
                     }
                 </div>
-                {/* <form onSubmit={handleOnSubmit}>
-                    <div className="flex flex-wrap">
-                        <TextField type="text" name="name" placeholder="Dolapo Obisesan" label="Name" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={cashRequest.name}/>
-                        <Select name="departmentID" label="Department" onChange={handleOnChange} disabled={false} options={departments} width="2/4" formError={formErrors.department} value={cashRequest.departmentID} valueKey="department" />
-                        <TextField type="number" name="amount" placeholder="#300,000" label="Amount" onChange={handleOnChange} disabled={false} width="2/4"  formError={formErrors.amount} value={cashRequest.amount} />
-                        <Select name="supervisorID" placeholder="Adebayo Salami" label="Supervisor" onChange={handleOnChange} disabled={false} options={supervisors} width="2/4" formError={formErrors.supervisor} value={cashRequest.supervisorID} valueKey="fullName"/>
-                        <UploadButton label="Upload" onChange={handleOnChange} name="ImageFile"  formError={formErrors.imageFile} value={cashRequest.ImageFile}/>
-                        <TextField type="text" name="purpose" placeholder="Vehicle Repair" label="Purpose" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.purpose} value={cashRequest.purpose} />
-                        <div className="w-45 m-auto py-3">
-                            <button type="submit" className=" border w-full bg-color2 text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Submit</button>
-                        </div>
-                    </div>
-                </form>
-                 */}
+               
             </div>
         </div>
     )

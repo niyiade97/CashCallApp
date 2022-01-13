@@ -1,6 +1,5 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom"
-import "../Components/Dashboard/AlertModal.css";
+import "../style/AlertModal.css";
 
 function DeleteModal({ icon, btnText, btnText2, btnActive, messageText1, messageText2, messageHeader, handleDeleteModal, handleDelete}) {
    

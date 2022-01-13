@@ -1,9 +1,8 @@
 import React,{ useContext } from 'react'
-import { GrPowerReset } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
-import image from "../../Assets/images/adepics.jpeg";
-import { DataContext } from "../../Utils/DataContext";
-import "./UserTemplate.css";
+import image from "../../../Assets/images/adepics.jpeg";
+import { DataContext } from "../../../Utils/DataContext";
+import "../../userManagement/style/UserTemplate.css";
 
 function DepartmentTemplate({ departments }) {
     const { deteleUser } = useContext(DataContext);

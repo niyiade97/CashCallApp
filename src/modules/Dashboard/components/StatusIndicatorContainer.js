@@ -1,8 +1,8 @@
 import React from 'react'
-import StatusIndicator from "../Dashboard/StatusIndicator";
+import StatusIndicator from "./StatusIndicator";
 import { IoIosInformationCircle } from 'react-icons/io';
 import { IoCheckmarkCircleSharp } from 'react-icons/io5';
-import "./StatusIndicatorContainer.css";
+import "../style/StatusIndicatorContainer.css";
 import { GoCalendar} from 'react-icons/go';
 
 function StatusIndicatorcontainer() {

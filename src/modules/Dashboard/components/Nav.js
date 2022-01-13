@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { IoMdArrowDropdown } from 'react-icons/io';
-import "./Nav.css";
+import "../style/Nav.css";
 function Nav({path, text, icon, dropDownIsActive, handleClick}) {
 
     const handleOnClick = () =>{

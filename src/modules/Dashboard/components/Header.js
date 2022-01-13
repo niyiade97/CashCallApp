@@ -1,6 +1,6 @@
 import React from 'react'
-import pics from "../../Assets/images/adepics.jpeg";
-import "./Header.css";
+import pics from "../../../Assets/images/adepics.jpeg";
+import "../style/Header.css";
 function Header(props) {
     return (
         <div className="header-container border-b-2 border-color6 w-full bg-white h-20 flex items-center">

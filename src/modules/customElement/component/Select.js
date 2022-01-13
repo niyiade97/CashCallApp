@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Select.css";
+import "../style/Select.css";
 
 function Select({ label, onChange, disabled, options, placeholder, name, type, width, value, formError,valueKey }){
 

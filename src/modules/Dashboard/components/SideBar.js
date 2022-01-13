@@ -1,13 +1,10 @@
 import React,{useState} from 'react'
 import logo from "../../../Assets/images/cashCallLogo.png";
-import Nav from "../../Dashboard/Nav";
-import { BiHomeAlt,BiDollarCircle } from "react-icons/bi";
-import { FiSettings } from "react-icons/fi";
+import Nav from "./Nav";
+import { BiDollarCircle } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg"
-import { RiOrganizationChart } from "react-icons/ri";
-import { IoMdArrowDropdown } from 'react-icons/io';
 import { MdOutlineLogout } from 'react-icons/md';
-import "./SideBar.css";
+import "../style/SideBar.css";
 import {Link} from "react-router-dom";
 
 function SideBar() {

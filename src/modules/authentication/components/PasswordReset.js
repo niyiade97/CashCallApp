@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BackButton from '../../customElement/component/BackButton'
 import axios from 'axios';
 import {Link} from "react-router-dom";
-import "./ResetPassword.css";
+import "../style/ResetPassword.css";
 
 function PasswordReset(props) {
     const baseURL = process.env.REACT_APP_BASE_URL;

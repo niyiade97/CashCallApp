@@ -1,8 +1,6 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import React, { useState } from "react";
 import "./App.css";
-import DashboardContainer from "./Components/Dashboard/DashboardContainer";
-import UserDashboardContainer from "./Components/User/UserDashboardContainer";
 import AddUserPage from "./Views/AdminView/AddUserPage";
 import AllRequestPage from "./Views/UserView/AllRequestPage";
 import ApprovedRequestPage from "./Views/UserView/ApprovedRequestPage";
@@ -22,12 +20,6 @@ import AdminRequestPage from "./Views/AdminView/AdminRequestPage";
 import AdminApprovedRequestPage from "./Views/AdminView/AdminApprovedRequestPage";
 import AdminPendingRequestPage from "./Views/AdminView/AdminPendingRequestPage";
 import AdminDisbursedRequestPage from "./Views/AdminView/AdminDisbursedRequestPage";
-import AdminChequeRequestPage from "./Views/AdminView/AdminChequeRequestPage";
-import AdminProfilePage from "./Views/AdminView/AdminProfilePage";
-import AdminChangePasswordPage from "./Views/AdminView/AdminChangePasswordPage";
-import AdminCashRequestPage from "./Views/AdminView/AdminCashRequestPage";
-import AdminFundRequestPage from "./Views/AdminView/AdminFundRequestPage";
-import DataContextProvider from "./Utils/DataContext";
 import "tailwindcss/tailwind.css";
 import DashboardPage from "./Views/AdminView/DashboardPage";
 import DepartmentPage from "./Views/AdminView/DepartmentPage";
@@ -68,10 +60,8 @@ function App() {
             <Route  path="admin-rejected-requests" element={<AdminRequestPage />} />
             <Route  path="admin-pending-requests" element={<AdminPendingRequestPage />} />
             <Route  path="admin-disbursed-requests" element={<AdminDisbursedRequestPage />} />
-            <Route  path="admin-cheque-request" element={<AdminChequeRequestPage />} />
-            <Route  path="admin-profile" element={<AdminProfilePage />} />
-            <Route  path="admin-profile/change-password" element={<AdminChangePasswordPage />} />
-            <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
+
+            
             <Route path="dashboard" element={<DashboardPage />} />
 
             {/* user */}

@@ -1,6 +1,6 @@
 import React from 'react';
-import Profile from '../../Components/Dashboard/Profile';
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
+import Profile from "../../modules/profile/components/Profile";
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer";
 
 function ProfilePage() {
     const handlePasswordModal = () =>{

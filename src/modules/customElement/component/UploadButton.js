@@ -1,6 +1,6 @@
 import React from 'react'
 import { BiUpload } from 'react-icons/bi';
-import "./UploadButton.css";
+import "../style/UploadButton.css";
 
 function UploadButton({label, onChange, name, formError}) {
 

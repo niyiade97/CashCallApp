@@ -1,13 +1,11 @@
 import React,{useState} from 'react';
-import DashboardContainer from '../../Components/Dashboard/DashboardContainer';
-import Users from '../../Components/User/Users';
-import BackDrop from "../../Components/BackDrop";
+import DashboardContainer from "../../modules/dashboard/components/DashboardContainer"
+import BackDrop from "../../modules/customElement/component/BackDrop"
 import { useNavigate } from "react-router-dom"
-import AddUser from '../../Components/User/AddUser';
-import AlertModal from '../../Components/Dashboard/AlertModal';
-import Loader from '../../Components/Loader';
-import Departments from '../../Components/User/Departments';
-import AddDepartment from '../../Components/User/AddDepartment';
+import AlertModal from "../../modules/modal/component/AlertModal"
+import Loader from "../../modules/customElement/component/Loader"
+import Departments from "../../modules/department/component/Departments"
+import AddDepartment from "../../modules/department/component/AddDepartment"
 
 function AddDepartmentPage() {
     const navigate = useNavigate();

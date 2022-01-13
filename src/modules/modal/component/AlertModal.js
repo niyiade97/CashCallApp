@@ -1,20 +1,6 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom"
-import "./AlertModal.css";
+import "../style/AlertModal.css";
 function AlertModal({ icon, btnText, btnText2, btnActive, messageText1, messageText2, messageHeader, handleClick, indexValue, status }) {
-    const navigate = useNavigate();
-    // const handleOnClick = () =>{
-    //     navigate(-1);
-    //  }
-
-    //  const btnClick = () =>{
-    //      if(btnText === "DashBoard"){
-    //         handleClick(false, true);
-    //      }
-    //      else{
-    //         handleClick(true, false);
-    //      }
-    //  }
       
     
     return (

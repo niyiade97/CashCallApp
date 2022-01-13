@@ -1,13 +1,8 @@
 import React,{useEffect, useState} from 'react'
-import Select from '../Select';
-import UploadButton from '../UploadButton';
-import TextField from '../TextField';
-import {Link} from "react-router-dom"
-import { DataContext } from "../../Utils/DataContext";
+import Select from "../../customElement/component/Select"
+import TextField from '../../customElement/component/TextField';
 import axios from 'axios';
-import Loader from '../Loader';
-import "./AddUser.css";
-import Spinner from 'react-bootstrap/Spinner';
+import "../style/AddUser.css";
 
 function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
     const usersAPI = process.env.REACT_APP_GET_USERS_API;

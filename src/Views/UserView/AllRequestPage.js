@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import AllRequest from '../../Components/Dashboard/AllRequest';
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
-import Loader from '../../Components/Loader';
+import AllRequest from "../../modules/requestStatus/components/AllRequest";
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer"
+import Loader from "../../modules/customElement/component/Loader";
 
 function AllRequestPage() {
     const  [ loading ,setLoading ] = useState(false);

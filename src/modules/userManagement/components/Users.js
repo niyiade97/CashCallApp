@@ -1,23 +1,11 @@
-import React,{useState, useEffect} from 'react'
-import { MdFilterListAlt } from "react-icons/md";
-import { BsSortUp } from "react-icons/bs";
-import image from "../../Assets/images/adepics.jpeg";
+import React from 'react'
 import { IoAddOutline } from 'react-icons/io5';
 import { FiSearch } from 'react-icons/fi'
 import { BsArrowUpShort } from 'react-icons/bs'
-import { Link } from "react-router-dom";
-import axios from "axios";
 import UserTemplate from './UserTemplate';
-import "./Users.css";
-import { DataContext } from "../../Utils/DataContext";
+import "../style/Users.css";
 
 function Users(props) {
-    
-    
-    // const { users } = useContext(DataContext);
-   
-
-
     return (
         <div className="w-full h-screen mb-8 py-4 mt-5 relative"> 
             {props.children}

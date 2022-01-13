@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
-import image from "../../Assets/images/adepics.jpeg";
+import image from "../../../Assets/images/adepics.jpeg";
 import Request from './Request';
 
 function PendingRequest() {

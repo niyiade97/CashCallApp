@@ -1,10 +1,9 @@
 import React,{useState, useEffect} from 'react'
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
-import image from "../../Assets/images/adepics.jpeg";
-import Request from '../../../Components/Dashboard/Request';
+import Request from "./Request";
 import axios from 'axios';
-import "./AllRequest.css";
+import "../style/AllRequest.css"
 
 
 function AllRequest({ handleLoader }) {
@@ -12,123 +11,7 @@ function AllRequest({ handleLoader }) {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
     const allRequestApi = process.env.REACT_APP_GET_RQUESTS_API;
-    // const Services = ["Web Development", "IT", "Boat Cruise"]
-    // const handleOnChange = (value) =>{
-    //     console.log(value);
-    // }
     const [ allRequest, setAllRequest ] = useState([]);
-    // const requestData = [
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "0",
-    //     },
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "1",
-    //     },
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "2",
-    //     },
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "0",
-    //     },
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "2",
-    //     },
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "2",
-    //     },
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "0",
-    //     },
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "2",
-    //     },
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "2",
-    //     },
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "0",
-    //     },
-    //     {
-    //         name: "Adeyemo Afalain",
-    //         image: image,
-    //         cashPurpose: "Repair of Car Engine",
-    //         amount: "₦100,000",
-    //         requestForm: "Cash Request",
-    //         date:"May 26, 2019",
-    //         time: "6:30 PM",
-    //         status: "2",
-    //     }
-    // ]
 
     const getAllRequests = () =>{
         handleLoader(true);

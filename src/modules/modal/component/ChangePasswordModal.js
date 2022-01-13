@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaWindowClose } from 'react-icons/fa';
-import ProfileInput from '../../profile/components/ProfileInput';
-import "../User/ChequeRequest/ChequeRequest.css";
+import ProfileInput from "../../profile/components/ProfileInput";
+import "../../chequeRequest/style/ChequeRequest.css";
 
 function ChangePasswordModal({handleClick}) {
     const handleOnChange = (value) =>{

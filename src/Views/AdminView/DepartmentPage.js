@@ -1,6 +1,6 @@
 import React from 'react';
-import DashboardContainer from '../../Components/Dashboard/DashboardContainer';
-import Department from '../../Components/User/Departments';
+import DashboardContainer from "../../modules/dashboard/components/DashboardContainer"
+import Department from "../../modules/department/component/Departments"
 
 function DepartmentPage(props) {
     return (

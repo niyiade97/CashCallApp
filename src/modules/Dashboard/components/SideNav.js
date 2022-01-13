@@ -1,13 +1,12 @@
 import React,{useState} from 'react'
-import logo from "../../Assets/images/cashCallLogo.png";
+import logo from "../../../Assets/images/cashCallLogo.png";
 import Nav from './Nav';
 import { BiHomeAlt,BiDollarCircle } from "react-icons/bi";
-import { FiSettings } from "react-icons/fi";
 import { CgProfile } from "react-icons/cg"
 import { RiOrganizationChart } from "react-icons/ri";
 import { MdOutlineLogout } from 'react-icons/md';
 import {Link} from "react-router-dom"
-import "../User/Nav/SideBar.css";
+import "../style/Nav.css"
 function SideNav() {
     const [ dropDownStatus, setDropDownStatus ] = useState(false);
     const handleDropDown = () =>{

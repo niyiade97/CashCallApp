@@ -1,10 +1,9 @@
 import React,{useState} from 'react';
-import Profile from "../../Components/Dashboard/Profile"
-import ChangePasswordModal from '../../Components/Dashboard/ChangePasswordModal';
-import BackDrop from '../../Components/BackDrop';
+import Profile from "../../modules/profile/components/Profile"
+import ChangePasswordModal from "../../modules/modal/component/ChangePasswordModal";
 import { useNavigate } from "react-router-dom"
-import AlertModal from '../../Components/Dashboard/AlertModal';
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
+import AlertModal from '../../modules/modal/component/AlertModal';
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer";
 
 function ChangePasswordPage() {
     const [ successState, setSuccessState ] = useState(false);

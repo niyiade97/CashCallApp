@@ -1,6 +1,6 @@
 import React from 'react';
-import ApprovedRequest from '../../Components/Dashboard/ApprovedRequest';
-import DashboardContainer from '../../Components/Dashboard/DashboardContainer';
+import ApprovedRequest from "../../modules/requestStatus/components/ApprovedRequest";
+import DashboardContainer from "../../modules/dashboard/components/DashboardContainer"
 
 function AdminApprovedRequestPage() {
     return (

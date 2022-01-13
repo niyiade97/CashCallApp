@@ -1,14 +1,11 @@
 import React,{useState} from 'react'
-import Select from '../../../Components/Select';
-import UploadButton from '../../../Components/UploadButton';
-import TextField from '../../../Components/TextField';
-import {Link} from "react-router-dom"
-import "./ChequeRequest.css";
+import UploadButton from '../../customElement/component/UploadButton';
+import TextField from "../../customElement/component/TextField";
+import "../style/ChequeRequest.css";
 
 function ChequeRequest() {
     const userId = localStorage.getItem("userId");
     const name = localStorage.getItem("name");
-    const Services = ["Web Development", "IT", "Boat Cruise"]
     const [ chequeRequest, setChequeRequest ] = useState({
         userID: parseInt(userId),
         departmentID: "",

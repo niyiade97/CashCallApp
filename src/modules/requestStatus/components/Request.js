@@ -1,7 +1,7 @@
 import React from 'react'
 import { BsThreeDotsVertical } from "react-icons/bs";
-import "./AllRequest.css"
-import profileImage from "../../Assets/images/profileImage.png"
+import "../style/AllRequest.css";
+import profileImage from "../../../Assets/images/profileImage.png";
 
 function Request({ requestData }) {
     const name = localStorage.getItem("name");

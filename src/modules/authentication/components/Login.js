@@ -3,7 +3,7 @@ import React,{useState} from 'react'
 import { MdWifiProtectedSetup } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
+import "../style/Login.css";
 
 function Login(props) {
     const baseURL = process.env.REACT_APP_BASE_URL;

@@ -1,5 +1,5 @@
 import React from 'react'
-import "./StatusIndicatorContainer.css";
+import "../style/StatusIndicatorContainer.css";
 function StatusIndicator(props) {
     return (
         <div className="status-indicator-wrapper">

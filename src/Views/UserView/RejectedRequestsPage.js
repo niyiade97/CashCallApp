@@ -1,6 +1,6 @@
 import React from 'react';
-import RejectedRequests from '../../Components/Dashboard/RejectedRequests';
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
+import RejectedRequests from "../../modules/requestStatus/components/RejectedRequests";
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer";
 
 function RejectedRequestsPage() {
     return (

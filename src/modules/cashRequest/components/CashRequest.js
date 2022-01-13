@@ -1,9 +1,7 @@
 import React, {useEffect, useState } from 'react'
-import Select from "../../../Components/Select";
-import UploadButton from "../../../Components/UploadButton";
-import TextField from "../../../Components/TextField";
-import {Link} from "react-router-dom"
-// import { DataContext } from "../../Utils/DataContext";
+import Select from "../../customElement/component/Select";
+import UploadButton from "../../customElement/component/UploadButton";
+import TextField from "../../customElement/component/TextField";
 import axios from 'axios';
 import "../style/CashRequest.css";
 

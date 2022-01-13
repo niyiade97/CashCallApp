@@ -9,7 +9,7 @@ import Loader from '../Loader';
 import "./AddUser.css";
 import Spinner from 'react-bootstrap/Spinner';
 
-function AddUser({ loading }) {
+function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
     const usersAPI = process.env.REACT_APP_GET_USERS_API;
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const token = localStorage.getItem("token");
@@ -17,7 +17,10 @@ function AddUser({ loading }) {
     const [ departments, setDepartments ] = useState([]);
      const baseURL = process.env.REACT_APP_BASE_URL;
     const addUserAPI = process.env.REACT_APP_ADD_USER_API;
-    const [ message, setMessage ] = useState("");
+    const [ message, setMessage ] = useState({
+        msg: "",
+        status:""
+    });
     const [ formErrors, setFormErrors ] = useState({
         status: false
     })
@@ -27,7 +30,7 @@ function AddUser({ loading }) {
         firstname:"",
         lastname:"",
         password:"",
-        userRole:"",
+        userRole:null,
         departmentID:null 
     });
     const handleOnSubmit = (e) =>{
@@ -35,9 +38,7 @@ function AddUser({ loading }) {
         setFormErrors(validate(userDtails));
         if(!validate(userDtails).status){
             AddNewUser(userDtails);
-            console.log(userDtails);
         }
-        console.log(userDtails);
        
     }
     
@@ -133,21 +134,6 @@ function AddUser({ loading }) {
         )
     }
 
-    const getUsers = () =>{
-        axios.get(baseURL + usersAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            setUsers(res.data.data.map((data) =>{
-                return{
-                    data
-                }
-            }))
-        })
-    }
-
     const ClearInput = () =>{
         setUserDetails({
             email:"",
@@ -162,7 +148,7 @@ function AddUser({ loading }) {
         }, 4000);
     }
     const AddNewUser = (payload) =>{
-        loading(null,true);
+        loading(true);
         console.log(payload)
         axios.post(baseURL + addUserAPI , payload,
             { 
@@ -170,15 +156,21 @@ function AddUser({ loading }) {
             })
         .then((res)=>{
             if(res.data.isSuccess){
-                getUsers();
-                loading(true,false);
+                handleGetUsers();
+                loading(false);
                 ClearInput();
-               
+                setMessage({
+                    msg: "User Added Successfully !!",
+                    status:"1"
+                });
             }
             else{
-                loading(false,false);
+                loading(false);
                 ClearInput();
-                setMessage(res.data.message);
+                setMessage({
+                    msg: res.data.message,
+                    status:"0"
+                });
             }
            
             console.log(res);
@@ -188,13 +180,20 @@ function AddUser({ loading }) {
        getDepartment();
     }, [])
     return (
-        <div className="absolute transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-3/4 py-10 rounded-xl bg-white z-20">
+        <>
+            <div className={`fixed top-0 w-full h-full bg-black opacity-50 z-${20}`} onClick={handleBackDropOnClick}>
+            </div>
+            <div className="absolute transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-3/4 py-10 rounded-xl bg-white z-30">
             <div className="w-11/12 m-auto">
                 <div className="pl-4 pb-3">
                     <h1 className="text-color24 font-bold text-2xl">Add New User</h1>
                 </div>
                 <form onSubmit={handleOnSubmit}>
-                <p className={`${message  !== "" && "text-red-500 bg-red-300 p-4 text-left my-3"}`}>{message}</p>
+                {
+                    message  !== "" &&
+                    <p className={`${message.status === "0" && "text-red-500 bg-red-300"} ${message.status === "1" && "text-green-700 bg-green-200"} p-4 text-left my-3`}>{message.msg}</p>
+                }
+               
                 <div className="flex flex-wrap">
                     <TextField type="text" name="firstname" placeholder="Dolapo" label="First Name" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.firstname} formError={formErrors.firstname}/>
                     <TextField type="text" name="lastname" placeholder="Ademola" label="Last Name" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.lastname} formError={formErrors.lastname} />
@@ -204,13 +203,15 @@ function AddUser({ loading }) {
                     <TextField type="password" name="password" placeholder="" label="Password" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.password} formError={formErrors.password}/>
                     <div className="m-auto py-3 w-5/12">
                         <button type="submit" className="add-user-btn border w-full bg-color2 text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">
-                        Submit
+                            Submit
                         </button>
                     </div>
                 </div>
                 </form>
             </div>
-        </div>
+            </div>
+        </>
+        
     )
 }
 

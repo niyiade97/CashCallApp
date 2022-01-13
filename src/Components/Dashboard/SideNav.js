@@ -39,17 +39,9 @@ function SideNav() {
                             <Link to="/admin-rejected-requests">Rejected Request</Link>
                         </li>
                     </ul>
-                    {/* <div className=>
-                        <Nav path="/requests" text="All requests" icon={""} dropDownIsActive={false}/>
-                        <Nav path="/approved-requests" text="Approved Request" icon={""} dropDownIsActive={false}/>
-                        <Nav path="/disbursed-requests" text="Approved and Disbursed" icon={""} dropDownIsActive={false}/>
-                        <Nav path="/pending-requests" text="Pending Request" icon={""} dropDownIsActive={false}/>
-                        <Nav path="/rejected-requests" text="Rejected Request" icon={""} dropDownIsActive={false}/>
-                    </div> */}
                     <Nav path="/admin-profile" text="Profile" icon={<CgProfile />} dropDownIsActive={false}/>
-                    <Nav path="/users" text="User Managament" icon={<RiOrganizationChart />} dropDownIsActive={false}/>
-                    <Nav path="/departments" text="Department Managament" icon={<RiOrganizationChart />} dropDownIsActive={false}/>
-                    <Nav path="/settings" text="Settings" icon={<FiSettings />} dropDownIsActive={false}/>
+                    <Nav path="/users" text="User Management" icon={<RiOrganizationChart />} dropDownIsActive={false}/>
+                    <Nav path="/departments" text="Department " icon={<RiOrganizationChart />} dropDownIsActive={false}/>
                     <Nav path="/login" text="Logout" icon={<MdOutlineLogout />} dropDownIsActive={false}/>
                 </div>
             </div>

@@ -7,21 +7,23 @@ import "./ChequeRequest.css";
 
 function ChequeRequest() {
     const userId = localStorage.getItem("userId");
+    const name = localStorage.getItem("name");
     const Services = ["Web Development", "IT", "Boat Cruise"]
     const [ chequeRequest, setChequeRequest ] = useState({
         userID: parseInt(userId),
+        departmentID: "",
         date: "",
-        voucherNum: 0,
-        to: "",
+        voucherNo: "",
+        to: "Finance",
         from: "",
         purpose: "",
-        letter: "",
+        reason: "",
         beneficiaryName: "",
         beneficiaryBank: "",
         amount: 0,
         preparedBy: "",
         approvedBy: "",
-        ImageFile:""
+        base64File:""
     })
     const handleOnChange = (name, value) =>{
         setChequeRequest((prevState) =>{
@@ -94,34 +96,33 @@ function ChequeRequest() {
                 <form onSubmit={handleOnSubmit}>
                 <div className="flex flex-wrap">
                     <TextField type="date" name="valueDate" placeholder="" label="Value Date" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
-                    <TextField type="text" name="voucherNum" placeholder="" label="Voucher No" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
-                    <TextField type="text" name="to" placeholder="" label="To" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
-                    <TextField type="text" name="from" placeholder="" label="From" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
+                    <TextField type="text" name="voucherNo" placeholder="" label="Voucher No" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={chequeRequest.voucherNo}/>
+                    <TextField type="text" name="to" placeholder="" label="To" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={chequeRequest.to}/>
+                    <TextField type="text" name="from" placeholder="" label="From" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={chequeRequest.from}/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2' />
                     </div>
-                    <TextArea width="full" label="Purpose" row="2"/>
+                    <TextArea width="full" name="purpose" label="Purpose" row="2"/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>
                     </div>
-                    <TextArea width="full" label="Sir / Madam," row="5"/>
+                    <TextArea width="full" name="reason" label="Sir / Madam," row="5"/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>
                     </div>
                     <div className='w-full font-normal text-lg pl-4'>
                         <p style={{color:"#8E8EA1"}} className='underline '>Payment Details:</p>
                     </div>
-                    <TextField type="text" name="valueDate" placeholder="" label="Beneficiary's Name" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
-                    <TextField type="text" name="valueDate" placeholder="" label="Beneficiary's Bank" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
-                    <TextField type="number" name="valueDate" placeholder="" label="Amount in Figure" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
-                    <UploadButton label="Upload" onChange={handleOnChange} name="ImageFile"  formError={formErrors.imageFile} value={""}/>
+                    <TextField type="text" name="beneficiaryName" placeholder="" label="Beneficiary's Name" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
+                    <TextField type="text" name="beneficiaryBank" placeholder="" label="Beneficiary's Bank" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
+                    <TextField type="number" name="amount" placeholder="" label="Amount in Figure" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
+                    <UploadButton label="Upload" onChange={handleOnChange} name="base64File"  formError={formErrors.base64File} value={""}/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>
                     </div>
-                    <TextField type="text" name="valueDate" placeholder="" label="Prepared by:" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
-                    <TextField type="text" name="valueDate" placeholder="" label="Approved by:" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.name} value={""}/>
+                    <TextField type="text" name="preparedBy" placeholder="" label="Prepared by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={name}/>
+                    <TextField type="text" name="valueDate" placeholder="" label="Approved by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={""}/>
                     <div className="m-auto py-3 w-3/12">
-                
                     <button type="submit" className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Download</button>
                
                     </div> 

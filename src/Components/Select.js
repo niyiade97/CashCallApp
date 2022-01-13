@@ -24,7 +24,6 @@ function Select({ label, onChange, disabled, options, placeholder, name, type, w
                 {
                     options.length !== 0 &&
                     options.map((option,id) =>{
-                        console.log(option[name])
                         return(
                             
                             <option key={id} value={option[name]}>

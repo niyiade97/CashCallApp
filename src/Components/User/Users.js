@@ -12,34 +12,11 @@ import "./Users.css";
 import { DataContext } from "../../Utils/DataContext";
 
 function Users(props) {
-    const baseURL = process.env.REACT_APP_BASE_URL;
-    const token = localStorage.getItem("token");
-    const usersAPI = process.env.REACT_APP_GET_USERS_API;
-    const [ users, setUsers ] = useState([]);
+    
+    
     // const { users } = useContext(DataContext);
-    const getUsers = () =>{
-        props.handleOnLoad(true)
-        axios.get(baseURL + usersAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            props.handleOnLoad(false)
-            setUsers(res.data.data.map((data) =>{
-                return{
-                    data
-                }
-            }))
-        })
-        .catch(err =>{
-            props.handleOnLoad(false);
-        })
-    }
+   
 
-    useEffect(() => {
-        getUsers();
-    }, [])
 
     return (
         <div className="w-full h-screen mb-8 py-4 mt-5 relative"> 
@@ -59,10 +36,10 @@ function Users(props) {
                             </div>
                         </div>
                         <div className="add-user-container flex items-center pl-5 text-color14 w-1/5">
-                            <Link to="/users/addUser" className="bg-color30 w-full text-sm text-white flex items-center justify-evenly py-2 rounded-lg">
+                            <p onClick={props.handleAddUserModal} className="bg-color30 w-full text-sm text-white flex items-center justify-evenly py-2 rounded-lg">
                                 Add User 
                                 <i><IoAddOutline /></i>
-                            </Link>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -81,7 +58,7 @@ function Users(props) {
                         </th>
                         <th className="user-table-role-header py-2 w-60 pl-4 text-color17 font-bold text-lg">Role</th>  
                     </tr>
-                    <UserTemplate users={users} />
+                    <UserTemplate users={props.users} handleDeleteModal={props.handleDeleteModal} />
                     
                 </table>
                 

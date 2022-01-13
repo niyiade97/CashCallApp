@@ -161,7 +161,6 @@ function CashRequest({ handleLoader, handleAlertModal }) {
 
     return (
         <>
-       
         <div className="cash-request-container w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5"> 
             <div className="w-11/12 m-auto">
                 <div className="pl-4 pb-3">

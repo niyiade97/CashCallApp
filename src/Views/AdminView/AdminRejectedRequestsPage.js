@@ -1,6 +1,6 @@
 import React from 'react';
-import DashboardContainer from '../../Components/Dashboard/DashboardContainer';
-import RejectedRequests from '../../Components/Dashboard/RejectedRequests';
+import DashboardContainer from "../../modules/dashboard/components/DashboardContainer"
+import RejectedRequests from "../../modules/requestStatus/components/RejectedRequests"
 
 function AdminRejectedRequestsPage() {
     return (

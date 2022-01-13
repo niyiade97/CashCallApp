@@ -1,6 +1,6 @@
 import React from 'react';
-import ApprovedRequest from '../../Components/Dashboard/ApprovedRequest';
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
+import ApprovedRequest from "../../modules/requestStatus/components/ApprovedRequest"
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer"
 
 function ApprovedRequestPage() {
     return (

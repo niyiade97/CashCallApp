@@ -1,6 +1,6 @@
 import React from 'react';
-import ChequeRequest from "../../Components/User/ChequeRequest/ChequeRequest";
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
+import ChequeRequest from "../../modules/chequeRequest/components/ChequeRequest"
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer"
 
 function ChequeRequestPage() {
     return (

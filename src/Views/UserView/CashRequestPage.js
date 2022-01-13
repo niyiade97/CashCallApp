@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import CashRequest from "../../Components/User/CashRequest/CashRequest";
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
-import Loader from '../../Components/Loader';
-import AlertModal from '../../Components/Dashboard/AlertModal';
+import CashRequest from "../../modules/cashRequest/components/CashRequest";
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer"
+import Loader from "../../modules/customElement/component/Loader"
+import AlertModal from "../../modules/modal/component/AlertModal"
 
 function CashRequestPage() {
     const  [ loading ,setLoading ] = useState(false);

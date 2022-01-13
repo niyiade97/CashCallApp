@@ -1,6 +1,6 @@
 import React from 'react'
-import Container from '../Components/Container'
-import ForgotPassword from '../Components/ForgotPassword'
+import Container from "../modules/customElement/component/Container";
+import ForgotPassword from '../modules/authentication/components/ForgotPassword';
 
 function ForgotPasswordPage() {
     return (

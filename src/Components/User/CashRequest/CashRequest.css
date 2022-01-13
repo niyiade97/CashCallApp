@@ -1,0 +1,19 @@
+.cash-request-container{
+    border:1px solid #F0F0F0;
+    box-shadow: 0px 1px 14px 3px rgba(0,0,0,0.17);
+}
+.cash-request-container h1{
+    color:#22242C;
+}
+.cash-request-container button{
+    background-color: rgba(1, 58, 142, 1);
+    color:white;
+}
+.cash-request-container button:hover{
+    background-color: white;
+    color:rgba(1, 58, 142, 1);
+    border: 2px solid rgba(1, 58, 142, 1);
+}
+.cash-request-btn-wrapper{
+    width: 45%;
+}

@@ -1,5 +1,6 @@
-import { Routes, Route } from "react-router-dom";
-import React,{ useState } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import React, { useState } from "react";
+import "./App.css";
 import DashboardContainer from "./Components/Dashboard/DashboardContainer";
 import UserDashboardContainer from "./Components/User/UserDashboardContainer";
 import AddUserPage from "./Views/AdminView/AddUserPage";
@@ -26,60 +27,67 @@ import AdminProfilePage from "./Views/AdminView/AdminProfilePage";
 import AdminChangePasswordPage from "./Views/AdminView/AdminChangePasswordPage";
 import AdminCashRequestPage from "./Views/AdminView/AdminCashRequestPage";
 import AdminFundRequestPage from "./Views/AdminView/AdminFundRequestPage";
-import DataContext from "./Utils/DataContext";
-import DataContextprovider from "./Utils/DataContext";
 import DataContextProvider from "./Utils/DataContext";
 import "tailwindcss/tailwind.css";
+import DashboardPage from "./Views/AdminView/DashboardPage";
+import DepartmentPage from "./Views/AdminView/DepartmentPage";
+import AddDepartmentPage from "./Views/AdminView/AddDepartmentPage";
 
 function App() {
- 
+
+  console.log("environment", process.env);
+
   return (
     <div className="font-sans">
-    <DataContextProvider >
-    <Routes>
-    
-    
-      <Route path="users" element={ <UsersPage  /> }  />
-      <Route path="users/addUser" element={<AddUserPage /> } />
-    
-     
-      <Route exact path="/" element={<FundRequestPage />} />
-      <Route  path="login" element={<LoginPage />} />
-      {/* <Route  path="forgot-password" element={<ForgotPasswordPage />} /> */}
-      <Route  path="reset-password" element={<PasswordResetPage />} />
-      <Route  path="requests" element={<AllRequestPage />} />
-      <Route  path="approved-requests" element={<ApprovedRequestPage />} />
-      <Route  path="rejected-requests" element={<RejectedRequestsPage />} />
-      <Route  path="pending-requests" element={<PendingRequestPage />} />
-      <Route  path="disbursed-requests" element={<DisbursedRequestPage />} />
-      <Route  path="cheque-request" element={<ChequeRequestPage />} />
-      <Route  path="profile" element={<ProfilePage />} />
-      <Route  path="profile/change-password" element={<ChangePasswordPage />} />
-      
-      <Route  path="cash-request" element={<CashRequestPage />} />
-      <Route path="home" element={<FundRequestPage />} />
+        <BrowserRouter basename={process.env.REACT_APP_SUBFOLDER}>
+          <Routes>
 
-      <Route  path="admin-requests" element={<AdminRequestPage />} />
-      <Route  path="admin-approved-requests" element={<AdminApprovedRequestPage />} />
-      <Route  path="admin-rejected-requests" element={<AdminRequestPage />} />
-      <Route  path="admin-pending-requests" element={<AdminPendingRequestPage />} />
-      <Route  path="admin-disbursed-requests" element={<AdminDisbursedRequestPage />} />
-      <Route  path="admin-cheque-request" element={<AdminChequeRequestPage />} />
-      <Route  path="admin-profile" element={<AdminProfilePage />} />
-      <Route  path="admin-profile/change-password" element={<AdminChangePasswordPage />} />
-      
-      <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
-      <Route path="dashboard" element={<AdminFundRequestPage />} />
-      
-    </Routes>
-    </DataContextProvider>
-    
-    
-    {/* <DashboardContainer>
-      <Routes>
-      <Route  path="dashboard" element={<FundRequestPage />} />
-      </Routes>
-    </DashboardContainer> */}
+            {/* auth routes */}
+            <Route  path="/" element={<LoginPage />} />
+            <Route  path="login" element={<LoginPage />} />
+            <Route  path="reset-password" element={<PasswordResetPage />} />
+            <Route  path="forgot-password" element={<ForgotPasswordPage />} />
+            
+            {/* admin routes */}
+            <Route path="users" element={ <UsersPage  /> }  />
+            <Route path="users/addUser" element={<AddUserPage /> } />
+
+            <Route path="departments" element={ <DepartmentPage  /> }  />
+            <Route path="departments/addDepartment" element={<AddDepartmentPage /> } />
+           
+            
+
+            
+            
+            <Route  path="profile" element={<ProfilePage />} />
+            <Route  path="profile/change-password" element={<ChangePasswordPage />} />
+            
+            <Route path="fund-request" element={<FundRequestPage />} />
+            <Route  path="admin-requests" element={<AdminRequestPage />} />
+            <Route  path="admin-approved-requests" element={<AdminApprovedRequestPage />} />
+            <Route  path="admin-rejected-requests" element={<AdminRequestPage />} />
+            <Route  path="admin-pending-requests" element={<AdminPendingRequestPage />} />
+            <Route  path="admin-disbursed-requests" element={<AdminDisbursedRequestPage />} />
+            <Route  path="admin-cheque-request" element={<AdminChequeRequestPage />} />
+            <Route  path="admin-profile" element={<AdminProfilePage />} />
+            <Route  path="admin-profile/change-password" element={<AdminChangePasswordPage />} />
+            <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
+            <Route path="dashboard" element={<DashboardPage />} />
+
+            {/* user */}
+            <Route path="fund-request" element={<FundRequestPage />} />
+            <Route  path="cash-request" element={<CashRequestPage />} />
+            <Route  path="cheque-request" element={<ChequeRequestPage />} />
+
+            <Route  path="requests" element={<AllRequestPage />} />
+            <Route  path="approved-requests" element={<ApprovedRequestPage />} />
+            <Route  path="rejected-requests" element={<RejectedRequestsPage />} />
+            <Route  path="pending-requests" element={<PendingRequestPage />} />
+            <Route  path="disbursed-requests" element={<DisbursedRequestPage />} />
+          </Routes>
+
+          
+        </BrowserRouter>
     </div>
   );
 }

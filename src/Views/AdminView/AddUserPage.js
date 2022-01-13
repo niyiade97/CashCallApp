@@ -24,20 +24,21 @@ function AddUserPage() {
         setSuccessState(successState);
     }
     const handleLoader = (status,state) =>{
-        if(state){
-            setLoading(true);
-        }
-        else{
-            setLoading(false); 
-            if(status){
-                setSuccessState(true);
-                setAdduser(false);
-            }
-            else if(!status){
-                setSuccessState(false);
-                setAdduser(true);
-            }
-        }
+        // if(state){
+        //     setLoading(true);
+        // }
+        // else{
+        //     setLoading(false); 
+        //     if(status){
+        //         setSuccessState(true);
+        //         setAdduser(false);
+        //     }
+        //     else if(!status){
+        //         setSuccessState(false);
+        //         setAdduser(true);
+        //     }
+        // }
+        setLoading(state);
         
     }
     const handleOnLoad = () =>{

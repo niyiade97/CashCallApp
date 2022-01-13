@@ -1,6 +1,6 @@
 {
   "name": "cash-call-frontend",
-  "homepage":"",
+  "homepage": "",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

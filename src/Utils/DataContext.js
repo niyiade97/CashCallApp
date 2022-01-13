@@ -9,8 +9,8 @@ const DataContextProvider = ( props ) => {
     const usersAPI = process.env.REACT_APP_GET_USERS_API;
     const supervisorAPI = process.env.REACT_APP_GET_SUPERVISOR_API;
     const deleteUserAPI = process.env.REACT_APP_DELETE_USER_API;
+    
     const token = localStorage.getItem("token");
-
     const [ departments, setDepartments ] = useState([]);
     const [ users, setUsers ] = useState([]);
     const [ supervisors, setSupervisors ] = useState([]);
@@ -78,9 +78,14 @@ const DataContextProvider = ( props ) => {
         })
     }
     useEffect(() => {
-        getDepartment();
-        getUsers();
-        getSuperVisor();
+        try {
+            getDepartment();
+            getUsers();
+            getSuperVisor();
+        } catch (error) {
+            console.log("init error", error);
+        }
+        
     }, [])
     return (
         <DataContext.Provider value={{ departments, users, getUsers, supervisors, deteleUser }}>

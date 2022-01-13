@@ -1,0 +1,48 @@
+.user-header h1{
+    color: #22242C;
+}
+.user-header p{
+    color: #C4C4C4;
+}
+.user-header div{
+    background-color: #C4C4C4;
+}
+.user-search-container{
+    color: #C5C7CD;
+}
+.user-search-container input{
+    background-color: #F8F8F8;
+    border-color:#C0C0C0;
+}
+.user-search-container div{
+    color: #C0C0C0;
+    border-color:#C0C0C0;
+    background-color: #F8F8F8;
+}
+.add-user-container{
+    color: #C5C7CD;
+}
+.add-user-container a{
+    background-color:#163F86 ;
+}
+.add-user-container a:hover{
+    border:2px solid #163F86;
+    background-color: white;
+    color: #163F86;
+}
+.user-table-container{
+    border-color: #DFE0EB;
+}
+.user-table-row-container{
+    color: #9FA2B4;
+}
+.user-table-checkbox{
+    border-color: #163F86;
+}
+.user-table-name-header{
+    background-color: #F1F5F8;
+    color: #252733;
+}
+.user-table-role-header{
+    color: #252733;
+}

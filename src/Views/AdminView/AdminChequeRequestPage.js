@@ -1,5 +1,5 @@
 import React from 'react';
-import ChequeRequest from '../../Components/Dashboard/ChequeRequest';
+import ChequeRequest from "../../Components/User/ChequeRequest/ChequeRequest";
 import DashboardContainer from '../../Components/Dashboard/DashboardContainer';
 
 function AdminChequeRequestPage() {

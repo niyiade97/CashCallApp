@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import Select from '../../Select';
-import UploadButton from '../../UploadButton';
-import TextField from '../../TextField';
+import Select from '../../../Components/Select';
+import UploadButton from '../../../Components/UploadButton';
+import TextField from '../../../Components/TextField';
 import {Link} from "react-router-dom"
 import "./ChequeRequest.css";
 

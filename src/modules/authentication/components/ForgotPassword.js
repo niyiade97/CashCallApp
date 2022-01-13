@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-import BackButton from './BackButton';
+import BackButton from '../../customElement/component/BackButton';
 
 function ForgotPassword() {
     const navigate = useNavigate();

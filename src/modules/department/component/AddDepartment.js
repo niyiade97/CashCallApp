@@ -1,11 +1,11 @@
 import React,{useEffect, useState} from 'react'
-import Select from '../Select';
-import UploadButton from '../UploadButton';
-import TextField from '../TextField';
+import Select from '../../../Components/Select';
+import UploadButton from '../../../Components/UploadButton';
+import TextField from '../../../Components/TextField';
 import {Link} from "react-router-dom"
-import { DataContext } from "../../Utils/DataContext";
+import { DataContext } from "../../../Utils/DataContext";
 import axios from 'axios';
-import Loader from '../Loader';
+import Loader from '../../../Components/Loader';
 import "./AddUser.css";
 import Spinner from 'react-bootstrap/Spinner';
 

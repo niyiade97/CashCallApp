@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import BackButton from '../../BackButton'
+import BackButton from '../../customElement/component/BackButton'
 import axios from 'axios';
 import {Link} from "react-router-dom";
 import "./ResetPassword.css";

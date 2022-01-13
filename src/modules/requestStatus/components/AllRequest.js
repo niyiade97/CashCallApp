@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
 import image from "../../Assets/images/adepics.jpeg";
-import Request from './Request';
+import Request from '../../../Components/Dashboard/Request';
 import axios from 'axios';
 import "./AllRequest.css";
 

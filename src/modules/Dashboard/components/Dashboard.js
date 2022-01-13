@@ -1,9 +1,9 @@
 import React, {useContext, useState } from 'react'
-import Select from '../Select';
-import UploadButton from '../UploadButton';
-import TextField from '../TextField';
+import Select from '../../../Components/Select';
+import UploadButton from '../../../Components/UploadButton';
+import TextField from '../../../Components/TextField';
 import {Link} from "react-router-dom"
-import { DataContext } from "../../Utils/DataContext";
+import { DataContext } from "../../../Utils/DataContext";
 import axios from 'axios';
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import "./Dashboard.css";

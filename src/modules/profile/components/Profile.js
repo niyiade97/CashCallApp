@@ -2,7 +2,7 @@ import React from 'react'
 import profileImage from "../../Assets/images/adepics.jpeg";
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { Link } from "react-router-dom";
-import ProfileInput from '../ProfileInput';
+import ProfileInput from './ProfileInput';
 import "./Profile.css";
 
 function Profile(props) {

@@ -1,7 +1,7 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Header from '../Dashboard/Header';
-import SideBar from './SideBar';
-
+import SideBar from './Nav/SideBar';
+import "./UserDashboardContainer.css";
 function UserDashboardContainer(props) {
     // const [ activeBackDrop, setActiveBackDrop ] = useState(false);
     return (
@@ -9,10 +9,13 @@ function UserDashboardContainer(props) {
             <SideBar />
             <div className="w-4/5 h-screen overflow-auto">
                 <Header headerText={props.headerText} />
-               {props.children}
+                <div className='relative main-container '>
+                    {props.children}
+                </div>
+               
             </div>
         </div>
     )
 }
 
-export default UserDashboardContainer
+export default UserDashboardContainer;

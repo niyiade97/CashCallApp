@@ -1,0 +1,19 @@
+.status-indicator-wrapper{
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding:12px 20px;
+    margin: 12px 0px;
+    background-color: #B3B3B3;
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.12);
+}
+.status-indicator-container{
+    width: 25%;
+    border-radius: 24px;
+    
+    border:2px solid #F0F0F0;
+    margin: 12px 12px 40px 16px;
+    padding-top: 56px;
+}

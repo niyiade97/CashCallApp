@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "../../Assets/images/cashCallLogo.png";
+import logo from "../../../Assets/images/cashCallLogo.png";
 import "./SidePage.css";
 function SidePage() {
     return (

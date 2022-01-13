@@ -1,4 +1,4 @@
-import React,{useContext, useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import Select from '../Select';
 import UploadButton from '../UploadButton';
 import TextField from '../TextField';
@@ -6,16 +6,22 @@ import {Link} from "react-router-dom"
 import { DataContext } from "../../Utils/DataContext";
 import axios from 'axios';
 import Loader from '../Loader';
+import "./AddUser.css";
 import Spinner from 'react-bootstrap/Spinner';
 
 function AddUser({ loading }) {
+    const usersAPI = process.env.REACT_APP_GET_USERS_API;
+    const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
+    const token = localStorage.getItem("token");
+    const [ users, setUsers ] = useState([]);
+    const [ departments, setDepartments ] = useState([]);
      const baseURL = process.env.REACT_APP_BASE_URL;
     const addUserAPI = process.env.REACT_APP_ADD_USER_API;
     const [ message, setMessage ] = useState("");
     const [ formErrors, setFormErrors ] = useState({
         status: false
     })
-    const { departments, getUsers } = useContext(DataContext);
+    // const { departments, getUsers } = useContext(DataContext);
     const [ userDtails, setUserDetails ] = useState({
         email:"",
         firstname:"",
@@ -29,7 +35,9 @@ function AddUser({ loading }) {
         setFormErrors(validate(userDtails));
         if(!validate(userDtails).status){
             AddNewUser(userDtails);
+            console.log(userDtails);
         }
+        console.log(userDtails);
        
     }
     
@@ -80,6 +88,22 @@ function AddUser({ loading }) {
         }
         return errors;
     }
+
+    const getDepartment = () =>{
+        axios.get(baseURL + departmentAPI,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            setDepartments(res.data.data.map((data) =>{
+                return{
+                    departmentID: data.departmentID,
+                    department: data.department
+                }
+            }))
+        })
+    }
     const DepartmentDropDown = ({ options, label, formError, name, onChange, value }) =>{
         const handleChange = (e) =>{
             const { name, value } = e.target;
@@ -90,13 +114,14 @@ function AddUser({ loading }) {
             <div className="w-2/4 px-4 py-3">
             <div className="w-full text-color5">
                 <label className="font-normal text-lg">{label}</label> 
-                <select className="rounded-full w-full mt-4 h-14 px-4 font-semibold bg-white border border-color5 text-color13 placeholder-color13 pr-4" name={name} onChange={handleChange} >
+                <select className="rounded-full w-full mt-4 h-14 px-4 font-semibold bg-white border-2 border-color5 text-color13 placeholder-color13 pr-4" name={name} onChange={handleChange} >
                 <option disabled selected={value === null && true} value="">{label}</option>
                 {
+                    options.length !== 0 &&
                     options.map((option,id) =>{
                         return(
-                            <option key={id} value={option.data.departmentID}>
-                                {option.data.department}
+                            <option key={id} value={option.departmentID}>
+                                {option.department}
                             </option>
                         )
                     })
@@ -107,6 +132,22 @@ function AddUser({ loading }) {
             </div>
         )
     }
+
+    const getUsers = () =>{
+        axios.get(baseURL + usersAPI,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            setUsers(res.data.data.map((data) =>{
+                return{
+                    data
+                }
+            }))
+        })
+    }
+
     const ClearInput = () =>{
         setUserDetails({
             email:"",
@@ -122,7 +163,11 @@ function AddUser({ loading }) {
     }
     const AddNewUser = (payload) =>{
         loading(null,true);
-        axios.post(baseURL + addUserAPI , payload)
+        console.log(payload)
+        axios.post(baseURL + addUserAPI , payload,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            })
         .then((res)=>{
             if(res.data.isSuccess){
                 getUsers();
@@ -139,6 +184,9 @@ function AddUser({ loading }) {
             console.log(res);
         })
     }
+    useEffect(() => {
+       getDepartment();
+    }, [])
     return (
         <div className="absolute transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-3/4 py-10 rounded-xl bg-white z-20">
             <div className="w-11/12 m-auto">
@@ -151,11 +199,11 @@ function AddUser({ loading }) {
                     <TextField type="text" name="firstname" placeholder="Dolapo" label="First Name" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.firstname} formError={formErrors.firstname}/>
                     <TextField type="text" name="lastname" placeholder="Ademola" label="Last Name" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.lastname} formError={formErrors.lastname} />
                     <TextField type="text" name="email" placeholder="niyiade97@gmail.com" label="Email" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.email} formError={formErrors.email}/>
-                    <Select name="userRole" label="Role" onChange={handleOnChange} disabled={false} options={["User","Admin","Supervisor"]} width="2/4" value={userDtails.userRole} formError={formErrors.userRole}/>
+                    <Select name="userRole" type="dropdown" label="Role" valueKey="value" onChange={handleOnChange} disabled={false} options={[{ userRole:"User", value:"User"}, { userRole:"Supervisor", value:"Supervisor"}, { userRole:"Admin", value:"Admin"}]} width="2/4" value={userDtails.userRole} formError={formErrors.userRole}/>
                     <DepartmentDropDown name="departmentID" label="Department" onChange={handleOnChange} options={departments} value={userDtails.departmentID} width="2/4" formError={formErrors.departmentID}/>
                     <TextField type="password" name="password" placeholder="" label="Password" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.password} formError={formErrors.password}/>
-                    <div className="w-45 m-auto py-3">
-                        <button type="submit" className=" border w-full bg-color2 text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">
+                    <div className="m-auto py-3 w-5/12">
+                        <button type="submit" className="add-user-btn border w-full bg-color2 text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">
                         Submit
                         </button>
                     </div>

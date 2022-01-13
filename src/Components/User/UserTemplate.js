@@ -3,6 +3,7 @@ import { GrPowerReset } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import image from "../../Assets/images/adepics.jpeg";
 import { DataContext } from "../../Utils/DataContext";
+import "./UserTemplate.css";
 
 function UserTemplate({ users }) {
     const { deteleUser } = useContext(DataContext);
@@ -19,23 +20,23 @@ function UserTemplate({ users }) {
             users.length !== 0 ?
             users.map((user) =>{
                 return(
-                    <tr className="border-1.5 hover:bg-color20 cursor-pointer">
+                    <tr className="user-template-table-row cursor-pointer">
                         <td className="">
                             <div className="flex justify-center items-center">
                                 <input className="border border-color30 rounded-full" type="checkbox" />
                             </div>
                         </td>
-                        <td className="flex py-4 pl-2">
-                            <img className="w-11 h-11 rounded-full mr-5" src={image} alt="img"/>
+                        <td className="user-template-table-data flex py-4 pl-2">
+                            <img className="w-11 h-11 rounded-full mr-5 object-cover" src={image} alt="img"/>
                             <div>
-                                <p className="font-semibold text-sm text-color17 mb-1">{user.data.firstname + " " + user.data.lastname}</p>
-                                <p className="font-normal text-xs text-color18">{user.data.email}</p>
+                                <p className="user-template-table-name font-semibold text-sm text-color17 mb-1">{user.data.firstname + " " + user.data.lastname}</p>
+                                <p className="user-template-table-email font-normal text-xs text-color18">{user.data.email}</p>
                             </div>
                         </td>
                         <td className="py-4 pl-5">
                             <div className="flex justify-between items-center pr-10">
                                 <div>
-                                    <button className="bg-color17 text-white rounded-full w-20 text-sm py-1">{user.data.userRole}</button>
+                                    <button className="user-template-table-role bg-color17 text-white rounded-full w-20 text-sm py-1">{user.data.userRole}</button>
                                 </div>
                                 <div className="flex items-center">
                                     <button onClick={handleOnPassWordReset.bind(null,user.data.id)} className="flex items-center justify-evenly">
@@ -52,7 +53,11 @@ function UserTemplate({ users }) {
                      </tr> 
                 )
             })
-            : "No Data"
+            :
+            <div className='text-center'>
+                <p>No Data</p>
+            </div>
+            
                     
         }
         

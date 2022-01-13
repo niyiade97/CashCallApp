@@ -3,6 +3,7 @@ import profileImage from "../../Assets/images/adepics.jpeg";
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import ProfileInput from '../ProfileInput';
+import "./Profile.css";
 
 function Profile(props) {
     const Services = ["Web Development", "IT", "Boat Cruise"]
@@ -13,7 +14,7 @@ function Profile(props) {
         
 
     return (
-        <div className="w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5 shadow-transactionBoxShadow relative"> 
+        <div className="profile-container w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5 shadow-transactionBoxShadow relative"> 
             {props.children}
             <div className="w-11/12 m-auto">
                 <div className="pl-4 pb-3">
@@ -25,8 +26,8 @@ function Profile(props) {
                         <div className="w-1/4">
                             <p className="text-black font-normal text-xl">Profile picture</p>
                         </div>
-                        <div className="w-45 text-center">
-                            <img src={profileImage} alt="profileImage" className="w-20 h-20 rounded-full m-auto"  /> 
+                        <div className="profile-image-wrapper w-45 text-center">
+                            <img src={profileImage} alt="profileImage" className="w-20 h-20 rounded-full m-auto object-cover"  /> 
                         </div>
                     </div>
                     <div className="flex items-center">
@@ -72,7 +73,7 @@ function Profile(props) {
                     <p className="py-3">Security</p>
                     <hr />
                     <div className="pl-6 text-black font-normal text-xl flex items-center py-6">
-                        <Link to="/profile/change-password" className="w-1/4 hover:text-color24">Change Password</Link>
+                        <p className="hover:text-blue-900 w-1/4 cursor-pointer" onClick={props.handlePasswordModal}>Change Password</p>
                         <MdKeyboardArrowRight />
                     </div>
                 </div>

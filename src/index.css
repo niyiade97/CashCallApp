@@ -1,3 +1,93 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .defaultBbColor1{
+        background-color: #013A8E;
+    }
+    .defaultTextColor1{
+        color: #7C8691;
+    }
+    .defaultTextColor2{
+        background-color: #F1F5F8;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+}

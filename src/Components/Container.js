@@ -1,5 +1,5 @@
 import React from 'react'
-import SidePage from './SidePage/SidePage';
+import SidePage from './Auth/SidePage/SidePage';
 
 function Container(props) {
     return (

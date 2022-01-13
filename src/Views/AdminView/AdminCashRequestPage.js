@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import CashRequest from "../../Components/Dashboard/CashRequest"
+import CashRequest from "../../Components/User/CashRequest/CashRequest";
 import DashboardContainer from '../../Components/Dashboard/DashboardContainer';
 import StatusIndicatorcontainer from '../../Components/Dashboard/StatusIndicatorContainer';
 import Loader from "../../Components/Loader";

@@ -9,7 +9,9 @@ function UploadButton({label, onChange, name, formError}) {
         let file = e.target.files[0];
         let reader = new FileReader();
         reader.onloadend = function(){
-            onChange(name, reader.result);
+            if(file){
+                onChange(name, reader.result);
+            }
         }
         reader.readAsDataURL(file);
         e.preventDefault();
@@ -19,7 +21,7 @@ function UploadButton({label, onChange, name, formError}) {
         <div className={`w-2/4 px-4 py-3`}>
             <div className="upload-btn-border-color w-full">
                 <label className="font-normal text-lg">{label}</label> 
-                <label htmlFor="upload-btn" className={`rounded-full w-full mt-4 h-14 px-4 border  ${formError ? " border-2 border-red-400": "upload--btn-border-color"} upload-btn-border`}>
+                <label htmlFor="upload-btn" className={`rounded-full w-full mt-4 h-14 px-4 border  ${formError ? " border-2 border-red-400": "upload-btn-border-color"} border-2 upload-btn-border`}>
                     <i className=" text-3xl pr-1"><BiUpload /></i>
                     <p className="pl-1">Upload</p>
                 </label> 

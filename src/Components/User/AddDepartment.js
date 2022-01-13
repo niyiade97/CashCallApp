@@ -9,7 +9,7 @@ import Loader from '../Loader';
 import "./AddUser.css";
 import Spinner from 'react-bootstrap/Spinner';
 
-function AddUser({ loading }) {
+function AddDepartment({ loading }) {
     const usersAPI = process.env.REACT_APP_GET_USERS_API;
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const token = localStorage.getItem("token");
@@ -191,17 +191,15 @@ function AddUser({ loading }) {
         <div className="absolute transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-3/4 py-10 rounded-xl bg-white z-20">
             <div className="w-11/12 m-auto">
                 <div className="pl-4 pb-3">
-                    <h1 className="text-color24 font-bold text-2xl">Add New User</h1>
+                    <h1 className="text-color24 font-bold text-2xl">Add Departmet</h1>
                 </div>
                 <form onSubmit={handleOnSubmit}>
                 <p className={`${message  !== "" && "text-red-500 bg-red-300 p-4 text-left my-3"}`}>{message}</p>
                 <div className="flex flex-wrap">
-                    <TextField type="text" name="firstname" placeholder="Dolapo" label="First Name" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.firstname} formError={formErrors.firstname}/>
-                    <TextField type="text" name="lastname" placeholder="Ademola" label="Last Name" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.lastname} formError={formErrors.lastname} />
-                    <TextField type="text" name="email" placeholder="niyiade97@gmail.com" label="Email" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.email} formError={formErrors.email}/>
-                    <Select name="userRole" type="dropdown" label="Role" valueKey="value" onChange={handleOnChange} disabled={false} options={[{ userRole:"User", value:"User"}, { userRole:"Supervisor", value:"Supervisor"}, { userRole:"Admin", value:"Admin"}]} width="2/4" value={userDtails.userRole} formError={formErrors.userRole}/>
-                    <DepartmentDropDown name="departmentID" label="Department" onChange={handleOnChange} options={departments} value={userDtails.departmentID} width="2/4" formError={formErrors.departmentID}/>
-                    <TextField type="password" name="password" placeholder="" label="Password" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.password} formError={formErrors.password}/>
+                    <TextField type="text" name="departmentName" placeholder="Dolapo" label="Departmet Name" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.firstname} formError={formErrors.firstname}/>
+                    <TextField type="text" name="lineManager" placeholder="Ademola" label="Line Manager" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.lastname} formError={formErrors.lastname} />
+                    <TextField type="text" name="email" placeholder="niyiade97@gmail.com" label="Line Manager's Email" onChange={handleOnChange} disabled={false} width="2/4" value={userDtails.email} formError={formErrors.email}/>
+                    
                     <div className="m-auto py-3 w-5/12">
                         <button type="submit" className="add-user-btn border w-full bg-color2 text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">
                         Submit
@@ -214,4 +212,4 @@ function AddUser({ loading }) {
     )
 }
 
-export default AddUser
+export default AddDepartment;

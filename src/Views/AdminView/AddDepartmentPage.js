@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom"
 import AddUser from '../../Components/User/AddUser';
 import AlertModal from '../../Components/Dashboard/AlertModal';
 import Loader from '../../Components/Loader';
+import Departments from '../../Components/User/Departments';
+import AddDepartment from '../../Components/User/AddDepartment';
 
-function AddUserPage() {
+function AddDepartmentPage() {
     const navigate = useNavigate();
     const [ successState, setSuccessState ] = useState(false);
     const [ adduser, setAdduser ] = useState(true);
@@ -48,7 +50,7 @@ function AddUserPage() {
         <DashboardContainer>
             <div className="w-full h-screen flex relative">
                 <BackDrop onclick={handleOnClick} indexValue={"10"}/>
-                <Users>
+                <Departments>
 
                 {
                     loading &&
@@ -62,7 +64,7 @@ function AddUserPage() {
                 {
 
                     (adduser) &&
-                    <AddUser handleClick={handleSubmitButton} loading={handleLoader}/>
+                    <AddDepartment handleClick={handleSubmitButton} loading={handleLoader}/>
                 }
                 {
                         successState &&
@@ -81,10 +83,10 @@ function AddUserPage() {
                         handleClick={handleClick}
                     />
                     }
-                </Users>
+                </Departments>
             </div>
         </DashboardContainer>
     )
 }
 
-export default AddUserPage;
+export default AddDepartmentPage;

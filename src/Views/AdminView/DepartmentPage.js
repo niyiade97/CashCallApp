@@ -1,15 +1,15 @@
 import React from 'react';
-import ChequeRequest from "../../Components/User/ChequeRequest/ChequeRequest";
 import DashboardContainer from '../../Components/Dashboard/DashboardContainer';
+import Department from '../../Components/User/Departments';
 
-function AdminChequeRequestPage() {
+function DepartmentPage(props) {
     return (
         <DashboardContainer>
             <div className="w-full flex">
-                <ChequeRequest />
+                <Department />
             </div>
         </DashboardContainer>
     )
 }
 
-export default AdminChequeRequestPage;
+export default DepartmentPage;

@@ -10,35 +10,51 @@ import axios from "axios";
 import UserTemplate from './UserTemplate';
 import "./Users.css";
 import { DataContext } from "../../Utils/DataContext";
+import DepartmentPage from '../../Views/AdminView/DepartmentPage';
+import DepartmentTemplate from './DepartmentTemplate';
 
-function Users(props) {
+
+function Departments(props) {
     const baseURL = process.env.REACT_APP_BASE_URL;
+    const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const token = localStorage.getItem("token");
     const usersAPI = process.env.REACT_APP_GET_USERS_API;
     const [ users, setUsers ] = useState([]);
+    const [ departments, setDepartments ] = useState([]);
     // const { users } = useContext(DataContext);
     const getUsers = () =>{
-        props.handleOnLoad(true)
         axios.get(baseURL + usersAPI,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
         )
         .then((res) =>{
-            props.handleOnLoad(false)
             setUsers(res.data.data.map((data) =>{
                 return{
                     data
                 }
             }))
         })
-        .catch(err =>{
-            props.handleOnLoad(false);
+    }
+
+    const getDepartment = () =>{
+        axios.get(baseURL + departmentAPI,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            setDepartments(res.data.data.map((data) =>{
+                return{
+                    departmentID: data.departmentID,
+                    department: data.department
+                }
+            }))
         })
     }
 
     useEffect(() => {
-        getUsers();
+        getDepartment();
     }, [])
 
     return (
@@ -47,7 +63,7 @@ function Users(props) {
             <div className="w-full px-7">
                 <div className="py-3 flex justify-between items-center border-2 border-b rounded-t-xl">
                     <div className="user-header flex items-center w-2/4">
-                        <h1 className="text-color13 font-bold text-xl pl-10">All Users</h1>
+                        <h1 className="text-color13 font-bold text-xl pl-10">All Department</h1>
                         <div className="mx-5 w-2 h-5 bg-color29"></div>
                         <p className="text-color29 text-sm font-bold">30total</p>
                     </div>
@@ -58,9 +74,9 @@ function Users(props) {
                                 <FiSearch />
                             </div>
                         </div>
-                        <div className="add-user-container flex items-center pl-5 text-color14 w-1/5">
-                            <Link to="/users/addUser" className="bg-color30 w-full text-sm text-white flex items-center justify-evenly py-2 rounded-lg">
-                                Add User 
+                        <div className="add-user-container flex items-center pl-5 text-color14 w-3/12">
+                            <Link to="/departments/addDepartment" className="bg-color30 w-full text-sm text-white flex items-center justify-evenly py-2 rounded-lg">
+                                Add Department 
                                 <i><IoAddOutline /></i>
                             </Link>
                         </div>
@@ -81,7 +97,7 @@ function Users(props) {
                         </th>
                         <th className="user-table-role-header py-2 w-60 pl-4 text-color17 font-bold text-lg">Role</th>  
                     </tr>
-                    <UserTemplate users={users} />
+                    <DepartmentTemplate departments={departments} />
                     
                 </table>
                 
@@ -90,4 +106,4 @@ function Users(props) {
     )
 }
 
-export default Users;
+export default Departments;

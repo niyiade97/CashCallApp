@@ -1,0 +1,8 @@
+.cheque-request-btn{
+    background-color: rgba(1, 58, 142, 1); 
+}
+.cheque-request-btn:hover{
+    border:2px solid rgba(1, 58, 142, 1);
+    color:rgba(1, 58, 142, 1);
+    background-color: white;
+}

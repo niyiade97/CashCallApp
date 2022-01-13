@@ -1,0 +1,14 @@
+.select-inner-wrapper{
+    color: #8E8EA1 ;
+}
+.select-inner-wrapper-select{
+    border: 2px solid #F0F0F0;
+    background-color: white;
+    color: #22242C;
+}
+.select-inner-wrapper-select-color{
+    color: #22242C;
+}
+.select-inner-wrapper-select::placeholder{
+    color: #8E8EA1;
+}

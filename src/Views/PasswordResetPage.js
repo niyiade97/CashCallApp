@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import Container from '../Components/Container'
-import PasswordReset from '../Components/User/ResetPassword/PasswordReset'
+import PasswordReset from '../Components/Auth/ResetPassword/PasswordReset'
 import Loader from '../Components/Loader';
 
 function PasswordResetPage() {

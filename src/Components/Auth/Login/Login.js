@@ -59,7 +59,7 @@ function Login(props) {
                     localStorage.setItem("role", res.data.data.userRole);
                     localStorage.setItem("name", res.data.data.firstname + " " + res.data.data.lastname);
                     if(res.data.data.userRole === "User"){
-                        navigate("/home");
+                        navigate("/fund-request");
                     }
                     else{
                         navigate("/dashboard");
@@ -109,7 +109,7 @@ function Login(props) {
                     <p className={`${message  !== "" && "text-red-500 bg-red-300 p-4 text-left my-3"}`}>{message}</p>
                     <input className="login-form-email" type="email" name="email" placeholder="Email" onChange={handleOnChange} value={loginDetails.email} autoComplete="off"/>
                     <p className="login-form-p ">{formErrors.email}</p>
-                    <input className="login-form-password" type="text" name="password" placeholder="Password" onChange={handleOnChange} value={loginDetails.password} autoComplete="off"/>
+                    <input className="login-form-password" type="password" name="password" placeholder="Password" onChange={handleOnChange} value={loginDetails.password} autoComplete="off"/>
                     <p className="login-form-p">{formErrors.password}</p>
                     <button type="submit" className="login-form-btn">Login</button>
                     <Link className="login-form-reset" to="/reset-password">Forgot Password</Link>

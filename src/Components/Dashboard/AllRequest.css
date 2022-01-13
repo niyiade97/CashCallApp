@@ -1,0 +1,7 @@
+.request-wrapper{
+    border-width: 1.5px;
+
+}
+.request-wrapper:hover{
+    background-color:rgba(55, 81, 255, 0.04);
+}

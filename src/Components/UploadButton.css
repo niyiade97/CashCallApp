@@ -7,8 +7,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 2px solid #F0F0F0;
 }
 .upload-btn-border:hover{
     color: white;
     background-color: rgba(1, 58, 142, 1);
+}
+.label-color{
+    color: #8E8EA1 ;
 }

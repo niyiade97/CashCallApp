@@ -1,10 +1,9 @@
-import React from 'react'
-import CashRequest from "../../Components/Dashboard/CashRequest"
-import StatusIndicatorcontainer from '../../Components/Dashboard/StatusIndicatorContainer';
+import React, { useState } from 'react';
+import CashRequest from "../../Components/User/CashRequest/CashRequest";
 import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
 import Loader from '../../Components/Loader';
-import { useState } from 'react';
 import AlertModal from '../../Components/Dashboard/AlertModal';
+
 function CashRequestPage() {
     const  [ loading ,setLoading ] = useState(false);
     const [ alertModalIsActive, setAlertModalIsActive ] = useState(false);
@@ -15,9 +14,7 @@ function CashRequestPage() {
         msg: "",
         status: false
     })
-    const handleClick = () =>{
-
-    }
+   
     const handleAlertModal = (text, status) =>{
         setAlertModalIsActive(true);
         setMessage({

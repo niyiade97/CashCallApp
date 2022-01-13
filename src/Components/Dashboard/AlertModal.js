@@ -28,7 +28,7 @@ function AlertModal({ icon, btnText, btnText2, btnActive, messageText1, messageT
                 </svg>
             </div>
             <div className="alert-modal-text-container text-center w-50 font-bold m-auto">
-                <p className="text-2xl py-6">{messageHeader}</p>
+                <p className="text-xl py-6">{messageHeader}</p>
                 <p className="text-sm">{messageText1}</p>
                 <p className="text-xs">{messageText2}</p>
             </div>

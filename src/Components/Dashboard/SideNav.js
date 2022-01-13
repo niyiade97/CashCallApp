@@ -7,7 +7,7 @@ import { CgProfile } from "react-icons/cg"
 import { RiOrganizationChart } from "react-icons/ri";
 import { MdOutlineLogout } from 'react-icons/md';
 import {Link} from "react-router-dom"
-import "../User/SideBar.css";
+import "../User/Nav/SideBar.css";
 function SideNav() {
     const [ dropDownStatus, setDropDownStatus ] = useState(false);
     const handleDropDown = () =>{
@@ -21,7 +21,7 @@ function SideNav() {
                 </div>
                 <div className="side-bar-nav-container pt-20">
                     <Nav path="/dashboard" text="Dashboard" icon={<BiHomeAlt />} dropDownIsActive={false}/>
-                    <Nav path="/fund-request" text="Fund Requests" icon={<BiDollarCircle />} dropDownIsActive={true} handleClick={handleDropDown}/>
+                    <Nav path="" text="Fund Requests" icon={<BiDollarCircle />} dropDownIsActive={true} handleClick={handleDropDown}/>
                     <ul className={`${dropDownStatus ? "block" : "hidden" } font-bold text-sm pl-10 text-color5 duration-1000 transition-all ease-in-out`}>
                         <li className="relative py-2 hover:text-color24">
                             <Link to="/admin-requests">All requests</Link>
@@ -48,6 +48,7 @@ function SideNav() {
                     </div> */}
                     <Nav path="/admin-profile" text="Profile" icon={<CgProfile />} dropDownIsActive={false}/>
                     <Nav path="/users" text="User Managament" icon={<RiOrganizationChart />} dropDownIsActive={false}/>
+                    <Nav path="/departments" text="Department Managament" icon={<RiOrganizationChart />} dropDownIsActive={false}/>
                     <Nav path="/settings" text="Settings" icon={<FiSettings />} dropDownIsActive={false}/>
                     <Nav path="/login" text="Logout" icon={<MdOutlineLogout />} dropDownIsActive={false}/>
                 </div>

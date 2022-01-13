@@ -1,11 +1,11 @@
 import React from 'react';
-import ChequeRequest from '../../Components/Dashboard/ChequeRequest';
+import ChequeRequest from "../../Components/User/ChequeRequest/ChequeRequest";
 import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
 
 function ChequeRequestPage() {
     return (
         <UserDashboardContainer>
-            <div className="w-full h-full flex">
+            <div className="w-full flex">
                 <ChequeRequest />
             </div>
         </UserDashboardContainer>

@@ -7,7 +7,7 @@ import UserDashboardContainer from '../../Components/User/UserDashboardContainer
 function FundRequestPage() {
     return (
         <UserDashboardContainer>
-            <div className="w-full flex h-4/5">
+            <div className="w-full flex h-full">
                 <FundRequest />
                 <StatusIndicatorcontainer />
             </div>

@@ -1,14 +1,18 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
 import image from "../../../Assets/images/adepics.jpeg";
 import Approved from './Approved';
+import axios from 'axios';
 
 function ApprovedRequest() {
     // const Services = ["Web Development", "IT", "Boat Cruise"]
     // const handleOnChange = (value) =>{
     //     console.log(value);
     // }
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const token = localStorage.getItem("token");
+    const cashRequestApi = process.env.REACT_APP_CASH_REQUEST_API;
     const requestData = [
         {
             name: "Adeyemo Afalain",
@@ -121,7 +125,30 @@ function ApprovedRequest() {
             status: "2",
         }
     ]
+    const getUsers = () =>{
+        // handleOnLoad(true)
+        axios.get(baseURL + cashRequestApi,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            console.log(res);
+            // handleOnLoad(false)
+            // setUsers(res.data.data.map((data) =>{
+            //     return{
+            //         data
+            //     }
+            // }))
+        })
+        .catch(err =>{
+            // handleOnLoad(false);
+        })
+    }
 
+    useEffect(() => {
+        getUsers();
+    }, [])
     return (
         <div className="w-full mb-8 py-4 mt-5 "> 
             <div className="w-full px-7">

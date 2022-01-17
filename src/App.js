@@ -55,10 +55,10 @@ function App() {
             <Route  path="profile/change-password" element={<ChangePasswordPage />} />
             
             <Route path="fund-request" element={<FundRequestPage />} />
-            <Route  path="admin-requests" element={<AdminRequestPage />} />
+            <Route  path="admin-requests" element={<AllRequestPage />} />
             <Route  path="admin-approved-requests" element={<AdminApprovedRequestPage />} />
             <Route  path="admin-rejected-requests" element={<AdminRequestPage />} />
-            <Route  path="admin-pending-requests" element={<AdminPendingRequestPage />} />
+            <Route  path="admin-pending-requests" element={<PendingRequestPage />} />
             <Route  path="admin-disbursed-requests" element={<AdminDisbursedRequestPage />} />
 
             

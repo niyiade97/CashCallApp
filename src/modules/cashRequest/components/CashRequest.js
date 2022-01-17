@@ -9,12 +9,13 @@ function CashRequest({ handleLoader, handleAlertModal }) {
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const baseURL = process.env.REACT_APP_BASE_URL;
     const supervisorAPI = process.env.REACT_APP_GET_SUPERVISOR_API;
-    const cashRequestAPI = process.env.REACT_APP_CASH_REQUEST_API;
+    const createCashRequestAPI = process.env.REACT_APP_CREATE_CASH_REQUEST_API;
     const [ departments, setDepartments ] = useState([]);
     const [ supervisors, setSupervisors ] = useState([]);
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
-    const name = localStorage.getItem("name");
+    const firstName = localStorage.getItem("firstName");
+    const lastName = localStorage.getItem("lastName");
     const [ formErrors, setFormErrors ] = useState({
     })
     const [ cashRequest, setCashRequest ] = useState({
@@ -98,7 +99,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
     }
     const submitCashRequest = (payload) =>{
         handleLoader(true);
-        axios.post(baseURL + cashRequestAPI, payload,
+        axios.post(baseURL + createCashRequestAPI, payload,
         { 
             headers: {"Authorization" : `Bearer ${token}`} 
         })
@@ -112,8 +113,8 @@ function CashRequest({ handleLoader, handleAlertModal }) {
                     departmentID: null,
                     supervisorID: null,
                     amount: null,
-                    purpose: "",
-                    base64File: ""
+                    base64File: "",
+                    reason: "",
                 })
             }
             else{
@@ -122,9 +123,9 @@ function CashRequest({ handleLoader, handleAlertModal }) {
                     userID: parseInt(userId),
                     departmentID: null,
                     supervisorID: null,
-                    amount: 0,
-                    purpose: "",
-                    base64File: ""
+                    amount: null,
+                    base64File: "",
+                    reason: "",
                 })
             }
             
@@ -139,6 +140,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
 
     const handleOnSubmit = (e) =>{
         e.preventDefault();
+        console.log(cashRequest)
         setFormErrors(validate(cashRequest));
         const formState = validate(cashRequest).status;
         if(!formState){
@@ -148,7 +150,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
             formData.append("supervisorID", cashRequest.supervisorID);
             formData.append("amount", cashRequest.amount);
             formData.append("reason", cashRequest.reason);
-            formData.append("base64File", cashRequest.ImageFile);
+            formData.append("base64File", cashRequest.base64File);
             submitCashRequest(formData);
         }
     }
@@ -166,7 +168,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
                 </div>
                 <form onSubmit={handleOnSubmit}>
                     <div className="flex flex-wrap">
-                        <TextField type="text" name="name" placeholder="Dolapo Obisesan" label="Name" onChange={handleOnChange} disabled={true} width="2/4"  value={name}/>
+                        <TextField type="text" name="name" placeholder="Dolapo Obisesan" label="Name" onChange={handleOnChange} disabled={true} width="2/4"  value={firstName + " " + lastName}/>
                         <Select name="departmentID" label="Department" onChange={handleOnChange} disabled={false} options={departments} width="2/4" formError={formErrors.department} value={cashRequest.departmentID} valueKey="department" />
                         <TextField type="number" name="amount" placeholder="#300,000" label="Amount" onChange={handleOnChange} disabled={false} width="2/4"  formError={formErrors.amount} value={cashRequest.amount} />
                         <Select name="supervisorID" placeholder="Adebayo Salami" label="Supervisor" onChange={handleOnChange} disabled={false} options={supervisors} width="2/4" formError={formErrors.supervisor} value={cashRequest.supervisorID} valueKey="fullName"/>

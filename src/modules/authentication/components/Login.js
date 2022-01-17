@@ -57,7 +57,8 @@ function Login(props) {
                     localStorage.setItem("userId", res.data.data.id);
                     localStorage.setItem("token", res.data.message);
                     localStorage.setItem("role", res.data.data.userRole);
-                    localStorage.setItem("name", res.data.data.firstname + " " + res.data.data.lastname);
+                    localStorage.setItem("firstName", res.data.data.firstname)
+                    localStorage.setItem("lastName", res.data.data.lastname)
                     if(res.data.data.userRole === "User"){
                         navigate("/fund-request");
                     }

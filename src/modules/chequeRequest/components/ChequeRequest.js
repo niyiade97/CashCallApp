@@ -5,7 +5,8 @@ import "../style/ChequeRequest.css";
 
 function ChequeRequest() {
     const userId = localStorage.getItem("userId");
-    const name = localStorage.getItem("name");
+    const firstName = localStorage.getItem("firstName");
+    const lastName = localStorage.getItem("lastName");
     const [ chequeRequest, setChequeRequest ] = useState({
         userID: parseInt(userId),
         departmentID: "",
@@ -117,7 +118,7 @@ function ChequeRequest() {
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>
                     </div>
-                    <TextField type="text" name="preparedBy" placeholder="" label="Prepared by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={name}/>
+                    <TextField type="text" name="preparedBy" placeholder="" label="Prepared by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={firstName + " " + lastName}/>
                     <TextField type="text" name="valueDate" placeholder="" label="Approved by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={""}/>
                     <div className="m-auto py-3 w-3/12">
                     <button type="submit" className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Download</button>

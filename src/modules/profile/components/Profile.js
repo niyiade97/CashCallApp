@@ -5,6 +5,8 @@ import ProfileInput from './ProfileInput';
 import "../style/Profile.css";
 
 function Profile(props) {
+    const firstName = localStorage.getItem("firstName");
+    const lastName = localStorage.getItem("lastName");
     const Services = ["Web Development", "IT", "Boat Cruise"]
     const handleOnChange = (value) =>{
         console.log(value);
@@ -13,7 +15,7 @@ function Profile(props) {
         
 
     return (
-        <div className="profile-container w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5 shadow-transactionBoxShadow relative"> 
+        <div className="profile-container w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5 shadow-transactionBoxShadow"> 
             {props.children}
             <div className="w-11/12 m-auto">
                 <div className="pl-4 pb-3">
@@ -35,10 +37,10 @@ function Profile(props) {
                        </div>
                        <div className="w-45 flex flex-wrap">
                             <div className="w-2/4 p-4">
-                                <ProfileInput name="firstName" type="text"  handleChange={handleOnChange} placeholder="First Name"/>
+                                <ProfileInput name="firstName" type="text" value={firstName}  handleChange={handleOnChange} placeholder="First Name"/>
                             </div>
                             <div className="w-2/4 p-4">
-                                <ProfileInput name="lastName" type="text"  handleChange={handleOnChange} placeholder="LastName"/>
+                                <ProfileInput name="lastName" type="text" value={lastName} handleChange={handleOnChange} placeholder="LastName"/>
                             </div>
                        </div>
                     </div>

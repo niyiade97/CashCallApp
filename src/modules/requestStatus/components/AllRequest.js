@@ -10,21 +10,56 @@ function AllRequest({ handleLoader }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
-    const allRequestApi = process.env.REACT_APP_GET_RQUESTS_API;
+    const chequeRequestApi = process.env.REACT_APP_CHEQUE_REQUEST_API;
+    const cashRequestApi = process.env.REACT_APP_CASH_REQUEST_API;
     const [ allRequest, setAllRequest ] = useState([]);
 
-    const getAllRequests = () =>{
+    const getCashRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + allRequestApi,
+        axios.get(baseURL + cashRequestApi,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
         )
         .then((res) =>{
             handleLoader(false);
-            console.log(res);
             if(res.data.isSuccess){
-                setAllRequest(res.data.data);
+            setAllRequest(
+                ...allRequest,
+                res.data.data.map((data) =>{
+                    return{
+                        data
+                    }
+                })
+                );
+            }
+           
+        })
+        .catch(err =>{
+            handleLoader(false);
+            console.log(err);
+        })
+    }
+    const getChequeRequests = () =>{
+        handleLoader(true);
+       
+
+        axios.get(baseURL + chequeRequestApi,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            handleLoader(false);
+            if(res.data.isSuccess){
+                setAllRequest(
+                    ...allRequest,
+                    res.data.data.map((data) =>{
+                        return{
+                            data
+                        }
+                    })
+                );
             }
         })
         .catch(err =>{
@@ -32,9 +67,11 @@ function AllRequest({ handleLoader }) {
             console.log(err);
         })
     }
+    
 
     useEffect(() => {
-        getAllRequests();
+        // getCashRequests();
+        getChequeRequests();
     }, [])
 
     return (

@@ -1,14 +1,16 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
 import image from "../../../Assets/images/adepics.jpeg";
 import Request from './Request';
+import axios from 'axios';
 
 function PendingRequest() {
-    // const Services = ["Web Development", "IT", "Boat Cruise"]
-    // const handleOnChange = (value) =>{
-    //     console.log(value);
-    // }
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const pendingCashRequestAPI = process.env.REACT_APP_GET_ALL_CASH_PENDING_REQUESTS_API;
+    const pendingChequeRequestAPI = process.env.REACT_APP_GET_ALL_CHEQUE_PENDING_REQUESTS_API;
+    const token = localStorage.getItem("token");
+    const [ allPendingRequest, setAllPendingRequest ] = useState([]);
     const requestData = [
         {
             name: "Adeyemo Afalain",
@@ -121,7 +123,64 @@ function PendingRequest() {
             status: "1",
         }
     ]
+    const getPendingCashRequests = () =>{
+        // handleLoader(true);
+        axios.get(baseURL + pendingCashRequestAPI,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            // handleLoader(false);
+            if(res.data.isSuccess){
+                setAllPendingRequest(
+                ...allPendingRequest,
+                res.data.data.map((data) =>{
+                    return{
+                        data
+                    }
+                })
+                );
+            }
+           
+        })
+        .catch(err =>{
+            // handleLoader(false);
+            console.log(err);
+        })
+    }
 
+    const getPendingChequeRequests = () =>{
+        // handleLoader(true);
+        axios.get(baseURL + pendingChequeRequestAPI,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            // handleLoader(false);
+            if(res.data.isSuccess){
+                setAllPendingRequest(
+                ...allPendingRequest,
+                res.data.data.map((data) =>{
+                    return{
+                        data
+                    }
+                })
+                );
+            }
+           
+        })
+        .catch(err =>{
+            // handleLoader(false);
+            console.log(err);
+        })
+    }
+
+    useEffect(() => {
+        getPendingCashRequests();
+        getPendingChequeRequests();
+    }, [])
     return (
         <div className="w-full mb-8 py-4 mt-5 "> 
             <div className="w-full px-7">

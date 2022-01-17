@@ -7,14 +7,25 @@ function UploadButton({label, onChange, name, formError}) {
     const handleOnchange = (e) =>{
         const { name } = e.target;
         let file = e.target.files[0];
-        let reader = new FileReader();
-        reader.onloadend = function(){
-            if(file){
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function(){
                 onChange(name, reader.result);
             }
-        }
-        reader.readAsDataURL(file);
+            reader.onerror = function (error) {
+            console.log('Error: ', error);
+            };
+           
+        
         e.preventDefault();
+        // let reader = new FileReader();
+        // reader.readAsDataURL(file);
+        // reader.onload = function () {
+        //     cb(reader.result)
+        // };
+        // reader.onerror = function (error) {
+        //     console.log('Error: ', error);
+        // };
     }
 
     return (

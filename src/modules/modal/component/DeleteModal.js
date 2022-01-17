@@ -7,7 +7,7 @@ function DeleteModal({ icon, btnText, btnText2, btnActive, messageText1, message
         <>
             <div className={`fixed top-0 w-full h-full bg-black opacity-50 z-10`} onClick={handleDeleteModal}>
             </div>
-            <div className="alert-modal-container absolute transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-480 h-330 rounded-xl bg-white z-20">
+            <div className="alert-modal-container absolute top-2/4 left-2/4 rounded-xl bg-white z-20">
                 <div className="alert-modal-text-container text-center w-50 font-bold m-auto">
                     <p className="text-xl py-6">{messageHeader}</p>
                     <p className="text-sm">{messageText1}</p>

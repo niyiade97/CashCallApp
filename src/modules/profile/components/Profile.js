@@ -60,15 +60,7 @@ function Profile(props) {
                                 <ProfileInput name="dateOfBirth" type="date"  handleChange={handleOnChange} placeholder="10/8/1998"/>
                             </div>
                     </div>
-                    <div className="flex items-center">
-                        <div className="w-1/4">
-                            <p className="text-black font-normal text-xl">Phone number</p>
-                        </div>
-                        <div className="w-45 p-4">
-                            <ProfileInput name="address" type="text"  handleChange={handleOnChange} placeholder="8 Asiawu Adebola, Ajanakum Kwara state ..."/>
-                        </div>
-                    </div>
-                   
+                  
                 </div>
                 <div className="pl-4 text-color23">
                     <p className="py-3">Security</p>

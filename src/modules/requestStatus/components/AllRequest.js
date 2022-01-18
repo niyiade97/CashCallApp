@@ -24,14 +24,8 @@ function AllRequest({ handleLoader }) {
         .then((res) =>{
             handleLoader(false);
             if(res.data.isSuccess){
-            setAllRequest(
-                ...allRequest,
-                res.data.data.map((data) =>{
-                    return{
-                        data
-                    }
-                })
-                );
+                setAllRequest(res.data.data);
+                getChequeRequests(res.data.data);
             }
            
         })
@@ -40,10 +34,8 @@ function AllRequest({ handleLoader }) {
             console.log(err);
         })
     }
-    const getChequeRequests = () =>{
+    const getChequeRequests = (data) =>{
         handleLoader(true);
-       
-
         axios.get(baseURL + chequeRequestApi,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
@@ -52,14 +44,9 @@ function AllRequest({ handleLoader }) {
         .then((res) =>{
             handleLoader(false);
             if(res.data.isSuccess){
-                setAllRequest(
-                    ...allRequest,
-                    res.data.data.map((data) =>{
-                        return{
-                            data
-                        }
-                    })
-                );
+                const newArr = data.concat(res.data.data);
+                console.log(newArr);
+                setAllRequest(newArr);
             }
         })
         .catch(err =>{
@@ -70,8 +57,7 @@ function AllRequest({ handleLoader }) {
     
 
     useEffect(() => {
-        // getCashRequests();
-        getChequeRequests();
+        getCashRequests();
     }, [])
 
     return (
@@ -100,7 +86,7 @@ function AllRequest({ handleLoader }) {
                     {
                         allRequest.length === 0 ?
                         <tr className='w-full h-52 text-2xl relative'>
-                            <p className="absolute top-2/4 left-2/4  transform -mt-28 -translate-x-2/4 ">No Request</p>
+                            <p className="absolute top-2/4 left-2/4  transform -translate-x-2/4 ">No Request</p>
                         </tr>
                         :
                         <Request requestData={allRequest} />

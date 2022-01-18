@@ -12,116 +12,116 @@ function PendingRequest() {
     const token = localStorage.getItem("token");
     const [ allPendingRequest, setAllPendingRequest ] = useState([]);
     const requestData = [
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        },
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        },
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        },
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        },
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        },
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        },
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        },
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        },
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        },
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        },
-        {
-            name: "Adeyemo Afalain",
-            image: image,
-            cashPurpose: "Repair of Car Engine",
-            amount: "₦100,000",
-            requestForm: "Cash Request",
-            date:"May 26, 2019",
-            time: "6:30 PM",
-            status: "1",
-        }
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // },
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // },
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // },
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // },
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // },
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // },
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // },
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // },
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // },
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // },
+        // {
+        //     name: "Adeyemo Afalain",
+        //     image: image,
+        //     cashPurpose: "Repair of Car Engine",
+        //     amount: "₦100,000",
+        //     requestForm: "Cash Request",
+        //     date:"May 26, 2019",
+        //     time: "6:30 PM",
+        //     status: "1",
+        // }
     ]
     const getPendingCashRequests = () =>{
         // handleLoader(true);
@@ -131,18 +131,10 @@ function PendingRequest() {
             }
         )
         .then((res) =>{
-            // handleLoader(false);
             if(res.data.isSuccess){
-                setAllPendingRequest(
-                ...allPendingRequest,
-                res.data.data.map((data) =>{
-                    return{
-                        data
-                    }
-                })
-                );
+                setAllPendingRequest(res.data.data);
+                getPendingChequeRequests(res.data.data);
             }
-           
         })
         .catch(err =>{
             // handleLoader(false);
@@ -150,7 +142,7 @@ function PendingRequest() {
         })
     }
 
-    const getPendingChequeRequests = () =>{
+    const getPendingChequeRequests = (data) =>{
         // handleLoader(true);
         axios.get(baseURL + pendingChequeRequestAPI,
             { 
@@ -160,14 +152,8 @@ function PendingRequest() {
         .then((res) =>{
             // handleLoader(false);
             if(res.data.isSuccess){
-                setAllPendingRequest(
-                ...allPendingRequest,
-                res.data.data.map((data) =>{
-                    return{
-                        data
-                    }
-                })
-                );
+                const newArr = data.concat(res.data.data);
+                setAllPendingRequest(newArr);
             }
            
         })
@@ -179,7 +165,6 @@ function PendingRequest() {
 
     useEffect(() => {
         getPendingCashRequests();
-        getPendingChequeRequests();
     }, [])
     return (
         <div className="w-full mb-8 py-4 mt-5 "> 
@@ -204,7 +189,7 @@ function PendingRequest() {
                         <th className="w-1/5 py-2">Date</th>  
                         <th className="w-1/5 py-2">Status</th>
                     </tr>
-                    <Request requestData={requestData} />
+                    <Request requestData={allPendingRequest} />
                     
                 </table>
                 

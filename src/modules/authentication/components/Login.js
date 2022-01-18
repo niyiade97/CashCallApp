@@ -8,6 +8,9 @@ import "../style/Login.css";
 function Login(props) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const loginAPI = process.env.REACT_APP_LOGIN_API;
+    const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
+    const token = localStorage.getItem("token");
+    const departmentID = localStorage.getItem("departmentID");
     const navigate = useNavigate();
     const [ formErrors, setFormErrors ] = useState({
         status: false
@@ -27,6 +30,25 @@ function Login(props) {
         }, 4000);
        
         
+    }
+    const getDepartmentName = (array, id) =>{
+        for(let i=0; i<array.length; i++){
+            if(array[i].departmentID === id){
+                return array[i].department;
+            }
+        }
+        return null;
+    }
+
+    const getDepartment = (id) =>{
+        axios.get(baseURL + departmentAPI,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            localStorage.setItem("departmentName", getDepartmentName(res.data.data, id));
+        })
     }
 
     const validate = (data) =>{
@@ -55,10 +77,13 @@ function Login(props) {
                 if(res.data.isSuccess){
                     setMessage("");
                     localStorage.setItem("userId", res.data.data.id);
+                    localStorage.setItem("departmentID", res.data.data.departmentID);
                     localStorage.setItem("token", res.data.message);
                     localStorage.setItem("role", res.data.data.userRole);
                     localStorage.setItem("firstName", res.data.data.firstname)
                     localStorage.setItem("lastName", res.data.data.lastname)
+                    console.log(res);
+                    getDepartment(res.data.data.departmentID);
                     if(res.data.data.userRole === "User"){
                         navigate("/fund-request");
                     }

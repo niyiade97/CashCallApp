@@ -170,7 +170,7 @@ function PendingRequest() {
         <div className="w-full mb-8 py-4 mt-5 "> 
             <div className="w-full px-7">
                 <div className=" py-5 flex justify-between items-center border-1.5 border-b-0 rounded-t-xl">
-                    <h1 className="text-color13 font-bold text-2xl pl-10">Approved Request</h1>
+                    <h1 className="text-color13 font-bold text-2xl pl-10">Pending Request</h1>
                     <div className="flex items-center pr-12">
                         <div className="flex items-center text-color14">
                             <BsSortUp />

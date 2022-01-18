@@ -1,9 +1,7 @@
 import React from 'react'
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-
-function Approved({ requestData }) {
-    console.log(requestData);
+function Declined({requestData}) {
     return (
         requestData.map((request) =>{
             return(
@@ -25,7 +23,7 @@ function Approved({ requestData }) {
                     </td>
                     <td className="py-4">
                         <div className="flex items-center justify-between pr-14">
-                            <button className="rounded-full bg-color9 text-white text-xs font-bold py-1 px-3">Accepted</button>
+                            <button className="rounded-full bg-red-500 text-white text-xs font-bold py-1 px-3">Declined</button>
                             <i className="text-color14"><BsThreeDotsVertical /></i>
                         </div>
                     </td>
@@ -35,4 +33,4 @@ function Approved({ requestData }) {
     )
 }
 
-export default Approved;
+export default Declined

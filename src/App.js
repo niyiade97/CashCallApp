@@ -24,6 +24,7 @@ import "tailwindcss/tailwind.css";
 import DashboardPage from "./Views/AdminView/DashboardPage";
 import DepartmentPage from "./Views/AdminView/DepartmentPage";
 import AddDepartmentPage from "./Views/AdminView/AddDepartmentPage";
+import AdminRejectedRequestsPage from "./Views/AdminView/AdminRejectedRequestsPage";
 
 function App() {
 
@@ -55,10 +56,10 @@ function App() {
             <Route  path="profile/change-password" element={<ChangePasswordPage />} />
             
             <Route path="fund-request" element={<FundRequestPage />} />
-            <Route  path="admin-requests" element={<AllRequestPage />} />
+            
             <Route  path="admin-approved-requests" element={<AdminApprovedRequestPage />} />
-            <Route  path="admin-rejected-requests" element={<AdminRequestPage />} />
-            <Route  path="admin-pending-requests" element={<PendingRequestPage />} />
+            <Route  path="admin-rejected-requests" element={<AdminRejectedRequestsPage />} />
+            <Route  path="admin-pending-requests" element={<AdminPendingRequestPage />} />
             <Route  path="admin-disbursed-requests" element={<AdminDisbursedRequestPage />} />
 
             
@@ -70,6 +71,8 @@ function App() {
             <Route  path="cheque-request" element={<ChequeRequestPage />} />
 
             <Route  path="requests" element={<AllRequestPage />} />
+            <Route  path="admin-requests" element={<AdminRequestPage />} />
+
             <Route  path="approved-requests" element={<ApprovedRequestPage />} />
             <Route  path="rejected-requests" element={<RejectedRequestsPage />} />
             <Route  path="pending-requests" element={<PendingRequestPage />} />

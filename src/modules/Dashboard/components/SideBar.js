@@ -12,6 +12,7 @@ function SideBar() {
     const handleDropDown = () =>{
         setDropDownStatus(!dropDownStatus);
     }
+    const role = localStorage.getItem("role");
     return (
         <div className="side-bar-container w-1/5 h-screen sticky top-0 bg-white shadow-sideNavShadow">
             <div className="ml-20">
@@ -19,7 +20,7 @@ function SideBar() {
                     <img src={logo} alt="logo" className="w-36 h-16 object-cover" />
                 </div>
                 <div className="side-bar-nav-container pt-20">
-                    <Nav path="/fund-request" text="Fund Requests" icon={<BiDollarCircle />} dropDownIsActive={true} handleClick={handleDropDown}/>
+                    <Nav path={`${role === "Supervisor" ? "" : "/fund-request"}`} text="Fund Requests" icon={<BiDollarCircle />} dropDownIsActive={true} handleClick={handleDropDown}/>
                     <ul className={`${dropDownStatus ? "block" : "hidden" } font-bold text-sm pl-10 duration-1000 transition-all ease-in-out`}>
                         <li className="relative py-2 hover:text-color24">
                             <Link to="/requests">All requests</Link>
@@ -27,9 +28,9 @@ function SideBar() {
                         <li className="relative py-2 hover:text-color24">
                             <Link to="/approved-requests">Approved Request</Link>
                         </li>
-                        <li className="relative py-2 hover:text-color24">
+                        {/* <li className="relative py-2 hover:text-color24">
                             <Link to="/disbursed-requests">Approved and Disbursed</Link>
-                        </li>
+                        </li> */}
                         <li className="relative py-2 hover:text-color24">
                             <Link to="/pending-requests">Pending Request</Link>
                         </li>

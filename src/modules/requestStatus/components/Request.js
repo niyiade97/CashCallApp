@@ -3,13 +3,17 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import "../style/AllRequest.css";
 import profileImage from "../../../Assets/images/profileImage.png";
 
-function Request({ requestData }) {
+function Request({ requestData, handleClick }) {
     const name = localStorage.getItem("name");
     console.log(requestData);
+    const handleOnClick = (id, request) =>{
+        handleClick(id,request);
+    }
+
     return (
             requestData.map((request) =>{
                 return(
-                    <tr className="request-wrapper border-2 hover:bg-color20 cursor-pointer">
+                    <tr onClick={handleOnClick.bind(null,request.requestID, request )} className="request-wrapper border-2 hover:bg-color20 cursor-pointer">
                         <td className="flex py-4 pl-10">
                             <img className="w-11 h-11 rounded-full mr-5 object-cover" src={request.imageRef} alt="img"/>
                             <div>
@@ -19,7 +23,7 @@ function Request({ requestData }) {
                         </td>
                         <td className="py-4">
                             <p className="font-semibold text-sm text-color17">{request.amount}</p>
-                            <p className="font-normal text-xs text-color18">{"Cash Request"}</p>
+                            <p className="font-normal text-xs text-color18">{request.type ? request.type + " Request" : "" }</p>
                         </td>
                         <td className="py-4">
                             <p className="font-semibold text-sm text-color17">{request.dateCreated}</p>
@@ -30,7 +34,7 @@ function Request({ requestData }) {
                             {
                                 request.status === "Pending" &&
                                 <>
-                                    <button className="rounded-full bg-color10 text-white text-xs font-bold py-1 px-3">Pending</button>
+                                    <button className={`rounded-full ${request.status === "Pending" && "bg-color10"} ${request.status === "Approved" && "bg-color9"} ${request.status === "Declined" && "bg-red-500"} text-white text-xs font-bold py-1 px-3`}>Pending</button>
                                     <i className="text-color14"><BsThreeDotsVertical /></i>
                                 </>
                             }

@@ -1,20 +1,21 @@
-import React,{useState, useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
 import image from "../../../Assets/images/adepics.jpeg";
-import Declined from './Declined';
+import Approved from './Approved';
 import axios from 'axios';
 
-function RejectedRequests({handleLoader}) {
+function UserApprovedRequest({handleLoader}) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
-    const cashDeclinedRequestApi = process.env.REACT_APP_GET_ALL_CASH_DECLINED_REQUESTS_API;
-    const chequeDeclinedRequestApi = process.env.REACT_APP_GET_ALL_CHEQUE_DECLINED_REQUESTS_API;
-    const [ allDeclinedRequest, setAllDeclinedRequest ] = useState([]);
+    const userId = localStorage.getItem("userId");
+    const cashApprovedRequestApi = process.env.REACT_APP_GET_CASH_APPROVED_REQUESTS_API;
+    const chequeApprovedRequestApi = process.env.REACT_APP_GET_CHEQUE_APPROVED_REQUESTS_API;
+    const [ allApprovedRequest, setAllApprovedRequest ] = useState([]);
     
     const getApprovedCashRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + cashDeclinedRequestApi,
+        axios.get(baseURL + cashApprovedRequestApi + userId,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -22,7 +23,7 @@ function RejectedRequests({handleLoader}) {
         .then((res) =>{
             handleLoader(false);
             if(res.data.isSuccess){
-                setAllDeclinedRequest(res.data.data);
+                setAllApprovedRequest(res.data.data);
                 getApprovedChequeRequests(res.data.data);
             }
            
@@ -34,7 +35,7 @@ function RejectedRequests({handleLoader}) {
     }
     const getApprovedChequeRequests = (data) =>{
         handleLoader(true);
-        axios.get(baseURL + chequeDeclinedRequestApi,
+        axios.get(baseURL + chequeApprovedRequestApi + userId,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -44,7 +45,7 @@ function RejectedRequests({handleLoader}) {
             if(res.data.isSuccess){
                 const newArr = data.concat(res.data.data);
                 console.log(newArr);
-                setAllDeclinedRequest(newArr);
+                setAllApprovedRequest(newArr);
             }
         })
         .catch(err =>{
@@ -56,13 +57,11 @@ function RejectedRequests({handleLoader}) {
     useEffect(() => {
         getApprovedCashRequests();
     }, [])
-  
-
     return (
         <div className="w-full mb-8 py-4 mt-5 "> 
             <div className="w-full px-7">
                 <div className=" py-5 flex justify-between items-center border-1.5 border-b-0 rounded-t-xl">
-                    <h1 className="text-color13 font-bold text-2xl pl-10">Declined Request</h1>
+                    <h1 className="text-color13 font-bold text-2xl pl-10">Approved Request</h1>
                     <div className="flex items-center pr-12">
                         <div className="flex items-center text-color14">
                             <BsSortUp />
@@ -82,17 +81,20 @@ function RejectedRequests({handleLoader}) {
                         <th className="w-1/5 py-2">Status</th>
                     </tr>
                     {
-                        allDeclinedRequest.length === 0 ?
+                        allApprovedRequest.length === 0 ?
                         <tr className='w-full h-52 text-2xl relative'>
                             <p className="absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 ">No Request</p>
                         </tr>
                         :
-                    <Declined requestData={allDeclinedRequest} />
+                        <Approved requestData={allApprovedRequest} />
                     }
+                    
+                    
                 </table>
                 
             </div>
         </div>
     )
 }
-export default RejectedRequests
+
+export default UserApprovedRequest;

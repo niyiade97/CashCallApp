@@ -2,19 +2,20 @@ import React,{useState, useEffect} from 'react'
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
 import image from "../../../Assets/images/adepics.jpeg";
-import Declined from './Declined';
+import Request from './Request';
 import axios from 'axios';
 
-function RejectedRequests({handleLoader}) {
+function UserPendingRequest({handleLoader}) {
     const baseURL = process.env.REACT_APP_BASE_URL;
+    const pendingCashRequestAPI = process.env.REACT_APP_GET_CASH_PENDING_REQUESTS_API;
+    const pendingChequeRequestAPI = process.env.REACT_APP_GET_CHEQUE_PENDING_REQUESTS_API;
     const token = localStorage.getItem("token");
-    const cashDeclinedRequestApi = process.env.REACT_APP_GET_ALL_CASH_DECLINED_REQUESTS_API;
-    const chequeDeclinedRequestApi = process.env.REACT_APP_GET_ALL_CHEQUE_DECLINED_REQUESTS_API;
-    const [ allDeclinedRequest, setAllDeclinedRequest ] = useState([]);
-    
-    const getApprovedCashRequests = () =>{
+    const userID = localStorage.getItem("userId");
+    const [ allPendingRequest, setAllPendingRequest ] = useState([]);
+   
+    const getPendingCashRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + cashDeclinedRequestApi,
+        axios.get(baseURL + pendingCashRequestAPI + userID,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -22,19 +23,19 @@ function RejectedRequests({handleLoader}) {
         .then((res) =>{
             handleLoader(false);
             if(res.data.isSuccess){
-                setAllDeclinedRequest(res.data.data);
-                getApprovedChequeRequests(res.data.data);
+                setAllPendingRequest(res.data.data);
+                getPendingChequeRequests(res.data.data);
             }
-           
         })
         .catch(err =>{
             handleLoader(false);
             console.log(err);
         })
     }
-    const getApprovedChequeRequests = (data) =>{
+
+    const getPendingChequeRequests = (data) =>{
         handleLoader(true);
-        axios.get(baseURL + chequeDeclinedRequestApi,
+        axios.get(baseURL + pendingChequeRequestAPI + userID,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -43,9 +44,9 @@ function RejectedRequests({handleLoader}) {
             handleLoader(false);
             if(res.data.isSuccess){
                 const newArr = data.concat(res.data.data);
-                console.log(newArr);
-                setAllDeclinedRequest(newArr);
+                setAllPendingRequest(newArr);
             }
+           
         })
         .catch(err =>{
             handleLoader(false);
@@ -54,15 +55,13 @@ function RejectedRequests({handleLoader}) {
     }
 
     useEffect(() => {
-        getApprovedCashRequests();
+        getPendingCashRequests();
     }, [])
-  
-
     return (
         <div className="w-full mb-8 py-4 mt-5 "> 
             <div className="w-full px-7">
                 <div className=" py-5 flex justify-between items-center border-1.5 border-b-0 rounded-t-xl">
-                    <h1 className="text-color13 font-bold text-2xl pl-10">Declined Request</h1>
+                    <h1 className="text-color13 font-bold text-2xl pl-10">Pending Request</h1>
                     <div className="flex items-center pr-12">
                         <div className="flex items-center text-color14">
                             <BsSortUp />
@@ -81,18 +80,13 @@ function RejectedRequests({handleLoader}) {
                         <th className="w-1/5 py-2">Date</th>  
                         <th className="w-1/5 py-2">Status</th>
                     </tr>
-                    {
-                        allDeclinedRequest.length === 0 ?
-                        <tr className='w-full h-52 text-2xl relative'>
-                            <p className="absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 ">No Request</p>
-                        </tr>
-                        :
-                    <Declined requestData={allDeclinedRequest} />
-                    }
+                    <Request requestData={allPendingRequest} />
+                    
                 </table>
                 
             </div>
         </div>
     )
 }
-export default RejectedRequests
+
+export default UserPendingRequest;

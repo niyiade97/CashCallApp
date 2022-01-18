@@ -33,12 +33,12 @@ function UsersPage(props) {
     }
 
     const handleDelete = () =>{
-        axios.delete(baseURL + deleteUserAPI + id,
+        axios.post(baseURL + deleteUserAPI + id,{},
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
         )
-        .then((res) =>{
+        .then((res) =>{ 
             console.log(res)
             getUsers();
             setDeleteModal(false);
@@ -72,19 +72,6 @@ function UsersPage(props) {
     }, [])
     return (
         <DashboardContainer>
-        {
-                    deleteModal &&
-                    <DeleteModal
-                        messageHeader={"Are you sure you want to delete this user"}
-                        messageText1=""
-                        messageText2=""
-                        status={false}
-                        handle
-                        handleDeleteModal={handleDeleteModal}
-                        handleDelete={handleDelete}
-
-                    />
-                }
             <div className="w-full flex">
                 <Users handleOnLoad={handleOnLoad} handleAddUserModal={handleAddUserModal} handleDeleteModal={handleDeleteModal} users={users}>
                 {
@@ -97,7 +84,19 @@ function UsersPage(props) {
                     </>
                 }
                 {
-                    addUserModal &&  <AddUser handleClick={null} loading={handleOnLoad} handleBackDropOnClick={handleAddUserModal} handleGetUsers={getUsers}/>
+                    deleteModal &&
+                    <DeleteModal
+                        messageHeader={"Are you sure you want to delete this user"}
+                        messageText1=""
+                        messageText2=""
+                        status={false}
+                        handleDeleteModal={handleDeleteModal}
+                        handleDelete={handleDelete}
+
+                    />
+                }
+                {
+                    addUserModal &&  <AddUser loading={handleOnLoad} handleBackDropOnClick={handleAddUserModal} handleGetUsers={getUsers}/>
                 }
                 
                 </Users>

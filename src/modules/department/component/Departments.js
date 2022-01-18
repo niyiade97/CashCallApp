@@ -10,46 +10,14 @@ import DepartmentTemplate from './DepartmentTemplate';
 
 function Departments(props) {
     const baseURL = process.env.REACT_APP_BASE_URL;
-    const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
+    
     const token = localStorage.getItem("token");
     const usersAPI = process.env.REACT_APP_GET_USERS_API;
     const [ users, setUsers ] = useState([]);
     const [ departments, setDepartments ] = useState([]);
     // const { users } = useContext(DataContext);
-    const getUsers = () =>{
-        axios.get(baseURL + usersAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            setUsers(res.data.data.map((data) =>{
-                return{
-                    data
-                }
-            }))
-        })
-    }
-
-    const getDepartment = () =>{
-        axios.get(baseURL + departmentAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            setDepartments(res.data.data.map((data) =>{
-                return{
-                    departmentID: data.departmentID,
-                    department: data.department
-                }
-            }))
-        })
-    }
-
-    useEffect(() => {
-        getDepartment();
-    }, [])
+    
+  
 
     return (
         <div className="w-full h-screen mb-8 py-4 mt-5 relative"> 
@@ -69,10 +37,10 @@ function Departments(props) {
                             </div>
                         </div>
                         <div className="add-user-container flex items-center pl-5 text-color14 w-3/12">
-                            <Link to="/departments/addDepartment" className="bg-color30 w-full text-sm text-white flex items-center justify-evenly py-2 rounded-lg">
+                            <p onClick={props.handleAddDepartmentModal} className="bg-color30 w-full text-sm text-white flex items-center justify-evenly py-2 rounded-lg">
                                 Add Department 
                                 <i><IoAddOutline /></i>
-                            </Link>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -91,7 +59,7 @@ function Departments(props) {
                         </th>
                         <th className="user-table-role-header py-2 w-60 pl-4 text-color17 font-bold text-lg">Role</th>  
                     </tr>
-                    <DepartmentTemplate departments={departments} />
+                    <DepartmentTemplate departments={props.departments} handleDeleteModal={props.handleDeleteModal} />
                     
                 </table>
                 

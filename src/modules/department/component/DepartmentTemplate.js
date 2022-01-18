@@ -4,19 +4,18 @@ import image from "../../../Assets/images/adepics.jpeg";
 import { DataContext } from "../../../Utils/DataContext";
 import "../../userManagement/style/UserTemplate.css";
 
-function DepartmentTemplate({ departments }) {
-    const { deteleUser } = useContext(DataContext);
-    console.log(departments)
+function DepartmentTemplate({ departments, handleDeleteModal }) {
     const handleOnDelete = (id) =>{
-        console.log(id);
-        deteleUser(id);
+        handleDeleteModal(id);
     }
     const handleOnPassWordReset = (id) =>{
         
     }
+    console.log(departments);
     return (
         <>
         {
+
             departments.length !== 0 ?
             departments.map((user) =>{
                 return(

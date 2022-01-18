@@ -167,8 +167,6 @@ function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
                     status:"0"
                 });
             }
-           
-            console.log(res);
         })
     }
     useEffect(() => {

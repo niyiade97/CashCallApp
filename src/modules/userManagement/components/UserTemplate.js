@@ -11,7 +11,6 @@ function UserTemplate({ users, handleDeleteModal  }) {
     const handleOnPassWordReset = (id) =>{
         
     }
-    console.log(users)
     return (
         <>
         {

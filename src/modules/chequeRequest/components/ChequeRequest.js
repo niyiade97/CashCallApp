@@ -27,22 +27,6 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
         base64File:""
     })
 
-    // const handleOnSubmit = (e) =>{
-    //     e.preventDefault();
-    //     console.log(cashRequest)
-    //     setFormErrors(validate(cashRequest));
-    //     const formState = validate(cashRequest).status;
-    //     if(!formState){
-    //         const formData = new FormData();
-    //         formData.append("userID", cashRequest.userID);
-    //         formData.append("departmentID", cashRequest.departmentID);
-    //         formData.append("supervisorID", cashRequest.supervisorID);
-    //         formData.append("amount", cashRequest.amount);
-    //         formData.append("reason", cashRequest.reason);
-    //         formData.append("base64File", cashRequest.base64File);
-    //         submitCashRequest(formData);
-    //     }
-    // }
     const handleOnChange = (name, value) =>{
         setChequeRequest((prevState) =>{
             return{
@@ -89,9 +73,7 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
             errors.status = true;
         }
          return errors;
-     }
-
-
+    }
     
     const handleOnSubmit = (e) =>{
         e.preventDefault();
@@ -165,25 +147,7 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
             })
         })
     }
-    // const TextArea = ({ width, formError, label, type, name, value, onChange, placeholder, row  }) =>{
-
-    //     const handleChange = (e) =>{
-    //         const {name, value} = e.target;
-    //         onChange(name, value);
-    //     }
-    //     return( 
-    //     <div className={`w-${width} px-4 py-3`}>
-    //         <div style={{color:"#8E8EA1"}} className="w-full">
-    //             <label className="font-normal text-lg">{label}</label> 
-    //             <textarea className={`w-full mt-4 p-4 font-semibold rounded-3xl ${formError ? " border border-red-400" :"bg-white border-2 border-color5 text-color13 placeholder-color4" }`} type={type} name={name} value={value} rows={row} placeholder={placeholder} onChange={handleChange} />
-    //             {
-    //                 formError &&
-    //                 <p className="text-left text-red-500 pt-3 pl-3">{formError}</p>
-    //             }
-    //         </div>
-    //     </div>
-    //         )
-    //     }
+   
 
     return (
         <div className="w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5 shadow-transactionBoxShadow"> 

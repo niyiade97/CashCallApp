@@ -87,6 +87,9 @@ function Login(props) {
                     if(res.data.data.userRole === "User"){
                         navigate("/fund-request");
                     }
+                    else if( res.data.data.userRole === "Supervisor"){
+                        navigate("/requests");
+                    }
                     else{
                         navigate("/dashboard");
                     }

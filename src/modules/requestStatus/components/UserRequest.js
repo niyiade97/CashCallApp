@@ -1,20 +1,22 @@
 import React,{useState, useEffect} from 'react'
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
-import image from "../../../Assets/images/adepics.jpeg";
-import Declined from './Declined';
+import Request from "./Request";
 import axios from 'axios';
+import "../style/AllRequest.css"
 
-function RejectedRequests({handleLoader}) {
+
+function UserRequest({ handleLoader }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
-    const cashDeclinedRequestApi = process.env.REACT_APP_GET_ALL_CASH_DECLINED_REQUESTS_API;
-    const chequeDeclinedRequestApi = process.env.REACT_APP_GET_ALL_CHEQUE_DECLINED_REQUESTS_API;
-    const [ allDeclinedRequest, setAllDeclinedRequest ] = useState([]);
-    
-    const getApprovedCashRequests = () =>{
+    const userId = localStorage.getItem("userId");
+    const chequeRequestApi = process.env.REACT_APP_GET_CHEQUE_REQUESTS_API;
+    const cashRequestApi = process.env.REACT_APP_GET_CASH_REQUESTS_API;
+    const [ allRequest, setAllRequest ] = useState([]);
+
+    const getCashRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + cashDeclinedRequestApi,
+        axios.get(baseURL + cashRequestApi + userId,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -22,8 +24,8 @@ function RejectedRequests({handleLoader}) {
         .then((res) =>{
             handleLoader(false);
             if(res.data.isSuccess){
-                setAllDeclinedRequest(res.data.data);
-                getApprovedChequeRequests(res.data.data);
+                setAllRequest(res.data.data);
+                getChequeRequests(res.data.data);
             }
            
         })
@@ -32,9 +34,9 @@ function RejectedRequests({handleLoader}) {
             console.log(err);
         })
     }
-    const getApprovedChequeRequests = (data) =>{
+    const getChequeRequests = (data) =>{
         handleLoader(true);
-        axios.get(baseURL + chequeDeclinedRequestApi,
+        axios.get(baseURL + chequeRequestApi + userId,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -44,7 +46,7 @@ function RejectedRequests({handleLoader}) {
             if(res.data.isSuccess){
                 const newArr = data.concat(res.data.data);
                 console.log(newArr);
-                setAllDeclinedRequest(newArr);
+                setAllRequest(newArr);
             }
         })
         .catch(err =>{
@@ -52,17 +54,17 @@ function RejectedRequests({handleLoader}) {
             console.log(err);
         })
     }
+    
 
     useEffect(() => {
-        getApprovedCashRequests();
+        getCashRequests();
     }, [])
-  
 
     return (
         <div className="w-full mb-8 py-4 mt-5 "> 
             <div className="w-full px-7">
-                <div className=" py-5 flex justify-between items-center border-1.5 border-b-0 rounded-t-xl">
-                    <h1 className="text-color13 font-bold text-2xl pl-10">Declined Request</h1>
+                <div className=" py-5 flex justify-between items-center border-2 border-b-0 rounded-t-xl">
+                    <h1 className="text-color13 font-bold text-2xl pl-10">All Request</h1>
                     <div className="flex items-center pr-12">
                         <div className="flex items-center text-color14">
                             <BsSortUp />
@@ -75,24 +77,27 @@ function RejectedRequests({handleLoader}) {
                     </div>
                 </div>
                 <table className="w-full rounded-full border border-t-0 border-color16">
-                    <tr className="text-left border-1.5 border-t-0 text-color19 font-bold text-sm">
+                    <tr className="text-left border-2 border-t-0 text-color19 font-bold text-sm">
                         <th className="w-2/5 py-2 pl-10">Staff Details/Purpose</th>
                         <th className="w-1/5 py-2">Amount/Request Type</th>
                         <th className="w-1/5 py-2">Date</th>  
                         <th className="w-1/5 py-2">Status</th>
                     </tr>
                     {
-                        allDeclinedRequest.length === 0 ?
+                        allRequest.length === 0 ?
                         <tr className='w-full h-52 text-2xl relative'>
-                            <p className="absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 ">No Request</p>
+                            <p className="absolute top-2/4 left-2/4  transform -translate-x-2/4 ">No Request</p>
                         </tr>
                         :
-                    <Declined requestData={allDeclinedRequest} />
+                        <Request requestData={allRequest} />
                     }
+                    
+                    
                 </table>
                 
             </div>
         </div>
     )
 }
-export default RejectedRequests
+
+export default UserRequest;

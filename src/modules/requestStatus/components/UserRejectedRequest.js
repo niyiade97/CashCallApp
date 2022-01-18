@@ -5,16 +5,17 @@ import image from "../../../Assets/images/adepics.jpeg";
 import Declined from './Declined';
 import axios from 'axios';
 
-function RejectedRequests({handleLoader}) {
+function UserRejectedRequest({handleLoader}) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
-    const cashDeclinedRequestApi = process.env.REACT_APP_GET_ALL_CASH_DECLINED_REQUESTS_API;
-    const chequeDeclinedRequestApi = process.env.REACT_APP_GET_ALL_CHEQUE_DECLINED_REQUESTS_API;
+    const userId = localStorage.getItem("userId");
+    const cashDeclinedRequestApi = process.env.REACT_APP_GET_CASH_DECLINED_REQUESTS_API;
+    const chequeDeclinedRequestApi = process.env.REACT_APP_GET_CHEQUE_DECLINED_REQUESTS_API;
     const [ allDeclinedRequest, setAllDeclinedRequest ] = useState([]);
     
     const getApprovedCashRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + cashDeclinedRequestApi,
+        axios.get(baseURL + cashDeclinedRequestApi  + userId,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -34,7 +35,7 @@ function RejectedRequests({handleLoader}) {
     }
     const getApprovedChequeRequests = (data) =>{
         handleLoader(true);
-        axios.get(baseURL + chequeDeclinedRequestApi,
+        axios.get(baseURL + chequeDeclinedRequestApi  + userId,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -95,4 +96,4 @@ function RejectedRequests({handleLoader}) {
         </div>
     )
 }
-export default RejectedRequests
+export default UserRejectedRequest;

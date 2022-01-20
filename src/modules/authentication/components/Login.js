@@ -10,6 +10,7 @@ function Login(props) {
     const loginAPI = process.env.REACT_APP_LOGIN_API;
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const token = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
     const departmentID = localStorage.getItem("departmentID");
     const navigate = useNavigate();
     const [ formErrors, setFormErrors ] = useState({
@@ -77,6 +78,7 @@ function Login(props) {
                 if(res.data.isSuccess){
                     setMessage("");
                     localStorage.setItem("userId", res.data.data.id);
+                    localStorage.setItem("email", res.data.data.email);
                     localStorage.setItem("departmentID", res.data.data.departmentID);
                     localStorage.setItem("token", res.data.message);
                     localStorage.setItem("role", res.data.data.userRole);

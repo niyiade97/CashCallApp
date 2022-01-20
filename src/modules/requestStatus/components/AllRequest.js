@@ -9,7 +9,6 @@ import "../style/AllRequest.css"
 function AllRequest({ handleLoader, handleClick }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
-    // const userId = localStorage.getItem("userId");
     const chequeRequestApi = process.env.REACT_APP_CHEQUE_REQUEST_API;
     const cashRequestApi = process.env.REACT_APP_CASH_REQUEST_API;
     const [ allRequest, setAllRequest ] = useState([]);
@@ -89,7 +88,7 @@ function AllRequest({ handleLoader, handleClick }) {
                             <p className="absolute top-2/4 left-2/4  transform -translate-x-2/4 ">No Request</p>
                         </tr>
                         :
-                        <Request handleClick={handleClick} requestData={allRequest} onClick={true}/>
+                        <Request handleClick={handleClick} requestData={allRequest} clickStatus={false} />
                     }
                     
                     

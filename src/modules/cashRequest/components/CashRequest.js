@@ -143,7 +143,6 @@ function CashRequest({ handleLoader, handleAlertModal }) {
 
     const handleOnSubmit = (e) =>{
         e.preventDefault();
-        console.log(cashRequest)
         setFormErrors(validate(cashRequest));
         const formState = validate(cashRequest).status;
         if(!formState){

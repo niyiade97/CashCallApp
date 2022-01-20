@@ -1,8 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
-import image from "../../../Assets/images/adepics.jpeg";
-import Approved from './Approved';
+import Request from './Request';
 import axios from 'axios';
 
 function ApprovedRequest({handleLoader}) {
@@ -85,7 +84,7 @@ function ApprovedRequest({handleLoader}) {
                             <p className="absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 ">No Request</p>
                         </tr>
                         :
-                        <Approved requestData={allApprovedRequest} />
+                        <Request requestData={allApprovedRequest} clickStatus={false}/>
                     }
                     
                     

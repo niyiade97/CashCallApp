@@ -24,7 +24,7 @@ function AlertModal({ icon, btnText, btnText2, btnActive, messageText1, messageT
                 </div> */}
               
                 <div className="w-2/4 py-4 pl-2 pr-4">
-                    <button  className="alert-btn2 text-white w-full py-3 rounded-md" onClick={handleClick}>OK</button>
+                    <button  className="alert-btn2 text-green-50 w-full py-4 rounded-md border-2 hover:bg-white hover:text-blue-900 hover:border-blue-900" onClick={handleClick}>OK</button>
                 </div>
             </div>
         </div>

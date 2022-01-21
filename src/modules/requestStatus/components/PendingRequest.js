@@ -11,7 +11,7 @@ function PendingRequest({ handleClick, handleLoader }) {
     const token = localStorage.getItem("token");
     const [ allPendingRequest, setAllPendingRequest ] = useState([]);
    
-    const getPendingCashRequests = () =>{
+    const getPendingRequests = () =>{
         handleLoader(true);
         axios.get(baseURL + pendingRequestAPI,
             { 
@@ -32,7 +32,7 @@ function PendingRequest({ handleClick, handleLoader }) {
 
 
     useEffect(() => {
-        getPendingCashRequests();
+        getPendingRequests();
     }, [])
     return (
         <div className="w-full mb-8 py-4 mt-5 "> 

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React,{useState} from 'react'
-import { MdWifiProtectedSetup } from 'react-icons/md';
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "../style/Login.css";
@@ -10,8 +9,6 @@ function Login(props) {
     const loginAPI = process.env.REACT_APP_LOGIN_API;
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const token = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-    const departmentID = localStorage.getItem("departmentID");
     const navigate = useNavigate();
     const [ formErrors, setFormErrors ] = useState({
         status: false
@@ -97,13 +94,11 @@ function Login(props) {
                     }
                 }
                 else{
-                    console.log(res.data.message)
                     setMessage(res.data.message);
                 }
                 clearInput();
             })
             .catch((err) =>{
-                console.log(err.message)
                 props.onLoad(false)
 
             })

@@ -4,7 +4,7 @@ import UserDashboardContainer from "../../modules/userManagement/components/User
 import Loader from "../../modules/customElement/component/Loader";
 import AlertModal from '../../modules/modal/component/AlertModal';
 import ApprovalModal from "../../modules/modal/component/ApprovalModal";
-import OtpModal from "../../modules/modal/component/OtpModal";
+import SupervisorOtpModal from "../../modules/modal/component/SupervisorOtpModal";
 
 function PendingRequestPage() {
     const  [ loading ,setLoading ] = useState(false);
@@ -68,7 +68,7 @@ function PendingRequestPage() {
         }
         {
             otpModal &&
-            <OtpModal handleCloseOtpModal={handleCloseOtptModal} requestID={data.requestID} handleLoader={handleLoader} handleAlertModal={handleAlertModal} approvalStatus={approvalStatus}/>
+            <SupervisorOtpModal handleCloseOtpModal={handleCloseOtptModal} requestID={data.requestID} handleLoader={handleLoader} handleAlertModal={handleAlertModal} approvalStatus={approvalStatus}/>
         }
         {
             modal &&

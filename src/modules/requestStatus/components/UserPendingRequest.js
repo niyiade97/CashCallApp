@@ -58,8 +58,14 @@ function UserPendingRequest({handleLoader, handleClick}) {
                         <th className="w-1/5 py-2">Date</th>  
                         <th className="w-1/5 py-2">Status</th>
                     </tr>
+                    {
+                        allPendingRequest.length === 0 ?
+                        <tr className='w-full h-52 text-2xl relative'>
+                            <p className="absolute top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 ">No Request</p>
+                        </tr>
+                        :
                     <Request requestData={allPendingRequest} handleClick={handleClick} clickStatus={`${role === "Supervisor" ? true : false }`}/>
-                    
+                    }
                 </table>
                 
             </div>

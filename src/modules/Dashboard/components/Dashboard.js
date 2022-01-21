@@ -4,168 +4,69 @@ import "../style/Dashboard.css";
 import axios from 'axios';
 
 function Dashboard() {
-    const weeklyCashRequestAPI = process.env.REACT_APP_GET_TOTAL_WEEKLY_CASH_REQUEST_API;
-    const weeklyChequeRequestAPI = process.env.REACT_APP_GET_TOTAL_WEEKLY_CHEQUE_REQUEST_API;
-    const weeklyApprovedRequestAPI = process.env.REACT_APP_GET_TOTAL_WEEKLY_AMOUNT_APPROVED_API;
-    const weeklyDeclinedRequestAPI = process.env.REACT_APP_GET_TOTAL_WEEKLY_AMOUNT_APPROVED_API;
-    const weeklyPendingRequestAPI = process.env.REACT_APP_GET_TOTAL_WEEKLY_AMOUNT_APPROVED_API;
-    const allWeeklyRequestAPI = process.env.REACT_APP_GET_TOTAL_WEEKLY_REQUEST_API;
+    const dashboardAPI = process.env.REACT_APP_DASHBOARD_API;
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
+    
     const [ requestWeeklyStat, setRequestWeeklyStat ] = useState({
-        weeklyCash: 0,
-        weeklyCheque: 0,
-        weeklyTotalRequest: 0,
-        weeklyApprovedRequest: 0,
-        weeklyDeclinedRequest: 0,
-        weeklyPendingRequest: 0
+        allamount: 0,
+        approvedrequest: 0,
+        cashamount: 0,
+        chequeamount: 0,
+        declinedrequest: 0,
+        pendingrequest: 0,
     });
 
     const stats =[
         {
             statType:"All Request",
             stat: "no investment this week",
-            amount:requestWeeklyStat.weeklyTotalRequest
+            amount:requestWeeklyStat.allamount
         },
         {
             statType:"Cash Request",
             stat: "15% more this week",
-            amount: requestWeeklyStat.weeklyCash
+            amount: requestWeeklyStat.cashamount
         },
         {
             statType:"Cheque Request",
             stat: "15% more this week",
-            amount:requestWeeklyStat.weeklyCheque
+            amount:requestWeeklyStat.chequeamount
         },
         {
             statType:"Pending Request",
             stat: "no investment this week",
-            amount: requestWeeklyStat.weeklyPendingRequest
+            amount: requestWeeklyStat.pendingrequest
         },
         {
             statType:"Approved Request",
             stat: "no investment this week",
-            amount:requestWeeklyStat.weeklyApprovedRequest
+            amount:requestWeeklyStat.approvedrequest
         },
         {
             statType:"Declined Request",
             stat: "no investment this week",
-            amount:requestWeeklyStat.weeklyDeclinedRequest
+            amount:requestWeeklyStat.declinedrequest
         },
     ]
-    const getWeeklyCashRequest = () =>{
-        axios.get(baseURL + weeklyCashRequestAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            setRequestWeeklyStat((prevState) =>{
-                return{
-                    ...prevState,
-                    weeklyCash: res.data.data
-                }
-            })
-        })
-        .catch(err =>{
-            console.log(err);
-        })
-    }
-
-    const getWeeklyChequeRequest = () =>{
-        axios.get(baseURL + weeklyChequeRequestAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            setRequestWeeklyStat((prevState) =>{
-                return{
-                    ...prevState,
-                    weeklyCheque: res.data.data
-                }
-            })
-        })
-        .catch(err =>{
-            console.log(err);
-        })
-    }
 
     const getAllWeeklyRequest = () =>{
-        axios.get(baseURL + allWeeklyRequestAPI,
-            { 
+        axios.get(baseURL + dashboardAPI,
+            {
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
         )
         .then((res) =>{
-            setRequestWeeklyStat((prevState) =>{
-                return{
-                    ...prevState,
-                    weeklyTotalRequest: res.data.data
-                }
-            })
+            console.log(res);
+            if(res.data.isSuccess){
+                setRequestWeeklyStat(res.data.data);
+            }
         })
         .catch(err =>{
             console.log(err);
         })
     }
-
-    const getWeeklyApprovedRequest = () =>{
-        axios.get(baseURL + weeklyApprovedRequestAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            setRequestWeeklyStat((prevState) =>{
-                return{
-                    ...prevState,
-                    weeklyApprovedRequest: res.data.data
-                }
-            })
-        })
-        .catch(err =>{
-            console.log(err);
-        })
-    }
-
-    const getWeeklyDeclinedRequest = () =>{
-        axios.get(baseURL + weeklyDeclinedRequestAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            setRequestWeeklyStat((prevState) =>{
-                return{
-                    ...prevState,
-                    weeklyDeclinedRequest: res.data.data
-                }
-            })
-        })
-        .catch(err =>{
-            console.log(err);
-        })
-    }
-
-    const getWeeklyPendingRequest = () =>{
-        axios.get(baseURL + weeklyPendingRequestAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            setRequestWeeklyStat((prevState) =>{
-                return{
-                    ...prevState,
-                    weeklyPendingRequest: res.data.data
-                }
-            })
-        })
-        .catch(err =>{
-            console.log(err);
-        })
-    }
+    
     const StatCard = ({ statType, stat, amount}) =>{
         return(
             <div className='stat-card-wrapper p-4'>
@@ -183,12 +84,7 @@ function Dashboard() {
         )
     }
     useEffect(() => {
-        getWeeklyCashRequest();
-        getWeeklyChequeRequest();
         getAllWeeklyRequest();
-        getWeeklyApprovedRequest();
-        getWeeklyDeclinedRequest();
-        getWeeklyPendingRequest();
     }, [])
     return (
         <div className="w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5 shadow-transactionBoxShadow"> 

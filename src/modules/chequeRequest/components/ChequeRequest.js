@@ -8,12 +8,14 @@ import axios from 'axios';
 function ChequeRequest({ handleLoader, handleAlertModal }) {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("token");
-    const baseURL = process.env.REACT_APP_BASE_URL;
-    const createChequeRequestAPI = process.env.REACT_APP_CREATE_CHEQUE_REQUEST_API;
     const departmentID = localStorage.getItem("departmentID");
     const departmentName = localStorage.getItem("departmentName");
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
+    
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const createChequeRequestAPI = process.env.REACT_APP_CREATE_CHEQUE_REQUEST_API;
+   
     
     const [ formErrors, setFormErrors ] = useState({});
     const [ chequeRequest, setChequeRequest ] = useState({
@@ -105,8 +107,8 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
         .then((res) =>{
             handleLoader(false);
             console.log(res);
-            if(res.data.isSuccess === true){
-                handleAlertModal(res.data.data, true);
+            if(res.data.isSuccess){
+                handleAlertModal("Cheque Request is successful !!!", true);
                 setChequeRequest({
                     userID: parseInt(userId),
                     departmentID: parseInt(departmentID),
@@ -183,8 +185,7 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
                     <TextField type="text" name="preparedBy" placeholder="" label="Prepared by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={firstName + " " + lastName}/>
                     <TextField type="text" name="approvedBy" placeholder="" label="Approved by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={""}/>
                     <div className="m-auto py-3 w-3/12">
-                    <button type="submit" className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Download</button>
-               
+                        <button type="submit" className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Download</button>
                     </div> 
                 </div>
                 </form>

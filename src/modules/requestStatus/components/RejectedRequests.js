@@ -8,13 +8,12 @@ import axios from 'axios';
 function RejectedRequests({handleLoader}) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
-    const cashDeclinedRequestApi = process.env.REACT_APP_GET_ALL_CASH_DECLINED_REQUESTS_API;
-    const chequeDeclinedRequestApi = process.env.REACT_APP_GET_ALL_CHEQUE_DECLINED_REQUESTS_API;
+    const declinedRequestAPI = process.env.REACT_APP_GET_ALL_ADMIN_DECLINED_REQUESTS_API;
     const [ allDeclinedRequest, setAllDeclinedRequest ] = useState([]);
     
     const getApprovedCashRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + cashDeclinedRequestApi,
+        axios.get(baseURL + declinedRequestAPI,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -23,28 +22,6 @@ function RejectedRequests({handleLoader}) {
             handleLoader(false);
             if(res.data.isSuccess){
                 setAllDeclinedRequest(res.data.data);
-                getApprovedChequeRequests(res.data.data);
-            }
-           
-        })
-        .catch(err =>{
-            handleLoader(false);
-            console.log(err);
-        })
-    }
-    const getApprovedChequeRequests = (data) =>{
-        handleLoader(true);
-        axios.get(baseURL + chequeDeclinedRequestApi,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            handleLoader(false);
-            if(res.data.isSuccess){
-                const newArr = data.concat(res.data.data);
-                console.log(newArr);
-                setAllDeclinedRequest(newArr);
             }
         })
         .catch(err =>{
@@ -56,7 +33,6 @@ function RejectedRequests({handleLoader}) {
     useEffect(() => {
         getApprovedCashRequests();
     }, [])
-  
 
     return (
         <div className="w-full mb-8 py-4 mt-5 "> 

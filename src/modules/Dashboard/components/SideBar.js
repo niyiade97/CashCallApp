@@ -5,14 +5,28 @@ import { BiDollarCircle } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg"
 import { MdOutlineLogout } from 'react-icons/md';
 import "../style/SideBar.css";
+import { useNavigate } from "react-router-dom";
 import {Link} from "react-router-dom";
 
 function SideBar() {
+    const navigate = useNavigate();
     const [ dropDownStatus, setDropDownStatus ] = useState(false);
     const handleDropDown = () =>{
         setDropDownStatus(!dropDownStatus);
     }
     const role = localStorage.getItem("role");
+
+    const handleLogout = () =>{
+        localStorage.removeItem("role");
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("email");
+        localStorage.removeItem("firstName");
+        localStorage.removeItem("lastName");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("departmentID");
+        navigate("/login");
+    }
     return (
         <div className="side-bar-container w-1/5 h-screen sticky top-0 bg-white shadow-sideNavShadow">
             <div className="ml-20">
@@ -40,6 +54,10 @@ function SideBar() {
                     </ul>
                     <Nav path="/profile" text="Profile" icon={<CgProfile />} dropDownIsActive={false}/>
                     {/* <Nav path="/settings" text="Settings" icon={<FiSettings />} dropDownIsActive={false}/> */}
+                    <p className="nav-container flex justify-start items-center text-color5 my-8 hover:text-color2 group focus:text-color2 cursor-pointer" onClick={handleLogout}>
+                        <i className="text-2xl group-focus:text-color2"><MdOutlineLogout /></i>
+                        <p className="font-bold text-sm pl-5">Logout</p>
+                    </p>
                     <Nav path="/login" text="Logout" icon={<MdOutlineLogout />} dropDownIsActive={false}/>
                 </div>
             </div>

@@ -175,9 +175,9 @@ function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
     }, [])
     return (
         <>
-            <div className={`fixed top-0 w-full h-full bg-black opacity-50 z-${20}`} onClick={handleBackDropOnClick}>
+            <div className={`fixed top-0 left-0 w-full h-screen bg-black opacity-50 z-${20}`} onClick={handleBackDropOnClick}>
             </div>
-            <div className="absolute transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-3/4 py-10 rounded-xl bg-white z-30">
+            <div className="fixed transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-3/5 py-10 rounded-xl bg-white z-30">
             <div className="w-11/12 m-auto">
                 <div className="pl-4 pb-3">
                     <h1 className="text-color24 font-bold text-2xl">Add New User</h1>

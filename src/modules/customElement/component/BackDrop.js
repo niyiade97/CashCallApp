@@ -1,11 +1,9 @@
 import React from 'react'
 
-function BackDrop({onclick, indexValue}) {
-    const handleOnClick = () =>{
-       onclick();
-    }
+function BackDrop({ indexValue}) {
+  
     return (
-        <div className={`fixed top-0 w-full h-full bg-black opacity-50 z-${indexValue}`} onClick={handleOnClick}>
+        <div className={`fixed top-0 left-0 w-full h-full bg-black opacity-50 z-${indexValue}`}>
         </div>
     )
 }

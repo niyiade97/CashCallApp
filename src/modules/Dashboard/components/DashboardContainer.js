@@ -3,7 +3,7 @@ import Header from './Header'
 import SideNav from './SideNav'
 
 function DashboardContainer(props) {
-    const [ activeBackDrop, setActiveBackDrop ] = useState(false);
+    
     return (
         <div className="w-full h-screen flex relative">
             <SideNav />

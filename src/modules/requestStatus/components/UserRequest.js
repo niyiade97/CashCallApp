@@ -10,13 +10,12 @@ function UserRequest({ handleLoader }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
-    const chequeRequestApi = process.env.REACT_APP_GET_CHEQUE_REQUESTS_API;
-    const cashRequestApi = process.env.REACT_APP_GET_CASH_REQUESTS_API;
+    const userRequestAPI = process.env.REACT_APP_GET_ALL_USER_REQUESTS_API;
     const [ allRequest, setAllRequest ] = useState([]);
 
-    const getCashRequests = () =>{
+    const getAllRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + cashRequestApi + userId,
+        axios.get(baseURL + userRequestAPI + userId,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -25,28 +24,6 @@ function UserRequest({ handleLoader }) {
             handleLoader(false);
             if(res.data.isSuccess){
                 setAllRequest(res.data.data);
-                getChequeRequests(res.data.data);
-            }
-           
-        })
-        .catch(err =>{
-            handleLoader(false);
-            console.log(err);
-        })
-    }
-    const getChequeRequests = (data) =>{
-        handleLoader(true);
-        axios.get(baseURL + chequeRequestApi + userId,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            handleLoader(false);
-            if(res.data.isSuccess){
-                const newArr = data.concat(res.data.data);
-                console.log(newArr);
-                setAllRequest(newArr);
             }
         })
         .catch(err =>{
@@ -54,10 +31,9 @@ function UserRequest({ handleLoader }) {
             console.log(err);
         })
     }
-    
 
     useEffect(() => {
-        getCashRequests();
+        getAllRequests();
     }, [])
 
     return (

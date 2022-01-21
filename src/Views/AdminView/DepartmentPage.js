@@ -68,7 +68,9 @@ function DepartmentPage(props) {
             console.log(err);
         })
     }
-
+    const onclick = () =>{
+        
+    }
     useEffect(() => {
         getDepartment();
     }, [])
@@ -79,7 +81,7 @@ function DepartmentPage(props) {
                 {
                     loading &&
                     <>
-                        <BackDrop indexValue={"40"} onclick={onclick}/>
+                        <BackDrop indexValue={"40"}/>
                         <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 z-50 transform">
                             <Loader color="#FFFFFF"/>
                         </div>

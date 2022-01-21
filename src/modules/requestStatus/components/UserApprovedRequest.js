@@ -9,13 +9,12 @@ function UserApprovedRequest({handleLoader}) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
-    const cashApprovedRequestApi = process.env.REACT_APP_GET_CASH_APPROVED_REQUESTS_API;
-    const chequeApprovedRequestApi = process.env.REACT_APP_GET_CHEQUE_APPROVED_REQUESTS_API;
+    const userApprovedRequestAPI = process.env.REACT_APP_GET_ALL_USER_APPROVED_REQUESTS_API;
     const [ allApprovedRequest, setAllApprovedRequest ] = useState([]);
     
-    const getApprovedCashRequests = () =>{
+    const getApprovedRequestAPI = () =>{
         handleLoader(true);
-        axios.get(baseURL + cashApprovedRequestApi + userId,
+        axios.get(baseURL + userApprovedRequestAPI + userId,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -24,28 +23,6 @@ function UserApprovedRequest({handleLoader}) {
             handleLoader(false);
             if(res.data.isSuccess){
                 setAllApprovedRequest(res.data.data);
-                getApprovedChequeRequests(res.data.data);
-            }
-           
-        })
-        .catch(err =>{
-            handleLoader(false);
-            console.log(err);
-        })
-    }
-    const getApprovedChequeRequests = (data) =>{
-        handleLoader(true);
-        axios.get(baseURL + chequeApprovedRequestApi + userId,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            handleLoader(false);
-            if(res.data.isSuccess){
-                const newArr = data.concat(res.data.data);
-                console.log(newArr);
-                setAllApprovedRequest(newArr);
             }
         })
         .catch(err =>{
@@ -53,9 +30,10 @@ function UserApprovedRequest({handleLoader}) {
             console.log(err);
         })
     }
+    
 
     useEffect(() => {
-        getApprovedCashRequests();
+        getApprovedRequestAPI();
     }, [])
     return (
         <div className="w-full mb-8 py-4 mt-5 "> 

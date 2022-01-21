@@ -5,9 +5,10 @@ import axios from "axios";
 import BackDrop from "../../modules/customElement/component/BackDrop"
 import Loader from "../../modules/customElement/component/Loader"
 import ChangePasswordModal from '../../modules/modal/component/ChangePasswordModal';
+import DashboardContainer from '../../modules/dashboard/components/DashboardContainer';
 import AlertModal from '../../modules/modal/component/AlertModal';
 
-function ProfilePage() {
+function AdminProfilePage() {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const profileAPI = process.env.REACT_APP_GET_PROFILE_API;
     const updateProfileAPI = process.env.REACT_APP_UPDATE_PROFILE_API;
@@ -21,22 +22,11 @@ function ProfilePage() {
         oldPassword: "",
         newPassword: ""
     })
+    const [ alertModalIsActive, setAlertModalIsActive ] = useState(false);
     const [ message, setMessage ] = useState({
         msg: "",
         status: false
     })
-   
-    const [ alertModalIsActive, setAlertModalIsActive ] = useState(false);
-
-   
-    const [ profile, setProfile ] = useState({
-        id: parseInt(userId),
-        firstname: "",
-        lastname: "",
-        email: ""
-
-    });
-    const [ loading, setLoading ] = useState(false);
     const passwordOnChange = (name, value) =>{
         setChangePassword((prevState) =>{
             return{
@@ -45,6 +35,15 @@ function ProfilePage() {
             }
         })
     }
+    const [ profile, setProfile ] = useState({
+        id: parseInt(userId),
+        firstname: "",
+        lastname: "",
+        email: ""
+
+    });
+    const [ loading, setLoading ] = useState(false);
+
     const handleChange = (name, value) =>{
         setProfile((prevState) =>{
             return{
@@ -102,10 +101,6 @@ function ProfilePage() {
 
     const handleChangePassword = () =>{
         setPasswordModal(false);
-        change_Password();
-    }
-    
-    const change_Password = () =>{
         handleOnLoad(true);
         axios.post(baseURL + changePasswordAPI, changePassword,
             { 
@@ -113,7 +108,7 @@ function ProfilePage() {
             }
         )
         .then((res) =>{
-            handleOnLoad(false);
+            handleOnLoad(false)
             setMessage({
                 msg:"Password Changed Successfully !!",
                 status: true
@@ -121,13 +116,17 @@ function ProfilePage() {
             handleAlertModal();
         })
         .catch(err =>{
+            handleOnLoad(false);
             setMessage({
                 msg:"Error has occured!!",
                 status: false
             })
-            handleOnLoad(false);
             handleAlertModal();
         })
+    }
+
+    const handleAlertModal = () =>{
+        setAlertModalIsActive(!alertModalIsActive);
     }
 
     const handleEditProfile = () =>{
@@ -138,16 +137,12 @@ function ProfilePage() {
         setPasswordModal(!passwordModal);
     }
 
-    const handleAlertModal = () =>{
-        setAlertModalIsActive(!alertModalIsActive);
-    }
-
     useEffect(() => {
         getProfile();
     }, [])
 
     return (
-        <UserDashboardContainer>
+        <DashboardContainer>
             <div className="w-full relative">
                 <Profile handlePasswordModal={handlePasswordModal} profile={profile} inputIsDisabled={inputIsDisabled} handleEditProfile={handleEditProfile} handleChange={handleChange} editProfile={editProfile}> 
                 {
@@ -174,11 +169,10 @@ function ProfilePage() {
                     
                     />
                 }
-
                 </Profile>
             </div>
-        </UserDashboardContainer>
+        </DashboardContainer>
     )
 }
 
-export default ProfilePage;
+export default AdminProfilePage;

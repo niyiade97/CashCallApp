@@ -59,9 +59,7 @@ function AddUserPage() {
                         </div>
                     </>
                 }
-                
                 {
-
                     (adduser) &&
                     <AddUser handleClick={handleSubmitButton} loading={handleLoader}/>
                 }

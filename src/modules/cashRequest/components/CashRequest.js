@@ -143,7 +143,6 @@ function CashRequest({ handleLoader, handleAlertModal }) {
 
     const handleOnSubmit = (e) =>{
         e.preventDefault();
-        console.log(cashRequest)
         setFormErrors(validate(cashRequest));
         const formState = validate(cashRequest).status;
         if(!formState){
@@ -153,7 +152,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
             formData.append("supervisorID", cashRequest.supervisorID);
             formData.append("amount", cashRequest.amount);
             formData.append("reason", cashRequest.reason);
-            formData.append("base64File", cashRequest.base64File);
+            formData.append("base64File", "");
             submitCashRequest(formData);
         }
     }

@@ -58,7 +58,6 @@ function SideBar() {
                         <i className="text-2xl group-focus:text-color2"><MdOutlineLogout /></i>
                         <p className="font-bold text-sm pl-5">Logout</p>
                     </p>
-                    <Nav path="/login" text="Logout" icon={<MdOutlineLogout />} dropDownIsActive={false}/>
                 </div>
             </div>
         </div>

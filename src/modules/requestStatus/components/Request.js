@@ -55,6 +55,15 @@ function Request({ requestData, handleClick, clickStatus }){
                                 <i className="text-color14"><BsThreeDotsVertical /></i>
                             </div>
                         </td>
+                        {/* <td className="py-4">
+                            <div className="flex items-center justify-between pr-14">
+                                <button className="rounded-full bg-color9 text-white text-xs font-bold py-1 px-4 relative">
+                                Accepted
+                                <i className="text-white bg-black rounded-full p-1 absolute -top-2 -right-2"><IoIosStar /></i>
+                                </button>
+                                <i className="text-color14"><BsThreeDotsVertical /></i>
+                            </div>
+                        </td> */}
                      </tr>
                 )
             })

@@ -92,8 +92,6 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
             formData.append("beneficiaryName", chequeRequest.beneficiaryName);
             formData.append("beneficiaryBank", chequeRequest.beneficiaryBank);
             formData.append("base64File", chequeRequest.base64File);
-            // formData.append("voucherNo", "");
-            // formData.append("pictureRefs", "");
             submitChequeRequest(formData);
         }
     }

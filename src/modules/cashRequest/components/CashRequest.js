@@ -152,7 +152,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
             formData.append("supervisorID", cashRequest.supervisorID);
             formData.append("amount", cashRequest.amount);
             formData.append("reason", cashRequest.reason);
-            formData.append("base64File", "");
+            formData.append("base64File", cashRequest.base64File);
             submitCashRequest(formData);
         }
     }

@@ -5,7 +5,7 @@ function BackDrop({onclick, indexValue}) {
        onclick();
     }
     return (
-        <div className={`fixed top-0 w-full h-full bg-black opacity-50 z-${indexValue}`} onClick={handleOnClick}>
+        <div className={`fixed top-0 left-0 w-full h-full bg-black opacity-50 z-${indexValue}`} onClick={handleOnClick}>
         </div>
     )
 }

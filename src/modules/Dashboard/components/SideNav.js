@@ -40,7 +40,7 @@ function SideNav() {
                             <Link to="/admin-rejected-requests">Rejected Request</Link>
                         </li>
                     </ul>
-                    <Nav path="/profile" text="Profile" icon={<CgProfile />} dropDownIsActive={false}/>
+                    <Nav path="/admin-profile" text="Profile" icon={<CgProfile />} dropDownIsActive={false}/>
                     <Nav path="/users" text="User Management" icon={<RiOrganizationChart />} dropDownIsActive={false}/>
                     <Nav path="/departments" text="Department " icon={<RiOrganizationChart />} dropDownIsActive={false}/>
                     <Nav path="/login" text="Logout" icon={<MdOutlineLogout />} dropDownIsActive={false}/>

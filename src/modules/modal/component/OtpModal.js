@@ -33,10 +33,9 @@ function OtpModal({ handleBackDropOnClick, handleCloseOtpModal, requestID, handl
             }
         )
         .then((res) =>{
-            console.log(res);
             handleLoader(false);
             if(res.data.isSuccess){
-                handleAlertModal(res.data.message, true);
+                handleAlertModal(res.data.data, true);
             }
             else{
                 handleAlertModal(res.data.message, false);
@@ -77,9 +76,9 @@ function OtpModal({ handleBackDropOnClick, handleCloseOtpModal, requestID, handl
     }
     return (
         <>
-            <div className={`fixed top-0 w-full h-full bg-black opacity-50 z-${20}`} onClick={handleCloseOtpModal}>
+            <div className={`fixed top-0 left-0 w-full h-full bg-black opacity-50 z-${20}`} onClick={handleCloseOtpModal}>
             </div>
-            <div className="absolute transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-2/4 py-6 rounded-xl bg-white z-30">
+            <div className="fixed transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-2/4 py-6 rounded-xl bg-white z-30">
             <div className="w-full px-8">
             <form onSubmit={handleOnsubmit}>
                 <div className="pt-5 pb-7">

@@ -25,6 +25,7 @@ import DashboardPage from "./Views/AdminView/DashboardPage";
 import DepartmentPage from "./Views/AdminView/DepartmentPage";
 import AddDepartmentPage from "./Views/AdminView/AddDepartmentPage";
 import AdminRejectedRequestsPage from "./Views/AdminView/AdminRejectedRequestsPage";
+import AdminProfilePage from "./Views/AdminView/AdminProfilePage";
 
 function App() {
 
@@ -53,7 +54,7 @@ function App() {
             
             
             <Route  path="profile" element={<ProfilePage />} />
-            <Route  path="profile/change-password" element={<ChangePasswordPage />} />
+            <Route  path="admin-profile" element={<AdminProfilePage />} />
             
             <Route path="fund-request" element={<FundRequestPage />} />
             
@@ -65,7 +66,6 @@ function App() {
             
             <Route path="dashboard" element={<DashboardPage />} />
 
-            {/* user */}
             <Route path="fund-request" element={<FundRequestPage />} />
             <Route  path="cash-request" element={<CashRequestPage />} />
             <Route  path="cheque-request" element={<ChequeRequestPage />} />

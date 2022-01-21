@@ -10,12 +10,12 @@ function UserRejectedRequest({handleLoader}) {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
     const cashDeclinedRequestApi = process.env.REACT_APP_GET_CASH_DECLINED_REQUESTS_API;
-    const chequeDeclinedRequestApi = process.env.REACT_APP_GET_CHEQUE_DECLINED_REQUESTS_API;
+    const userDeclinedRequest = process.env.REACT_APP_GET_ALL_USER_DECLINED_REQUESTS_API;
     const [ allDeclinedRequest, setAllDeclinedRequest ] = useState([]);
     
-    const getApprovedCashRequests = () =>{
+    const getRejectedRequest = () =>{
         handleLoader(true);
-        axios.get(baseURL + cashDeclinedRequestApi  + userId,
+        axios.get(baseURL + userDeclinedRequest  + userId,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -24,7 +24,6 @@ function UserRejectedRequest({handleLoader}) {
             handleLoader(false);
             if(res.data.isSuccess){
                 setAllDeclinedRequest(res.data.data);
-                getApprovedChequeRequests(res.data.data);
             }
            
         })
@@ -33,29 +32,9 @@ function UserRejectedRequest({handleLoader}) {
             console.log(err);
         })
     }
-    const getApprovedChequeRequests = (data) =>{
-        handleLoader(true);
-        axios.get(baseURL + chequeDeclinedRequestApi  + userId,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            handleLoader(false);
-            if(res.data.isSuccess){
-                const newArr = data.concat(res.data.data);
-                console.log(newArr);
-                setAllDeclinedRequest(newArr);
-            }
-        })
-        .catch(err =>{
-            handleLoader(false);
-            console.log(err);
-        })
-    }
-
+  
     useEffect(() => {
-        getApprovedCashRequests();
+        getRejectedRequest();
     }, [])
   
 

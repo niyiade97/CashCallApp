@@ -64,9 +64,9 @@ function ApprovalModal({ handleBackDropOnClick, handleOtpModal, data }) {
     }, [])
     return (
         <>
-            <div className={`fixed top-0 w-full h-full bg-black opacity-50 z-${20}`} onClick={handleBackDropOnClick}>
+            <div className={`fixed top-0 left-0 w-full h-full bg-black opacity-50 z-${20}`} onClick={handleBackDropOnClick}>
             </div>
-            <div className="absolute transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-3/4 py-10 rounded-xl bg-white z-30">
+            <div className="fixed transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-3/5 py-10 rounded-xl bg-white z-30">
             <div className="w-full pl-8 pr-12">
                 <div className="flex justify-between items-center pb-5">
                     <div className='flex items-center text-2xl font-bold'>

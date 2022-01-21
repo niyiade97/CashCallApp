@@ -7,22 +7,21 @@ import axios from 'axios';
 
 function PendingRequest({ handleClick, handleLoader }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
-    const pendingCashRequestAPI = process.env.REACT_APP_GET_ALL_CASH_PENDING_REQUESTS_API;
-    const pendingChequeRequestAPI = process.env.REACT_APP_GET_ALL_CHEQUE_PENDING_REQUESTS_API;
+    const pendingRequestAPI = process.env.REACT_APP_GET_ALL_ADMIN_PENDING_REQUESTS_API;
     const token = localStorage.getItem("token");
     const [ allPendingRequest, setAllPendingRequest ] = useState([]);
    
     const getPendingCashRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + pendingCashRequestAPI,
+        axios.get(baseURL + pendingRequestAPI,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
         )
         .then((res) =>{
+            handleLoader(false);
             if(res.data.isSuccess){
                 setAllPendingRequest(res.data.data);
-                getPendingChequeRequests(res.data.data);
             }
         })
         .catch(err =>{
@@ -31,26 +30,6 @@ function PendingRequest({ handleClick, handleLoader }) {
         })
     }
 
-    const getPendingChequeRequests = (data) =>{
-        handleLoader(true);
-        axios.get(baseURL + pendingChequeRequestAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            handleLoader(false);
-            if(res.data.isSuccess){
-                const newArr = data.concat(res.data.data);
-                setAllPendingRequest(newArr);
-            }
-           
-        })
-        .catch(err =>{
-            handleLoader(false);
-            console.log(err);
-        })
-    }
 
     useEffect(() => {
         getPendingCashRequests();

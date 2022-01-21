@@ -7,9 +7,13 @@ import "../style/Profile.css";
 function Profile(props) {
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
-    const Services = ["Web Development", "IT", "Boat Cruise"]
-    const handleOnChange = (value) =>{
-        console.log(value);
+    console.log(props.profile);
+    const handleOnChange = (name, value) =>{
+        props.handleChange(name, value);
+    }
+
+    const handleEditProfile = () =>{
+
     }
     
         
@@ -37,33 +41,34 @@ function Profile(props) {
                        </div>
                        <div className="w-45 flex flex-wrap">
                             <div className="w-2/4 p-4">
-                                <ProfileInput name="firstName" type="text" value={firstName}  handleChange={handleOnChange} placeholder="First Name"/>
+                                <ProfileInput name="firstname" type="text" value={props.profile.firstname}  handleOnChange={handleOnChange} placeholder="First Name" disabled={props.inputIsDisabled}/>
                             </div>
                             <div className="w-2/4 p-4">
-                                <ProfileInput name="lastName" type="text" value={lastName} handleChange={handleOnChange} placeholder="LastName"/>
+                                <ProfileInput name="lastname" type="text" value={props.profile.lastname} handleOnChange={handleOnChange} placeholder="LastName" disabled={props.inputIsDisabled}/>
                             </div>
                        </div>
                     </div>
                     <div className="flex items-center">
                         <div className="w-1/4">
-                            <p className="text-black font-normal text-xl">Phone number</p>
+                            <p className="text-black font-normal text-xl">Email</p>
                         </div>
                         <div className="w-45 p-4">
-                            <ProfileInput name="phone" type="text"  handleChange={handleOnChange} placeholder="090123456788"/>
+                            <ProfileInput name="email" type="email" value={props.profile.email} handleOnChange={handleOnChange} disabled={props.inputIsDisabled} placeholder="Email"/>
                         </div>
                     </div>
-                    <div className="flex items-center">
-                            <div className="w-1/4">
-                                <p className="text-black font-normal text-xl">Date of birth</p>
-                            </div>
-                            <div className="w-45 p-4">
-                                <ProfileInput name="dateOfBirth" type="date"  handleChange={handleOnChange} placeholder="10/8/1998"/>
-                            </div>
-                    </div>
-                  
                 </div>
                 <div className="pl-4 text-color23">
-                    <p className="py-3">Security</p>
+                    <div className='flex justify-between items-center py-3'>
+                        <p className="py-3">Security</p>
+                        {
+                            props.inputIsDisabled ?
+                            <button onClick={props.handleEditProfile} className="bg-blue-900 text-green-50 border-2 border-blue-900 rounded-3xl py-2 w-32 hover:bg-white hover:text-blue-900">Edit Profile</button>:
+                            <div >
+                                <button onClick={props.handleEditProfile} className="bg-blue-900 text-green-50 border-2 border-blue-900 rounded-3xl py-2 hove w-32 hover:bg-white hover:text-blue-900">Cancel</button>
+                                <button onClick={props.editProfile} className="bg-blue-900 text-green-50 border-2 border-blue-900 rounded-3xl py-2 ml-4 w-32 hover:bg-white hover:text-blue-900">Done</button>
+                            </div>
+                        }
+                    </div>
                     <hr />
                     <div className="pl-6 text-black font-normal text-xl flex items-center py-6">
                         <p className="hover:text-blue-900 w-1/4 cursor-pointer" onClick={props.handlePasswordModal}>Change Password</p>

@@ -9,43 +9,20 @@ import "../style/AllRequest.css"
 function AllRequest({ handleLoader, handleClick }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
-    const chequeRequestApi = process.env.REACT_APP_CHEQUE_REQUEST_API;
-    const cashRequestApi = process.env.REACT_APP_CASH_REQUEST_API;
+    const allRequestAPI = process.env.REACT_APP_GET_ALL_ADMIN_REQUESTS_API;
     const [ allRequest, setAllRequest ] = useState([]);
 
-    const getCashRequests = () =>{
+    const getAllRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + cashRequestApi ,
+        axios.get(baseURL + allRequestAPI ,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
         )
         .then((res) =>{
             handleLoader(false);
-            if(res.data.isSuccess){
+            if(res.data.isSuccess){ 
                 setAllRequest(res.data.data);
-                getChequeRequests(res.data.data);
-            }
-           
-        })
-        .catch(err =>{
-            handleLoader(false);
-            console.log(err);
-        })
-    }
-    const getChequeRequests = (data) =>{
-        handleLoader(true);
-        axios.get(baseURL + chequeRequestApi,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            handleLoader(false);
-            if(res.data.isSuccess){
-                const newArr = data.concat(res.data.data);
-                console.log(newArr);
-                setAllRequest(newArr);
             }
         })
         .catch(err =>{
@@ -53,10 +30,9 @@ function AllRequest({ handleLoader, handleClick }) {
             console.log(err);
         })
     }
-    
 
     useEffect(() => {
-        getCashRequests();
+        getAllRequests();
     }, [])
 
     return (

@@ -7,13 +7,12 @@ import axios from 'axios';
 function ApprovedRequest({handleLoader}) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const token = localStorage.getItem("token");
-    const cashApprovedRequestApi = process.env.REACT_APP_GET_ALL_CASH_APPROVED_REQUESTS_API;
-    const chequeApprovedRequestApi = process.env.REACT_APP_GET_ALL_CHEQUE_APPROVED_REQUESTS_API;
+    const approvedRequestAPI = process.env.REACT_APP_GET_ALL_ADMIN_APPROVED_REQUESTS_API;
     const [ allApprovedRequest, setAllApprovedRequest ] = useState([]);
     
     const getApprovedCashRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + cashApprovedRequestApi,
+        axios.get(baseURL + approvedRequestAPI,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -22,28 +21,6 @@ function ApprovedRequest({handleLoader}) {
             handleLoader(false);
             if(res.data.isSuccess){
                 setAllApprovedRequest(res.data.data);
-                getApprovedChequeRequests(res.data.data);
-            }
-           
-        })
-        .catch(err =>{
-            handleLoader(false);
-            console.log(err);
-        })
-    }
-    const getApprovedChequeRequests = (data) =>{
-        handleLoader(true);
-        axios.get(baseURL + chequeApprovedRequestApi,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            handleLoader(false);
-            if(res.data.isSuccess){
-                const newArr = data.concat(res.data.data);
-                console.log(newArr);
-                setAllApprovedRequest(newArr);
             }
         })
         .catch(err =>{

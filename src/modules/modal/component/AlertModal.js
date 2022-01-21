@@ -5,9 +5,9 @@ function AlertModal({ icon, btnText, btnText2, btnActive, messageText1, messageT
     
     return (
         <>
-            <div className={`fixed top-0 w-full h-full bg-black opacity-50 z-10`} onClick={handleClick}>
+            <div className={`fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10`} onClick={handleClick}>
             </div>
-            <div className="alert-modal-container absolute transform top-2/4 left-2/4 w-480 h-330 rounded-xl bg-white z-20">
+            <div className="alert-modal-container fixed transform top-2/4 left-2/4 w-480 h-330 rounded-xl bg-white z-20">
             <div  className="alert-modal-inner-container w-36 h-36 rounded-full mx-auto mt-72">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={ status ? "M5 13l4 4L19 7" : "M6 18L18 6M6 6l12 12" } />

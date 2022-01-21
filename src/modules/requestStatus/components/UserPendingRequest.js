@@ -5,17 +5,17 @@ import image from "../../../Assets/images/adepics.jpeg";
 import Request from './Request';
 import axios from 'axios';
 
-function UserPendingRequest({handleLoader}) {
+function UserPendingRequest({handleLoader, handleClick}) {
     const baseURL = process.env.REACT_APP_BASE_URL;
-    const pendingCashRequestAPI = process.env.REACT_APP_GET_CASH_PENDING_REQUESTS_API;
-    const pendingChequeRequestAPI = process.env.REACT_APP_GET_CHEQUE_PENDING_REQUESTS_API;
+    const userPendingRequestAPI = process.env.REACT_APP_GET_ALL_USER_PENDING_REQUESTS_API;
     const token = localStorage.getItem("token");
     const userID = localStorage.getItem("userId");
+    const role = localStorage.getItem("role");
     const [ allPendingRequest, setAllPendingRequest ] = useState([]);
    
-    const getPendingCashRequests = () =>{
+    const getPendingRequest = () =>{
         handleLoader(true);
-        axios.get(baseURL + pendingCashRequestAPI + userID,
+        axios.get(baseURL + userPendingRequestAPI + userID,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -24,29 +24,7 @@ function UserPendingRequest({handleLoader}) {
             handleLoader(false);
             if(res.data.isSuccess){
                 setAllPendingRequest(res.data.data);
-                getPendingChequeRequests(res.data.data);
             }
-        })
-        .catch(err =>{
-            handleLoader(false);
-            console.log(err);
-        })
-    }
-
-    const getPendingChequeRequests = (data) =>{
-        handleLoader(true);
-        axios.get(baseURL + pendingChequeRequestAPI + userID,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            handleLoader(false);
-            if(res.data.isSuccess){
-                const newArr = data.concat(res.data.data);
-                setAllPendingRequest(newArr);
-            }
-           
         })
         .catch(err =>{
             handleLoader(false);
@@ -55,7 +33,7 @@ function UserPendingRequest({handleLoader}) {
     }
 
     useEffect(() => {
-        getPendingCashRequests();
+        getPendingRequest();
     }, [])
     return (
         <div className="w-full mb-8 py-4 mt-5 "> 
@@ -80,7 +58,7 @@ function UserPendingRequest({handleLoader}) {
                         <th className="w-1/5 py-2">Date</th>  
                         <th className="w-1/5 py-2">Status</th>
                     </tr>
-                    <Request requestData={allPendingRequest} />
+                    <Request requestData={allPendingRequest} handleClick={handleClick} clickStatus={`${role === "Supervisor" ? true : false }`}/>
                     
                 </table>
                 

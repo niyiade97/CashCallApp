@@ -8,13 +8,14 @@ import "../style/AllRequest.css"
 
 function AllRequest({ handleLoader, handleClick }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
-    const token = localStorage.getItem("token");
-    const allRequestAPI = process.env.REACT_APP_GET_ALL_ADMIN_REQUESTS_API;
+    const token = localStorage.getItem("adminToken");
+    const userId = localStorage.getItem("adminId");
+    const allRequestAPI = process.env.REACT_APP_GET_ALL_USER_REQUESTS_API;
     const [ allRequest, setAllRequest ] = useState([]);
 
     const getAllRequests = () =>{
         handleLoader(true);
-        axios.get(baseURL + allRequestAPI ,
+        axios.get(baseURL + allRequestAPI + userId,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -22,7 +23,8 @@ function AllRequest({ handleLoader, handleClick }) {
         .then((res) =>{
             handleLoader(false);
             if(res.data.isSuccess){ 
-                setAllRequest(res.data.data);
+                const filteredArr =  res.data.data.filter((data) => data.status !== "Pending")
+                setAllRequest(filteredArr);
             }
         })
         .catch(err =>{
@@ -40,7 +42,7 @@ function AllRequest({ handleLoader, handleClick }) {
             <div className="w-full px-7">
                 <div className=" py-5 flex justify-between items-center border-2 border-b-0 rounded-t-xl">
                     <h1 className="text-color13 font-bold text-2xl pl-10">All Request</h1>
-                    <div className="flex items-center pr-12">
+                    {/* <div className="flex items-center pr-12">
                         <div className="flex items-center text-color14">
                             <BsSortUp />
                             <p className="pl-1 text-color15 text-sm">Sort</p>
@@ -49,7 +51,7 @@ function AllRequest({ handleLoader, handleClick }) {
                             <MdFilterListAlt />
                             <p className="pl-1 text-color15 text-sm">Filter</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <table className="w-full rounded-full border border-t-0 border-color16">
                     <tr className="text-left border-2 border-t-0 text-color19 font-bold text-sm">

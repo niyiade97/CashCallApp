@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from 'react';
 import Profile from "../../modules/profile/components/Profile";
-import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer";
 import axios from "axios";
 import BackDrop from "../../modules/customElement/component/BackDrop"
 import Loader from "../../modules/customElement/component/Loader"
@@ -13,8 +12,8 @@ function AdminProfilePage() {
     const profileAPI = process.env.REACT_APP_GET_PROFILE_API;
     const updateProfileAPI = process.env.REACT_APP_UPDATE_PROFILE_API;
     const changePasswordAPI = process.env.REACT_APP_CHANGE_PASSWORD_API;
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
+    const token = localStorage.getItem("adminToken");
+    const userId = localStorage.getItem("adminId");
     const [ passwordModal ,setPasswordModal ] = useState(false);
     const [ inputIsDisabled, setInputIsDisabled ] = useState(true);
     const [ changePassword, setChangePassword ] = useState({
@@ -83,7 +82,7 @@ function AdminProfilePage() {
         )
         .then((res) =>{
             handleOnLoad(false)
-            localStorage.setItem("email", res.data.data.email);
+            localStorage.setItem("adminEmail", res.data.data.email);
             setProfile((prevState) =>{
                 return{
                     ...prevState,

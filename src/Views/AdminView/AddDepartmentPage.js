@@ -41,9 +41,7 @@ function AddDepartmentPage() {
         setLoading(state);
         
     }
-    const handleOnLoad = () =>{
-       
-     }
+    
     return (
         <DashboardContainer>
             <div className="w-full h-screen flex relative">

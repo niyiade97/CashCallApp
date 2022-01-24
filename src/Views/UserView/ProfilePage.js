@@ -12,7 +12,7 @@ function ProfilePage() {
     const profileAPI = process.env.REACT_APP_GET_PROFILE_API;
     const updateProfileAPI = process.env.REACT_APP_UPDATE_PROFILE_API;
     const changePasswordAPI = process.env.REACT_APP_CHANGE_PASSWORD_API;
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("userToken");
     const userId = localStorage.getItem("userId");
     const [ passwordModal ,setPasswordModal ] = useState(false);
     const [ inputIsDisabled, setInputIsDisabled ] = useState(true);

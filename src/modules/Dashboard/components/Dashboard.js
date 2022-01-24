@@ -6,7 +6,7 @@ import axios from 'axios';
 function Dashboard() {
     const dashboardAPI = process.env.REACT_APP_DASHBOARD_API;
     const baseURL = process.env.REACT_APP_BASE_URL;
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
     
     const [ requestWeeklyStat, setRequestWeeklyStat ] = useState({
         allamount: 0,

@@ -9,16 +9,7 @@ import DepartmentTemplate from './DepartmentTemplate';
 
 
 function Departments(props) {
-    const baseURL = process.env.REACT_APP_BASE_URL;
     
-    const token = localStorage.getItem("token");
-    const usersAPI = process.env.REACT_APP_GET_USERS_API;
-    const [ users, setUsers ] = useState([]);
-    const [ departments, setDepartments ] = useState([]);
-    // const { users } = useContext(DataContext);
-    
-  
-
     return (
         <div className="w-full h-screen mb-8 py-4 mt-5 relative"> 
             {props.children}

@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function AddDepartment({ loading, handleBackDropOnClick, handleGetDepartment }) {
     const createDepartmentAPI = process.env.REACT_APP_CREATE_DEPARTMENT_API;
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
      const baseURL = process.env.REACT_APP_BASE_URL;
     const [ message, setMessage ] = useState({
         msg: "",
@@ -14,7 +14,6 @@ function AddDepartment({ loading, handleBackDropOnClick, handleGetDepartment }) 
     const [ formErrors, setFormErrors ] = useState({
         status: false
     })
-    // const { departments, getUsers } = useContext(DataContext);
     const [ departmentDetails, setDepartmentDetails ] = useState({
         departmentName: "",
         lineManagerName:"",

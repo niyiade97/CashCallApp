@@ -14,7 +14,7 @@ function UploadButton({label, onChange, name, formError}) {
             onChange(name, reader.result);
         }
         reader.onerror = function (error) {
-        console.log('Error: ', error);
+            onChange(name, "");
         };
            
         

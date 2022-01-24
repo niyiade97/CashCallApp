@@ -12,6 +12,7 @@ function AddUserPage() {
     const [ successState, setSuccessState ] = useState(false);
     const [ adduser, setAdduser ] = useState(true);
     const [ loading, setLoading ] = useState(false);
+
     const handleOnClick = () =>{
         navigate("/users");
      }
@@ -24,26 +25,11 @@ function AddUserPage() {
         setSuccessState(successState);
     }
     const handleLoader = (status,state) =>{
-        // if(state){
-        //     setLoading(true);
-        // }
-        // else{
-        //     setLoading(false); 
-        //     if(status){
-        //         setSuccessState(true);
-        //         setAdduser(false);
-        //     }
-        //     else if(!status){
-        //         setSuccessState(false);
-        //         setAdduser(true);
-        //     }
-        // }
+       
         setLoading(state);
         
     }
-    const handleOnLoad = () =>{
-       
-     }
+    
     return (
         <DashboardContainer>
             <div className="w-full h-screen flex relative">
@@ -54,7 +40,7 @@ function AddUserPage() {
                     loading &&
                     <>
                         <BackDrop onclick={handleOnClick} indexValue={"30"}/>
-                        <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 z-50 transform">
+                        <div className="fixed top-2/4 left-2/4 transform -translate-x-2/4 -translate-y-2/4 z-50 ">
                             <Loader color="#163F86"/>
                         </div>
                     </>

@@ -1,22 +1,21 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import UploadButton from '../../customElement/component/UploadButton';
 import TextField from "../../customElement/component/TextField";
 import "../style/ChequeRequest.css";
 import TextArea from '../../customElement/component/TextArea';
 import axios from 'axios';
 
-function ChequeRequest({ handleLoader, handleAlertModal }) {
+function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage }) {
     const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("userToken");
     const departmentID = localStorage.getItem("departmentID");
-    const departmentName = localStorage.getItem("departmentName");
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
-    
+    const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const baseURL = process.env.REACT_APP_BASE_URL;
     const createChequeRequestAPI = process.env.REACT_APP_CREATE_CHEQUE_REQUEST_API;
    
-    
+    const [ department, setDepartment ] = useState("");
     const [ formErrors, setFormErrors ] = useState({});
     const [ chequeRequest, setChequeRequest ] = useState({
         userID: parseInt(userId),
@@ -25,7 +24,7 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
         reason: "",
         beneficiaryName: "",
         beneficiaryBank: "",
-        amount: null,
+        amount: 0,
         base64File:""
     })
 
@@ -114,9 +113,11 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
                     reason: "",
                     beneficiaryName: "",
                     beneficiaryBank: "",
-                    amount: null,
+                    amount: 0,
                     base64File:""
                 })
+                handlePreviewPage(true, res.data.data);
+                console.log(res.data);
             }
             else{
                 handleAlertModal(res.data.message, true);
@@ -127,9 +128,11 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
                     reason: "",
                     beneficiaryName: "",
                     beneficiaryBank: "",
-                    amount: null,
+                    amount: 0,
                     base64File:""
                 })
+
+
             }
         })
         .catch((err) =>{
@@ -142,12 +145,33 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
                 reason: "",
                 beneficiaryName: "",
                 beneficiaryBank: "",
-                amount: null,
+                amount: 0,
                 base64File:""
             })
         })
     }
-   
+    const getDepartment = () =>{
+        axios.get(baseURL + departmentAPI,
+            { 
+                headers: {"Authorization" : `Bearer ${token}`} 
+            }
+        )
+        .then((res) =>{
+            const filteredDept = res.data.data.filter(data => data.departmentID === parseInt(departmentID))
+            if(filteredDept.length !== 0){
+                setDepartment(filteredDept[0].department);
+                localStorage.setItem("departmentName",filteredDept[0].department )
+            }
+            else{
+                setDepartment("");
+            }
+            
+        })
+    }
+
+    useEffect(() =>{
+        getDepartment();
+    },[])
 
     return (
         <div className="w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5 shadow-transactionBoxShadow"> 
@@ -157,7 +181,7 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
                 </div>
                 <form onSubmit={handleOnSubmit}>
                 <div className="flex flex-wrap">
-                    <TextField type="text" name="department" placeholder="" label="Department" onChange={handleOnChange} disabled={true} width="2/4" formError={""} value={departmentName}/>
+                    <TextField type="text" name="department" placeholder="" label="Department" onChange={handleOnChange} disabled={true} width="2/4" formError={""} value={department}/>
                     <TextField type="text" name="to" placeholder="" label="To" onChange={handleOnChange} disabled={true} width="2/4" formError={""} value={"Finance"}/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2' />
@@ -183,7 +207,7 @@ function ChequeRequest({ handleLoader, handleAlertModal }) {
                     <TextField type="text" name="preparedBy" placeholder="" label="Prepared by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={firstName + " " + lastName}/>
                     <TextField type="text" name="approvedBy" placeholder="" label="Approved by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={""}/>
                     <div className="m-auto py-3 w-3/12">
-                        <button type="submit" className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Download</button>
+                        <button type="submit" className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Submit</button>
                     </div> 
                 </div>
                 </form>

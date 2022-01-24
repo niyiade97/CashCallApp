@@ -11,7 +11,7 @@ function DepartmentPage(props) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const deleteDepartmentAPI = process.env.REACT_APP_DELETE_DEPARTMENT_API;
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
     const [ addDepartmentModal, setAddDepartmentModal ] = useState(false);
     const [ departments, setDepartments ] = useState([]);
     const [ deleteModal, setDeleteModal] = useState(false);

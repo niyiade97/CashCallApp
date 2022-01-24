@@ -11,6 +11,11 @@ function UserTemplate({ users, handleDeleteModal  }) {
     const handleOnPassWordReset = (id) =>{
         
     }
+    // const dispatch = useDispatch()
+    // const handleOnDelete = (id) =>{
+    //     // handleDeleteModal(id);
+    //     dispatch(deleteAsyncUser(id));
+    // }
     return (
         <>
         {

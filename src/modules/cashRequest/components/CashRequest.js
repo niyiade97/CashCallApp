@@ -10,15 +10,13 @@ function CashRequest({ handleLoader, handleAlertModal }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const supervisorAPI = process.env.REACT_APP_GET_SUPERVISOR_API;
     const createCashRequestAPI = process.env.REACT_APP_CREATE_CASH_REQUEST_API;
-    const [ departments, setDepartments ] = useState([]);
+    const [ department, setDepartment ] = useState("");
     const [ supervisors, setSupervisors ] = useState([]);
     const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("userToken");
     const departmentID = localStorage.getItem("departmentID");
-    const departmentName = localStorage.getItem("departmentName");
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
-    
     const [ formErrors, setFormErrors ] = useState({
     })
     const [ cashRequest, setCashRequest ] = useState({
@@ -46,14 +44,34 @@ function CashRequest({ handleLoader, handleAlertModal }) {
             }
         )
         .then((res) =>{
-            setDepartments(res.data.data.map((data) =>{
-                return{
-                    departmentID: data.departmentID,
-                    department: data.department
-                }
-            }))
+            const filteredDept = res.data.data.filter(data => data.departmentID === parseInt(departmentID))
+            if(filteredDept.length !== 0){
+                setDepartment(filteredDept[0].department);
+            }
+            else{
+                setDepartment("");
+            }
+            
         })
     }
+    // const getDepartmentName = (array, id) =>{
+    //     for(let i=0; i<array.length; i++){
+    //         if(array[i].departmentID === id){
+    //             return array[i].department;
+    //         }
+    //     }
+    //     return null;
+    // }
+    // const getDepartmentByName = (id) =>{
+    //     axios.get(baseURL + departmentAPI,
+    //         { 
+    //             headers: {"Authorization" : `Bearer ${token}`} 
+    //         }
+    //     )
+    //     .then((res) =>{
+    //         localStorage.setItem("departmentName", getDepartmentName(res.data.data, id));
+    //     })
+    // }
     const getSuperVisor = () =>{
         axios.get(baseURL + supervisorAPI,
             { 
@@ -159,6 +177,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
     useEffect(() => {
         getDepartment();
         getSuperVisor();
+        
     }, [])
 
     return (
@@ -171,7 +190,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
                 <form onSubmit={handleOnSubmit}>
                     <div className="flex flex-wrap">
                         <TextField type="text" name="name" placeholder="Dolapo Obisesan" label="Name" onChange={handleOnChange} disabled={true} width="2/4"  value={firstName + " " + lastName}/>
-                        <TextField name="departmentID" label="Department" onChange={handleOnChange} disabled={true} width="2/4" formError={""} value={departmentName} />
+                        <TextField name="departmentID" label="Department" onChange={handleOnChange} disabled={true} width="2/4" formError={""} value={department} />
                         <TextField type="number" name="amount" placeholder="#300,000" label="Amount" onChange={handleOnChange} disabled={false} width="2/4"  formError={formErrors.amount} value={cashRequest.amount} />
                         <Select name="supervisorID" placeholder="Adebayo Salami" label="Supervisor" onChange={handleOnChange} disabled={false} options={supervisors} width="2/4" formError={formErrors.supervisor} value={cashRequest.supervisorID} valueKey="fullName"/>
                         <UploadButton label="Upload" onChange={handleOnChange} name="base64File"  formError={formErrors.imageFile} value={cashRequest.base64File}/>

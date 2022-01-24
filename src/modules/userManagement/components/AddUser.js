@@ -6,10 +6,8 @@ import axios from 'axios';
 import "../style/AddUser.css";
 
 function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
-    const usersAPI = process.env.REACT_APP_GET_USERS_API;
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
-    const token = localStorage.getItem("token");
-    const [ users, setUsers ] = useState([]);
+    const token = localStorage.getItem("adminToken");
     const [ departments, setDepartments ] = useState([]);
      const baseURL = process.env.REACT_APP_BASE_URL;
     const addUserAPI = process.env.REACT_APP_ADD_USER_API;
@@ -20,7 +18,6 @@ function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
     const [ formErrors, setFormErrors ] = useState({
         status: false
     })
-    // const { departments, getUsers } = useContext(DataContext);
     const [ userDtails, setUserDetails ] = useState({
         email:"",
         firstname:"",
@@ -37,7 +34,6 @@ function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
         }
        
     }
-    
     const handleOnChange = (name, value) =>{
         setUserDetails((prevData) =>{
             return{
@@ -101,35 +97,7 @@ function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
             }))
         })
     }
-    // const DepartmentDropDown = ({ options, label, formError, name, onChange, value }) =>{
-    //     const handleChange = (e) =>{
-    //         const { name, value } = e.target;
-    //         e.preventDefault();
-    //         onChange( name, parseInt(value));
-    //     }
-    //     return(
-    //         <div className="w-2/4 px-4 py-3">
-    //         <div className="w-full text-color5">
-    //             <label className="font-normal text-lg">{label}</label> 
-    //             <select className="rounded-full w-full mt-4 h-14 px-4 font-semibold bg-white border-2 border-color5 text-color13 placeholder-color13 pr-4" name={name} onChange={handleChange} >
-    //             <option disabled selected={value === null && true} value="">{label}</option>
-    //             {
-    //                 options.length !== 0 &&
-    //                 options.map((option,id) =>{
-    //                     return(
-    //                         <option key={id} value={option.departmentID}>
-    //                             {option.department}
-    //                         </option>
-    //                     )
-    //                 })
-    //             }
-    //             </select>
-    //             <p className="text-left text-red-500 pt-3 pl-3">{formError}</p>
-    //         </div>
-    //         </div>
-    //     )
-    // }
-
+   
     const ClearInput = () =>{
         setUserDetails({
             email:"",
@@ -170,6 +138,7 @@ function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
             }
         })
     }
+    
     useEffect(() => {
        getDepartment();
     }, [])

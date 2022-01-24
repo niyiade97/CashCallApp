@@ -4,8 +4,13 @@ import { FiSearch } from 'react-icons/fi'
 import { BsArrowUpShort } from 'react-icons/bs'
 import UserTemplate from './UserTemplate';
 import "../style/Users.css";
+import { useSelector } from "react-redux";
+import { getAllUsers } from '../../../redux/users/userSlice';
+import { render } from 'react-dom';
 
 function Users(props) {
+    const users = useSelector(getAllUsers);
+    console.log(users);
     return (
         <div className="w-full h-screen mb-8 py-4 mt-5 relative"> 
             {props.children}
@@ -17,12 +22,12 @@ function Users(props) {
                         <p className="text-color29 text-sm font-bold">30total</p>
                     </div>
                     <div className="flex justify-end items-center pr-4 w-2/4">
-                        <div className="user-search-container flex items-center text-color14 w-4/5">
+                        {/* <div className="user-search-container flex items-center text-color14 w-4/5">
                             <input className="h-10 pl-5 bg-color32 w-90 rounded-tl-lg rounded-bl-lg border-l border-t border-b  border-color31 outline-none" type="search" placeholder="Search"/>
                             <div className="text-color31 bg-color32 w-10 border-r border-t border-b border-color31 rounded-tr-lg rounded-br-lg h-10 pr-2 flex items-center justify-center">
                                 <FiSearch />
                             </div>
-                        </div>
+                        </div> */}
                         <div className="add-user-container flex items-center pl-5 text-color14 w-1/5">
                             <p onClick={props.handleAddUserModal} className="bg-color30 w-full text-sm text-white flex items-center justify-evenly py-2 rounded-lg">
                                 Add User 

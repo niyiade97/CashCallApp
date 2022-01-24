@@ -1,13 +1,13 @@
-import React,{useEffect, useState} from 'react'
+import React,{ useState } from 'react'
 import TextField from '../../customElement/component/TextField';
 import axios from 'axios';
 import "../style/ApprovalModal.css";
 
-function OtpModal({ handleBackDropOnClick, handleCloseOtpModal, requestID, handleLoader, handleAlertModal, approvalStatus }) {
+function OtpModal({ handleCloseOtpModal, requestID, handleLoader, handleAlertModal, approvalStatus }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const approveRequestAPI = process.env.REACT_APP_ADMIN_REQUEST_APPROVAL_API;
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
+    const token = localStorage.getItem("adminToken");
+    const userId = localStorage.getItem("adminId");
     const [ formErrors, setFormErrors ] = useState({
     })
     const [ requestDetails, setRequestDetails ] = useState({
@@ -65,7 +65,6 @@ function OtpModal({ handleBackDropOnClick, handleCloseOtpModal, requestID, handl
         setFormErrors(validate(requestDetails));
         const formState = validate(requestDetails).status;
         if(!formState){
-            console.log(requestDetails)
             const payload = {
                 isApproved: requestDetails.isApproved,
                 userId: requestDetails.userId,

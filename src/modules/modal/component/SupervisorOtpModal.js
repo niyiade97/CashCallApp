@@ -6,8 +6,8 @@ import "../style/ApprovalModal.css";
 function SupervisorOtpModal({ handleBackDropOnClick, handleCloseOtpModal, requestID, handleLoader, handleAlertModal, approvalStatus }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const approveRequestAPI = process.env.REACT_APP_SUPERVISOR_REQUEST_APPROVAL_API;
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
+    const token = localStorage.getItem("superToken");
+    const userId = localStorage.getItem("superId");
     const [ formErrors, setFormErrors ] = useState({
     })
     const [ requestDetails, setRequestDetails ] = useState({

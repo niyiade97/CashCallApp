@@ -1,6 +1,6 @@
 import React from 'react'
 import "../style/AlertModal.css";
-function AlertModal({ icon, btnText, btnText2, btnActive, messageText1, messageText2, messageHeader, handleClick, indexValue, status }) {
+function AlertModal({ icon, btnText, handlePreview, btnStatus, messageText1, messageText2, messageHeader, handleClick, indexValue, status }) {
       
     
     return (
@@ -19,13 +19,16 @@ function AlertModal({ icon, btnText, btnText2, btnActive, messageText1, messageT
                 <p className="text-xs">{messageText2}</p>
             </div>
             <div className="alert-modal-btn-container flex absolute justify-center items-center bottom-0 w-full py-2 rounded-b-xl">
-                {/* <div className="w-2/4 py-4 pl-4 pr-2">
-                    <button  className="alert-btn1 w-full py-3 rounded-md" onClick={handleClick}>{btnText2}</button>
-                </div> */}
-              
                 <div className="w-2/4 py-4 pl-2 pr-4">
                     <button  className="alert-btn2 text-green-50 w-full py-4 rounded-md border-2 hover:bg-white hover:text-blue-900 hover:border-blue-900" onClick={handleClick}>OK</button>
                 </div>
+                {
+                    btnStatus &&
+                    <div className="w-2/4 py-4 pl-4 pr-2">
+                        <button  className="alert-btn1 w-full py-3 rounded-md" onClick={handlePreview}>Preview</button>
+                    </div>
+                }
+                
             </div>
         </div>
         </>

@@ -6,15 +6,21 @@ import Loader from "../../modules/customElement/component/Loader"
 import AddUser from "../../modules/userManagement/components/AddUser"
 import axios from "axios";
 import DeleteModal from "../../modules/modal/component/DeleteModal"
+import { useSelector, useDispatch } from "react-redux";
+import { addUsers, fetchAsyncUsers } from '../../redux/users/userSlice';
+import api from "../../Utils/api";
 
 function UsersPage(props) {
+    // const dispatch = useDispatch();
+    
+    // const userList = useSelector((state) => state.users.value)
+    const usersAPI = process.env.REACT_APP_GET_USERS_API;
     const [ loading, setLoading ] = useState(false);
     const [ addUserModal, setAdUserModal ] = useState(false);
     const [ users, setUsers ] = useState([]);
     const baseURL = process.env.REACT_APP_BASE_URL;
     const deleteUserAPI = process.env.REACT_APP_DELETE_USER_API;
-    const token = localStorage.getItem("token");
-    const usersAPI = process.env.REACT_APP_GET_USERS_API;
+    const token = localStorage.getItem("adminToken");
     const [ deleteModal, setDeleteModal] = useState(false);
     const [ id, setId ] = useState(null);
     
@@ -48,7 +54,13 @@ function UsersPage(props) {
         })
     }
 
-    const getUsers = () =>{
+    const getUsers = async () =>{
+        // const response = await api
+        // .get(usersAPI)
+        // .catch(err =>{
+        //     console.log(err);
+        // })
+        // dispatch(addUsers(response.data));
         handleOnLoad(true)
         axios.get(baseURL + usersAPI,
             { 
@@ -62,12 +74,14 @@ function UsersPage(props) {
                     data
                 }
             }))
+            // dispatch(addUser(res.data.data));
         })
         .catch(err =>{
             handleOnLoad(false);
         })
     }
     useEffect(() => {
+        // dispatch(fetchAsyncUsers())
         getUsers();
     }, [])
     return (
@@ -78,7 +92,7 @@ function UsersPage(props) {
                     loading &&
                     <>
                         <BackDrop indexValue={"40"} onclick={onclick}/>
-                        <div className="absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 z-50 transform">
+                        <div className="fixed top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 z-50 transform">
                             <Loader color="#FFFFFF"/>
                         </div>
                     </>

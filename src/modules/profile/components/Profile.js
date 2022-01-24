@@ -5,19 +5,10 @@ import ProfileInput from './ProfileInput';
 import "../style/Profile.css";
 
 function Profile(props) {
-    const firstName = localStorage.getItem("firstName");
-    const lastName = localStorage.getItem("lastName");
     console.log(props.profile);
     const handleOnChange = (name, value) =>{
         props.handleChange(name, value);
     }
-
-    const handleEditProfile = () =>{
-
-    }
-    
-        
-
     return (
         <div className="profile-container w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5 shadow-transactionBoxShadow"> 
             {props.children}

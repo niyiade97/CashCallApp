@@ -1,14 +1,14 @@
 import React,{useState, useEffect} from 'react'
 import { MdFilterListAlt } from "react-icons/md";
 import { BsSortUp } from "react-icons/bs";
-import Request from "./Request";
 import axios from 'axios';
 import "../style/AllRequest.css"
+import UserRequestTemplate from './UserRequestTemplate';
 
 
 function UserRequest({ handleLoader }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("userToken");
     const userId = localStorage.getItem("userId");
     const userRequestAPI = process.env.REACT_APP_GET_ALL_USER_REQUESTS_API;
     const [ allRequest, setAllRequest ] = useState([]);
@@ -41,7 +41,7 @@ function UserRequest({ handleLoader }) {
             <div className="w-full px-7">
                 <div className=" py-5 flex justify-between items-center border-2 border-b-0 rounded-t-xl">
                     <h1 className="text-color13 font-bold text-2xl pl-10">All Request</h1>
-                    <div className="flex items-center pr-12">
+                    {/* <div className="flex items-center pr-12">
                         <div className="flex items-center text-color14">
                             <BsSortUp />
                             <p className="pl-1 text-color15 text-sm">Sort</p>
@@ -50,7 +50,7 @@ function UserRequest({ handleLoader }) {
                             <MdFilterListAlt />
                             <p className="pl-1 text-color15 text-sm">Filter</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <table className="w-full rounded-full border border-t-0 border-color16">
                     <tr className="text-left border-2 border-t-0 text-color19 font-bold text-sm">
@@ -65,7 +65,7 @@ function UserRequest({ handleLoader }) {
                             <p className="absolute top-2/4 left-2/4  transform -translate-x-2/4 ">No Request</p>
                         </tr>
                         :
-                        <Request requestData={allRequest} />
+                        <UserRequestTemplate requestData={allRequest} />
                     }
                     
                     

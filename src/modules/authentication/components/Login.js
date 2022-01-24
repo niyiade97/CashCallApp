@@ -7,8 +7,6 @@ import "../style/Login.css";
 function Login(props) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const loginAPI = process.env.REACT_APP_LOGIN_API;
-    const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
-    const token = localStorage.getItem("token");
     const navigate = useNavigate();
     const [ formErrors, setFormErrors ] = useState({
         status: false
@@ -26,27 +24,6 @@ function Login(props) {
         setTimeout(() => {
             setMessage("");
         }, 4000);
-       
-        
-    }
-    const getDepartmentName = (array, id) =>{
-        for(let i=0; i<array.length; i++){
-            if(array[i].departmentID === id){
-                return array[i].department;
-            }
-        }
-        return null;
-    }
-
-    const getDepartment = (id) =>{
-        axios.get(baseURL + departmentAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            localStorage.setItem("departmentName", getDepartmentName(res.data.data, id));
-        })
     }
 
     const validate = (data) =>{
@@ -61,10 +38,6 @@ function Login(props) {
             errors.password = "Password is required";
             errors.status = true;
         }
-        // else if(data.password.length <= 8){
-        //     errors.password = "Password must greater than 8";
-        //     errors.status = true;
-        // }
         return errors;
     }
     const login = (payload) =>{
@@ -74,22 +47,28 @@ function Login(props) {
                 props.onLoad(false);
                 if(res.data.isSuccess){
                     setMessage("");
-                    localStorage.setItem("userId", res.data.data.id);
-                    localStorage.setItem("email", res.data.data.email);
-                    localStorage.setItem("departmentID", res.data.data.departmentID);
-                    localStorage.setItem("token", res.data.message);
-                    localStorage.setItem("role", res.data.data.userRole);
-                    localStorage.setItem("firstName", res.data.data.firstname)
-                    localStorage.setItem("lastName", res.data.data.lastname)
-                    console.log(res);
-                    getDepartment(res.data.data.departmentID);
                     if(res.data.data.userRole === "User"){
+                        localStorage.setItem("userId", res.data.data.id);
+                        localStorage.setItem("userEmail", res.data.data.email);
+                        localStorage.setItem("userToken", res.data.message);
+                        localStorage.setItem("userRole", res.data.data.userRole);
+                        localStorage.setItem("departmentID", res.data.data.departmentID);
+                        localStorage.setItem("firstName", res.data.data.firstname)
+                        localStorage.setItem("lastName", res.data.data.lastname)
                         navigate("/fund-request");
                     }
                     else if( res.data.data.userRole === "Supervisor"){
-                        navigate("/requests");
+                        localStorage.setItem("superId", res.data.data.id);
+                        localStorage.setItem("superEmail", res.data.data.email);
+                        localStorage.setItem("superToken", res.data.message);
+                        localStorage.setItem("superRole", res.data.data.userRole);
+                        navigate("/supervisor-requests");
                     }
                     else{
+                        localStorage.setItem("adminId", res.data.data.id);
+                        localStorage.setItem("adminEmail", res.data.data.email);
+                        localStorage.setItem("adminToken", res.data.message);
+                        localStorage.setItem("adminRole", res.data.data.userRole);
                         navigate("/dashboard");
                     }
                 }

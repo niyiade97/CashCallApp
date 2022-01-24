@@ -8,10 +8,7 @@ function DepartmentTemplate({ departments, handleDeleteModal }) {
     const handleOnDelete = (id) =>{
         handleDeleteModal(id);
     }
-    const handleOnPassWordReset = (id) =>{
-        
-    }
-    console.log(departments);
+    
     return (
         <>
         {

@@ -17,14 +17,10 @@ function SideNav() {
         setDropDownStatus(!dropDownStatus);
     }
     const handleLogout = () =>{
-        localStorage.removeItem("role");
-        localStorage.removeItem("token");
-        localStorage.removeItem("userId");
-        localStorage.removeItem("email");
-        localStorage.removeItem("firstName");
-        localStorage.removeItem("lastName");
-        localStorage.removeItem("userId");
-        localStorage.removeItem("departmentID");
+        localStorage.removeItem("adminRole");
+        localStorage.removeItem("adminToken");
+        localStorage.removeItem("adminEmail");
+        localStorage.removeItem("adminId");
         navigate("/login");
     }
     return (

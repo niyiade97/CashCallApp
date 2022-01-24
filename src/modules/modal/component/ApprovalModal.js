@@ -1,7 +1,4 @@
 import React,{useEffect, useState} from 'react'
-import Select from "../../customElement/component/Select"
-import TextField from '../../customElement/component/TextField';
-import DepartmentDropDown from '../../customElement/component/DepartmentDropDown';
 import axios from 'axios';
 import "../style/ApprovalModal.css";
 
@@ -9,9 +6,8 @@ function ApprovalModal({ handleBackDropOnClick, handleOtpModal, data }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const generateOtpAPI = process.env.REACT_APP_GET_OTP_API;
     const generateUserProfile = process.env.REACT_APP_GET_PROFILE_API;
-    const token = localStorage.getItem("token");
-    const userID = localStorage.getItem("userId");
-    const email = localStorage.getItem("email");
+    const token = localStorage.getItem("adminToken");
+    const email = localStorage.getItem("adminEmail");
 
     const [ name, setName ] = useState("");
     

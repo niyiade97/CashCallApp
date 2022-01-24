@@ -28,7 +28,6 @@ function ChangePasswordPage() {
     return (
         <UserDashboardContainer>
             <div className="w-full">
-                {/* <BackDrop onclick={handleOnClick}/> */}
                 <Profile>
                 {
                     !(successState || failedState) &&

@@ -68,8 +68,6 @@ function AllRequest({ handleLoader, handleClick }) {
                         :
                         <Request handleClick={handleClick} requestData={allRequest} clickStatus={false} />
                     }
-                    
-                    
                 </table>
                 
             </div>

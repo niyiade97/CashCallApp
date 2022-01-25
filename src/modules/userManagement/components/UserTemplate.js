@@ -11,11 +11,6 @@ function UserTemplate({ users, handleDeleteModal  }) {
     const handleOnPassWordReset = (id) =>{
         
     }
-    // const dispatch = useDispatch()
-    // const handleOnDelete = (id) =>{
-    //     // handleDeleteModal(id);
-    //     dispatch(deleteAsyncUser(id));
-    // }
     return (
         <>
         {
@@ -41,10 +36,6 @@ function UserTemplate({ users, handleDeleteModal  }) {
                                     <button className="user-template-table-role bg-color17 text-white rounded-full w-20 text-sm py-1">{user.data.userRole}</button>
                                 </div>
                                 <div className="flex items-center">
-                                    <button onClick={handleOnPassWordReset.bind(null,user.data.id)} className="flex items-center justify-evenly">
-                                        <i className="pr-1"><GrPowerReset /></i>
-                                        Reset Password
-                                    </button>
                                     <button onClick={handleOnDelete.bind(null,user.data.id)} className="flex items-center justify-evenly ml-5">
                                         <i className="pr-1"><MdDelete /></i>
                                         Delete

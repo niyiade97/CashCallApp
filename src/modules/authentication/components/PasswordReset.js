@@ -30,7 +30,7 @@ function PasswordReset(props) {
         })
     }
     const validate = (data) =>{
-        const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         const errors ={
             status: false
         }
@@ -134,7 +134,7 @@ function PasswordReset(props) {
                         message.text &&
                         <p className={`${message.status === 2 && "text-red-500 bg-red-300"} ${message.status === 1 &&  "text-green-600 bg-green-100"} p-4 text-left my-3`}>{message.text}</p>
                     }
-                        <input className="" type="text" name="emailAddress" placeholder="Email" onChange={handleOnChange} value={passwordResetDetails.emailAddress} autoComplete='off'/>
+                        <input className="" type="email" name="emailAddress" placeholder="Email" onChange={handleOnChange} value={passwordResetDetails.emailAddress} autoComplete='off'/>
                         {
                             formErrors.email &&
                             <p className="text-left text-red-500 pt-3 pl-3">{formErrors.email}</p>

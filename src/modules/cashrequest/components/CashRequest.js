@@ -15,8 +15,8 @@ function CashRequest({ handleLoader, handleAlertModal }) {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("userToken");
     const departmentID = localStorage.getItem("departmentID");
-    const firstName = localStorage.getItem("firstName");
-    const lastName = localStorage.getItem("lastName");
+    const firstName = localStorage.getItem("userFirstName");
+    const lastName = localStorage.getItem("userLastName");
     const [ formErrors, setFormErrors ] = useState({
     })
     const [ cashRequest, setCashRequest ] = useState({

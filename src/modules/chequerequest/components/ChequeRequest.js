@@ -9,8 +9,8 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage }) {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("userToken");
     const departmentID = localStorage.getItem("departmentID");
-    const firstName = localStorage.getItem("firstName");
-    const lastName = localStorage.getItem("lastName");
+    const firstName = localStorage.getItem("userFirstName");
+    const lastName = localStorage.getItem("userLastName");
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const baseURL = process.env.REACT_APP_BASE_URL;
     const createChequeRequestAPI = process.env.REACT_APP_CREATE_CHEQUE_REQUEST_API;

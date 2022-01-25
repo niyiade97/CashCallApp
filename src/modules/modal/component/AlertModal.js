@@ -20,12 +20,12 @@ function AlertModal({ icon, btnText, handlePreview, btnStatus, messageText1, mes
             </div>
             <div className="alert-modal-btn-container flex absolute justify-center items-center bottom-0 w-full py-2 rounded-b-xl">
                 <div className="w-2/4 py-4 pl-2 pr-4">
-                    <button  className="alert-btn2 text-green-50 w-full py-4 rounded-md border-2 hover:bg-white hover:text-blue-900 hover:border-blue-900" onClick={handleClick}>OK</button>
+                    <button  className="alert-btn2 text-green-50 bg-blue-900 w-full py-4 rounded-md border-2 hover:bg-white hover:text-blue-900 hover:border-blue-900" onClick={handleClick}>OK</button>
                 </div>
                 {
                     btnStatus &&
                     <div className="w-2/4 py-4 pl-4 pr-2">
-                        <button  className="alert-btn1 w-full py-3 rounded-md" onClick={handlePreview}>Preview</button>
+                        <button  className="alert-btn1 w-full py-3 bg-blue-50 text-blue-900  rounded-md hover:bg-blue-900 hover:text-white" onClick={handlePreview}>Preview</button>
                     </div>
                 }
                 

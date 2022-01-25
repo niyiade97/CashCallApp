@@ -7,6 +7,8 @@ import OtpModal from "../../modules/modal/component/OtpModal";
 import AlertModal from '../../modules/modal/component/AlertModal';
 
 function AdminPendingRequestPage() {
+    const token = localStorage.getItem("adminToken");
+    const userId = localStorage.getItem("adminId");
     const  [ loading ,setLoading ] = useState(false);
     const  [ modal ,setModal ] = useState(false);
     const  [ otpModal ,setOtpModal ] = useState(false);
@@ -67,7 +69,7 @@ function AdminPendingRequestPage() {
         }
         {
             otpModal &&
-            <OtpModal handleCloseOtpModal={handleCloseOtptModal} requestID={data.requestID} handleLoader={handleLoader} handleAlertModal={handleAlertModal} approvalStatus={approvalStatus}/>
+            <OtpModal token={token} email={userId} handleCloseOtpModal={handleCloseOtptModal} requestID={data.requestID} handleLoader={handleLoader} handleAlertModal={handleAlertModal} approvalStatus={approvalStatus}/>
         }
         {
             modal &&

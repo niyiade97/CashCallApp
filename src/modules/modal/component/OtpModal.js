@@ -3,11 +3,9 @@ import TextField from '../../customElement/component/TextField';
 import axios from 'axios';
 import "../style/ApprovalModal.css";
 
-function OtpModal({ handleCloseOtpModal, requestID, handleLoader, handleAlertModal, approvalStatus }) {
+function OtpModal({ handleCloseOtpModal, requestID, handleLoader, handleAlertModal, approvalStatus, token, userId }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const approveRequestAPI = process.env.REACT_APP_ADMIN_REQUEST_APPROVAL_API;
-    const token = localStorage.getItem("adminToken");
-    const userId = localStorage.getItem("adminId");
     const [ formErrors, setFormErrors ] = useState({
     })
     const [ requestDetails, setRequestDetails ] = useState({

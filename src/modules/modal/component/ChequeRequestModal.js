@@ -12,56 +12,9 @@ function ChequeRequestModal({handleCloseBackDrop, data}) {
     const departmentName = localStorage.getItem("departmentName");
     const date = new Date().toUTCString().split(" ");
     const dateToUTC = `${date[0] } ${date[1]} ${date[2]} ${date[3]}`;
-//     const date = new Date(data.dateCreated).toUTCString().split(" ");
-//     const dateToUTC = `${date[0] } ${date[1]} ${date[2]} ${date[3]}`;
-// console.log(dateToUTC)
-    // const [ chequeRequest, setChequeRequest ] = useState({
-    //     userID: parseInt(userId),
-    //     departmentID: parseInt(departmentID),
-    //     purpose: "",
-    //     reason: "",
-    //     beneficiaryName: "",
-    //     beneficiaryBank: "",
-    //     amount: null,
-    //     base64File:""
-    // })
 
-    // const [ formErrors, setFormErrors ] = useState({
-    // })
 
-    // const handleOnChange = (name, value) =>{
-    //     setChequeRequest((prevState) =>{
-    //         return{
-    //             ...prevState,
-    //             [name]: value
-    //         }
-    //     })
-    // }
-
-    // const validate = (data) =>{
-    //     const errors ={
-    //      status: false
-    //     }
-    //     if(!data.oldPassword){
-    //          errors.oldPassword = "Old Password is required";
-    //          errors.status = true;
-    //     }
-    //     if(!data.newPassword){
-    //         errors.newPassword = "New Password is required";
-    //         errors.status = true;
-    //    }
-    //     return errors;
-    //  }
-
-    const handleOnSubmit = (e) =>{
-        // e.preventDefault();
-        // setFormErrors(validate(passwordDetails));
-        // const formState = validate(passwordDetails).status;
-        // if(!formState){
-        //     handleChangePassword();
-        // }
-        
-    }
+    
     return (
         <>
         {
@@ -75,11 +28,11 @@ function ChequeRequestModal({handleCloseBackDrop, data}) {
                         <img src={logo} className='object-contain w-32 h-32' alt="logo" />
                     </div>
                     <div className="px-10">
-                        <form onSubmit={handleOnSubmit}>
+                        <form>
                             <div className="flex flex-wrap">
                                 <div className='w-full flex justify-end'>
                                     <TextField type="text" name="date" placeholder="" label="Date"  disabled={true} width="2/4" value={dateToUTC} />
-                                    <TextField type="text" name="department" placeholder="" label="Department"  disabled={true} width="2/4" value={"Memo-" + year + "-0000" + data.voucherNo}/>
+                                    <TextField type="text" name="voucherNum" placeholder="" label="Voucher Num"  disabled={true} width="2/4" value={"Memo-" + year + "-0000" + data.voucherNo}/>
                                 </div>
                                 <TextField type="text" name="department" placeholder="" label="Department"  disabled={true} width="2/4" value={departmentName}/>
                                 <TextField type="text" name="to" placeholder="" label="To" disabled={true} width="2/4" value={"Finance"}/>

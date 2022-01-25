@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import Container from '../Components/Container'
-import Loader from '../Components/Loader';
-import Login from "../Components/Auth/Login/Login";
+import Container from '../modules/customElement/component/Container';
+import Loader from "../modules/customElement/component/Loader";
+import Login from "../modules/authentication/components/Login";
 function LoginPage() {
     const [ loading, setLoading ] = useState(false);
     const handleOnLoad = (state) =>{

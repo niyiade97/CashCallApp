@@ -1,13 +1,19 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import DashboardContainer from "./Components/Dashboard/DashboardContainer";
-import UserDashboardContainer from "./Components/User/UserDashboardContainer";
+import "tailwindcss/tailwind.css";
 import AddUserPage from "./Views/AdminView/AddUserPage";
 import AllRequestPage from "./Views/UserView/AllRequestPage";
+
+import SupervisorRequestPage from "./Views/SupervisorView/SupervisorRequestPage";
+import SupervisorProfilePage from "./Views/SupervisorView/SupervisorProfilePage";
+import SupervisorApprovedRequestPage from "./Views/SupervisorView/SupervisorApprovedRequestPage";
+import SupervisorRejectedRequestsPage from "./Views/SupervisorView/SupervisorRejectedRequestsPage";
+import SupervisorPendingRequestPage from "./Views/SupervisorView/SupervisorPendingRequestPage";
+import SupervisorDisbursedRequestPage from "./Views/SupervisorView/SupervisorDisbursedRequestPage";
+
 import ApprovedRequestPage from "./Views/UserView/ApprovedRequestPage";
 import CashRequestPage from "./Views/UserView/CashRequestPage";
-import ChangePasswordPage from "./Views/UserView/ChangePasswordPage";
 import ChequeRequestPage from "./Views/UserView/ChequeRequest";
 import DisbursedRequestPage from "./Views/UserView/DisbursedRequestPage";
 import ForgotPasswordPage from "./Views/ForgotPasswordPage";
@@ -18,20 +24,16 @@ import PendingRequestPage from "./Views/UserView/PendingRequestPage";
 import ProfilePage from "./Views/UserView/ProfilePage";
 import RejectedRequestsPage from "./Views/UserView/RejectedRequestsPage";
 import UsersPage from "./Views/AdminView/UsersPage";
+
 import AdminRequestPage from "./Views/AdminView/AdminRequestPage";
 import AdminApprovedRequestPage from "./Views/AdminView/AdminApprovedRequestPage";
 import AdminPendingRequestPage from "./Views/AdminView/AdminPendingRequestPage";
 import AdminDisbursedRequestPage from "./Views/AdminView/AdminDisbursedRequestPage";
-import AdminChequeRequestPage from "./Views/AdminView/AdminChequeRequestPage";
-import AdminProfilePage from "./Views/AdminView/AdminProfilePage";
-import AdminChangePasswordPage from "./Views/AdminView/AdminChangePasswordPage";
-import AdminCashRequestPage from "./Views/AdminView/AdminCashRequestPage";
-import AdminFundRequestPage from "./Views/AdminView/AdminFundRequestPage";
-import DataContextProvider from "./Utils/DataContext";
-import "tailwindcss/tailwind.css";
+
 import DashboardPage from "./Views/AdminView/DashboardPage";
 import DepartmentPage from "./Views/AdminView/DepartmentPage";
-import AddDepartmentPage from "./Views/AdminView/AddDepartmentPage";
+import AdminRejectedRequestsPage from "./Views/AdminView/AdminRejectedRequestsPage";
+import AdminProfilePage from "./Views/AdminView/AdminProfilePage";
 
 function App() {
 
@@ -51,42 +53,36 @@ function App() {
             {/* admin routes */}
             <Route path="users" element={ <UsersPage  /> }  />
             <Route path="users/addUser" element={<AddUserPage /> } />
-
             <Route path="departments" element={ <DepartmentPage  /> }  />
-            <Route path="departments/addDepartment" element={<AddDepartmentPage /> } />
-           
-            
-
-            
-            
-            <Route  path="profile" element={<ProfilePage />} />
-            <Route  path="profile/change-password" element={<ChangePasswordPage />} />
-            
-            <Route path="fund-request" element={<FundRequestPage />} />
-            <Route  path="admin-requests" element={<AdminRequestPage />} />
+            <Route  path="admin-profile" element={<AdminProfilePage />} />
             <Route  path="admin-approved-requests" element={<AdminApprovedRequestPage />} />
-            <Route  path="admin-rejected-requests" element={<AdminRequestPage />} />
+            <Route  path="admin-rejected-requests" element={<AdminRejectedRequestsPage />} />
             <Route  path="admin-pending-requests" element={<AdminPendingRequestPage />} />
             <Route  path="admin-disbursed-requests" element={<AdminDisbursedRequestPage />} />
-            <Route  path="admin-cheque-request" element={<AdminChequeRequestPage />} />
-            <Route  path="admin-profile" element={<AdminProfilePage />} />
-            <Route  path="admin-profile/change-password" element={<AdminChangePasswordPage />} />
-            <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
-
+            <Route  path="admin-requests" element={<AdminRequestPage />} />
+            
             {/* user */}
+            <Route  path="requests" element={<AllRequestPage />} />
+            <Route  path="profile" element={<ProfilePage />} />
             <Route path="fund-request" element={<FundRequestPage />} />
             <Route  path="cash-request" element={<CashRequestPage />} />
             <Route  path="cheque-request" element={<ChequeRequestPage />} />
-
-            <Route  path="requests" element={<AllRequestPage />} />
             <Route  path="approved-requests" element={<ApprovedRequestPage />} />
             <Route  path="rejected-requests" element={<RejectedRequestsPage />} />
             <Route  path="pending-requests" element={<PendingRequestPage />} />
             <Route  path="disbursed-requests" element={<DisbursedRequestPage />} />
+          
+            {/* supervisor */}
+            <Route  path="supervisor-requests" element={<SupervisorRequestPage />} />
+            <Route  path="supervisor-profile" element={<SupervisorProfilePage />} />
+            <Route  path="supervisor-approved-requests" element={<SupervisorApprovedRequestPage />} />
+            <Route  path="supervisor-disbursed-requests" element={<SupervisorDisbursedRequestPage />} />
+            <Route  path="supervisor-rejected-requests" element={<SupervisorRejectedRequestsPage />} />
+            <Route  path="supervisor-pending-requests" element={<SupervisorPendingRequestPage />} />
+          
           </Routes>
 
-          
         </BrowserRouter>
     </div>
   );

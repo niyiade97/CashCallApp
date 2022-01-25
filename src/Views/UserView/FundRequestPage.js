@@ -1,8 +1,7 @@
 import React from 'react'
-import FundRequest from '../../Components/Dashboard/FundRequest';
-import StatusIndicatorcontainer from '../../Components/Dashboard/StatusIndicatorContainer';
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
-
+import FundRequest from "../../modules/fundRequest/component/FundRequest"
+import StatusIndicatorcontainer from "../../modules/dashboard/components/StatusIndicatorContainer"
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer";
 
 function FundRequestPage() {
     return (

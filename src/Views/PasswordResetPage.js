@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import Container from '../Components/Container'
-import PasswordReset from '../Components/Auth/ResetPassword/PasswordReset'
-import Loader from '../Components/Loader';
+import Container from "../modules/customElement/component/Container";
+import PasswordReset from "../modules/authentication/components/PasswordReset";
+import Loader from "../modules/customElement/component/Loader";
 
 function PasswordResetPage() {
     const [ loading, setLoading ] = useState(false);

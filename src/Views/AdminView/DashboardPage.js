@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import DashboardContainer from '../../Components/Dashboard/DashboardContainer';
-import Loader from "../../Components/Loader";
-import Dashboard from '../../Components/Dashboard/Dashboard';
+import DashboardContainer from "../../modules/dashboard/components/DashboardContainer"
+import Loader from "../../modules/customElement/component/Loader"
+import Dashboard from "../../modules/dashboard/components/Dashboard"
 
 function DashboardPage() {
     const [ loading, setLoader ] = useState(false);

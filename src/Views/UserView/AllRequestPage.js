@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import AllRequest from '../../Components/Dashboard/AllRequest';
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
-import Loader from '../../Components/Loader';
+import UserRequest from "../../modules/requestStatus/components/UserRequest";
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer"
+import Loader from "../../modules/customElement/component/Loader";
+import AddUser from '../../modules/userManagement/components/AddUser';
 
 function AllRequestPage() {
     const  [ loading ,setLoading ] = useState(false);
-
+    const  [ modal ,setModal ] = useState(false);
     const handleLoader = (state) =>{
         setLoading(state);
     }
@@ -15,8 +16,9 @@ function AllRequestPage() {
             loading &&
             <Loader color="#FFFFFF" />
         }
+       
             <div className="w-full flex">
-                <AllRequest handleLoader={handleLoader}/>
+                <UserRequest handleLoader={handleLoader}/>
             </div>
         </UserDashboardContainer>
     )

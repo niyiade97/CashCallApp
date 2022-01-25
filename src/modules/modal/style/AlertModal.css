@@ -1,0 +1,23 @@
+.alert-modal-container{
+    width:480px;
+    height: 330px;
+    margin-top: -165px;
+    margin-left: -240px;
+}
+.alert-modal-inner-container{
+    background-color: #013A8E;
+    margin: -72px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.alert-modal-text-container{
+    padding-top: 100px;
+    width: 90%;
+    margin: auto;
+    height: 100%;
+
+}
+.alert-modal-btn-container{
+    background-color: #F1F5F8;
+}

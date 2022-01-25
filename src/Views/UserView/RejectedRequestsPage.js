@@ -1,12 +1,21 @@
-import React from 'react';
-import RejectedRequests from '../../Components/Dashboard/RejectedRequests';
-import UserDashboardContainer from '../../Components/User/UserDashboardContainer';
-
+import React,{useState} from 'react';
+import UserRejectedRequest from "../../modules/requestStatus/components/UserRejectedRequest";
+import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer";
+import Loader from "../../modules/customElement/component/Loader";
 function RejectedRequestsPage() {
+    const  [ loading ,setLoading ] = useState(false);
+
+    const handleLoader = (state) =>{
+        setLoading(state);
+    }
     return (
         <UserDashboardContainer>
+        {
+            loading &&
+            <Loader color="#FFFFFF" />
+        }
             <div className="w-full flex">
-                <RejectedRequests />
+                <UserRejectedRequest handleLoader={handleLoader}/>
             </div>
         </UserDashboardContainer>
     )

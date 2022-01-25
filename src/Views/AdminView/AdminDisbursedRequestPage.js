@@ -1,6 +1,6 @@
 import React from 'react';
-import DashboardContainer from '../../Components/Dashboard/DashboardContainer';
-import DisbursedRequest from '../../Components/Dashboard/DisbursedRequest';
+import DashboardContainer from "../../modules/dashboard/components/DashboardContainer"
+import DisbursedRequest from "../../modules/requestStatus/components/DisbursedRequest"
 
 function AdminDisbursedRequestPage() {
     return (

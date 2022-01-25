@@ -1,5 +1,5 @@
 import React from 'react'
-import profileImage from "../../../Assets/images/adepics.jpeg";
+import noImage from "../../../Assets/images/profileImage.png";
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import ProfileInput from './ProfileInput';
 import "../style/Profile.css";
@@ -23,7 +23,7 @@ function Profile(props) {
                             <p className="text-black font-normal text-xl">Profile picture</p>
                         </div>
                         <div className="profile-image-wrapper w-45 text-center">
-                            <img src={profileImage} alt="profileImage" className="w-20 h-20 rounded-full m-auto object-cover"  /> 
+                            <img src={noImage} alt="profileImage" className="w-20 h-20 rounded-full m-auto object-cover"  /> 
                         </div>
                     </div>
                     <div className="flex items-center">

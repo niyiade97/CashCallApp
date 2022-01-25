@@ -6,7 +6,10 @@ import SupervisorOtpModal from "../../modules/modal/component/SupervisorOtpModal
 import SupervisorDashboardContainer from '../../modules/dashboard/components/SupervisorDashboardContainer';
 import SupervisorPendingRequest from '../../modules/requestStatus/components/SupervisorPendingRequest';
 
+
 function SupervisorPendingRequestPage() {
+    const token = localStorage.getItem("superToken");
+    const email = localStorage.getItem("superEmail");
     const  [ loading ,setLoading ] = useState(false);
     const  [ modal ,setModal ] = useState(false);
     const  [ otpModal ,setOtpModal ] = useState(false);
@@ -72,7 +75,7 @@ function SupervisorPendingRequestPage() {
         }
         {
             modal &&
-            <ApprovalModal data={data} handleBackDropOnClick={handleBackDropOnClick} handleClick={handleBackDropOnClick} loading={handleLoader} handleOtpModal={handleOtpModal}/>
+            <ApprovalModal token={token} email={email} data={data} handleBackDropOnClick={handleBackDropOnClick} handleClick={handleBackDropOnClick} loading={handleLoader} handleOtpModal={handleOtpModal}/>
         }
             <div className="w-full flex">
                 <SupervisorPendingRequest handleClick={handleClick} handleLoader={handleLoader}/>

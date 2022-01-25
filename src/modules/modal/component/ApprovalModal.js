@@ -2,12 +2,11 @@ import React,{useEffect, useState} from 'react'
 import axios from 'axios';
 import "../style/ApprovalModal.css";
 
-function ApprovalModal({ handleBackDropOnClick, handleOtpModal, data }) {
+function ApprovalModal({ handleBackDropOnClick, handleOtpModal, data, token, email }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
     const generateOtpAPI = process.env.REACT_APP_GET_OTP_API;
     const generateUserProfile = process.env.REACT_APP_GET_PROFILE_API;
-    const token = localStorage.getItem("adminToken");
-    const email = localStorage.getItem("adminEmail");
+    
 
     const [ name, setName ] = useState("");
     

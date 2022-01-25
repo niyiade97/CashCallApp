@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DashboardContainer from "../../modules/dashboard/components/dashboardcontainer";
+import DashboardContainer from "../../modules/dashboard/components/DashboardContainer";
 import Users from "../../modules/userManagement/components/Users"
 import BackDrop from "../../modules/customElement/component/BackDrop"
 import { useNavigate } from "react-router-dom"

@@ -53,8 +53,8 @@ function Login(props) {
                         localStorage.setItem("userToken", res.data.message);
                         localStorage.setItem("userRole", res.data.data.userRole);
                         localStorage.setItem("departmentID", res.data.data.departmentID);
-                        localStorage.setItem("firstName", res.data.data.firstname)
-                        localStorage.setItem("lastName", res.data.data.lastname)
+                        localStorage.setItem("userFirstName", res.data.data.firstname)
+                        localStorage.setItem("userLastName", res.data.data.lastname)
                         navigate("/fund-request");
                     }
                     else if( res.data.data.userRole === "Supervisor"){
@@ -62,6 +62,8 @@ function Login(props) {
                         localStorage.setItem("superEmail", res.data.data.email);
                         localStorage.setItem("superToken", res.data.message);
                         localStorage.setItem("superRole", res.data.data.userRole);
+                        localStorage.setItem("superFirstName", res.data.data.firstname)
+                        localStorage.setItem("superLastName", res.data.data.lastname)
                         navigate("/supervisor-requests");
                     }
                     else{
@@ -69,6 +71,8 @@ function Login(props) {
                         localStorage.setItem("adminEmail", res.data.data.email);
                         localStorage.setItem("adminToken", res.data.message);
                         localStorage.setItem("adminRole", res.data.data.userRole);
+                        localStorage.setItem("adminFirstName", res.data.data.firstname)
+                        localStorage.setItem("adminLastName", res.data.data.lastname)
                         navigate("/dashboard");
                     }
                 }

@@ -12,21 +12,21 @@ function Request({ requestData, handleClick, clickStatus }){
     const handleOnClick = (request) =>{
         handleClick(request);
     }
-    const getName = (id) => {
-        axios.get(baseURL + generateUserProfile + id,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            if(res.data.isSuccess){
-                return res.data.data.firstname + " " + res.data.data.lastname
-            }
-        })
-        .catch(err =>{
-            console.log(err);
-        })
-    }
+    // const getName = (id) => {
+    //     axios.get(baseURL + generateUserProfile + id,
+    //         { 
+    //             headers: {"Authorization" : `Bearer ${token}`} 
+    //         }
+    //     )
+    //     .then((res) =>{
+    //         if(res.data.isSuccess){
+    //             return res.data.data.firstname + " " + res.data.data.lastname
+    //         }
+    //     })
+    //     .catch(err =>{
+    //         console.log(err);
+    //     })
+    // }
 
     return (
             requestData.map((request) =>{

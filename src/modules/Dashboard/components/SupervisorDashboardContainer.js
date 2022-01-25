@@ -3,12 +3,13 @@ import Header from './Header'
 import SuperNav from './SuperNav'
 
 function SupervisorDashboardContainer(props) {
-    
+    const firstName = localStorage.getItem("superFirstName");
+    const lastName = localStorage.getItem("superLastName");
     return (
         <div className="w-full h-screen flex relative">
             <SuperNav />
             <div className="w-4/5 relative h-screen overflow-auto">
-                <Header headerText={""} />
+                <Header firstName={firstName} lastName={lastName} />
                {props.children}
             </div>
         </div>

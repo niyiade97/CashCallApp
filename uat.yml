@@ -17,10 +17,15 @@ steps:
 
 - script: |
     cp -f .env.UAT .env
+<<<<<<< HEAD
+    sed -i 's/"homepage": ""/"homepage": "$(subfolder)"/' package.json
+    cat package.json
+=======
     cp -f .env.UAT .env.production
     sed -i 's/"homepage": ""/"homepage": "$(subfolder)"/' package.json
     cat package.json
     cat .env
+>>>>>>> 6c41f0104070f2ef4cd0e3281b1bf5829552877c
     npm install
     npm run build
   displayName: 'npm install and build'

@@ -52,7 +52,7 @@ function Login(props) {
                         localStorage.setItem("userEmail", res.data.data.email);
                         localStorage.setItem("userToken", res.data.message);
                         localStorage.setItem("userRole", res.data.data.userRole);
-                        localStorage.setItem("departmentID", res.data.data.departmentID);
+                        localStorage.setItem("userDepartmentID", res.data.data.departmentID);
                         localStorage.setItem("userFirstName", res.data.data.firstname)
                         localStorage.setItem("userLastName", res.data.data.lastname)
                         navigate("/fund-request");
@@ -71,6 +71,7 @@ function Login(props) {
                         localStorage.setItem("adminEmail", res.data.data.email);
                         localStorage.setItem("adminToken", res.data.message);
                         localStorage.setItem("adminRole", res.data.data.userRole);
+                        localStorage.setItem("adminDepartmentID", res.data.data.departmentID);
                         localStorage.setItem("adminFirstName", res.data.data.firstname)
                         localStorage.setItem("adminLastName", res.data.data.lastname)
                         navigate("/dashboard");

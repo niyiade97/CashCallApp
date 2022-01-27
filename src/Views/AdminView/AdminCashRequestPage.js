@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import CashRequest from "../../modules/cashrequest/components/CashRequest";
-import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer"
+import DashboardContainer from '../../modules/dashboard/components/DashboardContainer';
 import Loader from "../../modules/customElement/component/Loader"
 import AlertModal from "../../modules/modal/component/AlertModal"
 
-function CashRequestPage() {
-    const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("userToken");
-    const departmentID = localStorage.getItem("userDepartmentID");
-    const firstName = localStorage.getItem("userFirstName");
-    const lastName = localStorage.getItem("userLastName");
+function AdminCashRequestPage() {
+    const userId = localStorage.getItem("adminId");
+    const token = localStorage.getItem("adminToken");
+    const departmentID = localStorage.getItem("adminDepartmentID");
+    const firstName = localStorage.getItem("adminFirstName");
+    const lastName = localStorage.getItem("adminLastName");
     const [loading, setLoading] = useState(false);
     const [alertModalIsActive, setAlertModalIsActive] = useState(false);
     const handleLoader = (state) => {
@@ -36,7 +36,7 @@ function CashRequestPage() {
                 loading &&
                 <Loader color="#FFFFFF" />
             }
-            <UserDashboardContainer >
+            <DashboardContainer >
                 {
                     alertModalIsActive &&
                     <AlertModal
@@ -60,9 +60,9 @@ function CashRequestPage() {
                         fullName={firstName + " " + lastName}
                          />
                 </div>
-            </UserDashboardContainer>
+            </DashboardContainer>
         </>
     )
 }
 
-export default CashRequestPage;
+export default AdminCashRequestPage;

@@ -5,12 +5,8 @@ import "../style/ChequeRequest.css";
 import TextArea from '../../customElement/component/TextArea';
 import axios from 'axios';
 
-function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage }) {
-    const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("userToken");
-    const departmentID = localStorage.getItem("departmentID");
-    const firstName = localStorage.getItem("userFirstName");
-    const lastName = localStorage.getItem("userLastName");
+function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userId, token, departmentID, fullName}) {
+    
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const baseURL = process.env.REACT_APP_BASE_URL;
     const createChequeRequestAPI = process.env.REACT_APP_CREATE_CHEQUE_REQUEST_API;
@@ -204,7 +200,7 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage }) {
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>
                     </div>
-                    <TextField type="text" name="preparedBy" placeholder="" label="Prepared by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={firstName + " " + lastName}/>
+                    <TextField type="text" name="preparedBy" placeholder="" label="Prepared by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={fullName}/>
                     <TextField type="text" name="approvedBy" placeholder="" label="Approved by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={""}/>
                     <div className="m-auto py-3 w-3/12">
                         <button type="submit" className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Submit</button>

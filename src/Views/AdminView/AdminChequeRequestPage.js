@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import ChequeRequest from "../../modules/chequerequest/components/ChequeRequest"
-import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer"
+import DashboardContainer from '../../modules/dashboard/components/DashboardContainer';
 import AlertModal from '../../modules/modal/component/AlertModal';
 import Loader from '../../modules/customElement/component/Loader';
 import ChequeRequestModal from '../../modules/modal/component/ChequeRequestModal';
 import ReactDOM from "react-dom";
-function ChequeRequestPage() {
-    const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("userToken");
-    const departmentID = localStorage.getItem("userDepartmentID");
-    const firstName = localStorage.getItem("userFirstName");
-    const lastName = localStorage.getItem("userLastName");
+import axios from 'axios';
+
+function AdminChequeRequestPage() {
+    const userId = localStorage.getItem("adminId");
+    const token = localStorage.getItem("adminToken");
+    const departmentID = localStorage.getItem("adminDepartmentID");
+    const firstName = localStorage.getItem("adminFirstName");
+    const lastName = localStorage.getItem("adminLastName");
+    const pdfDownloadAPI = process.env.REACT_APP_;
     const [loading, setLoading] = useState(false);
     const [alertModalIsActive, setAlertModalIsActive] = useState(false);
     const [message, setMessage] = useState({
@@ -34,6 +37,27 @@ function ChequeRequestPage() {
             status: status
         })
     }
+    const downloadPDF = (id, formData) =>{
+        // axios({
+        //     method: 'post',
+        //     responseType: 'arraybuffer', //Force to receive data in a Blob Format
+        //     url: url,
+        //     data: formData
+        // })
+        //     .then(res => {
+        //         let extension = 'pdf';
+        //         let fileName = `${tempFileName}.${extension}`;
+    
+        //         const blob = new Blob([res.data], {
+        //             type: 'application/pdf'
+        //         })
+    
+        //         saveAs(blob, fileName)
+        //     })
+        //     .catch(error => {
+        //         console.log(error.message);
+        //     });
+    }
 
     const handleCloseAlertModal = (text, status) => {
         setAlertModalIsActive(false);
@@ -48,7 +72,7 @@ function ChequeRequestPage() {
                 loading &&
                 <Loader color="#FFFFFF" />
             }
-            <UserDashboardContainer>
+            <DashboardContainer>
 
                 {
                     alertModalIsActive &&
@@ -65,7 +89,7 @@ function ChequeRequestPage() {
                 {
                     chequeModal &&
                     ReactDOM.createPortal(
-                        <ChequeRequestModal data={modalData} handleCloseBackDrop={handlePreview} />,
+                        <ChequeRequestModal data={modalData} handleCloseBackDrop={handlePreview} handleDownload={downloadPDF} />,
                         document.getElementById("chequeRequestModal")
                     )
 
@@ -74,15 +98,16 @@ function ChequeRequestPage() {
                     <ChequeRequest 
                         handleLoader={handleLoader} 
                         handleAlertModal={handleAlertModal} 
-                        handlePreviewPage={handlePreviewPage} />
+                        handlePreviewPage={handlePreviewPage} 
                         userId={userId}
                         token={token}
                         departmentID={departmentID}
                         fullName={firstName + " " + lastName}
+                        />
                 </div>
-            </UserDashboardContainer>
+            </DashboardContainer>
         </>
     )
 }
 
-export default ChequeRequestPage;
+export default AdminChequeRequestPage;

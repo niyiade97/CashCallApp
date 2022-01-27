@@ -7,12 +7,11 @@ import TextArea from '../../customElement/component/TextArea';
 import UploadButton from '../../customElement/component/UploadButton';
 import logo from "../../../Assets/images/cashCallLogo.png"
 
-function ChequeRequestModal({handleCloseBackDrop, data}) {
+function ChequeRequestModal({handleCloseBackDrop, data, handleDownload}) {
     const year = new Date().getFullYear();
     const departmentName = localStorage.getItem("departmentName");
     const date = new Date().toUTCString().split(" ");
     const dateToUTC = `${date[0] } ${date[1]} ${date[2]} ${date[3]}`;
-
 
     
     return (
@@ -64,7 +63,7 @@ function ChequeRequestModal({handleCloseBackDrop, data}) {
                                         <button type="submit" onClick={handleCloseBackDrop} className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Close</button>
                                     </div> 
                                     <div className="m-auto py-3 w-3/12">
-                                        <button type="button" className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Download</button>
+                                        <button type="button" onClick={handleDownload} className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Download</button>
                                     </div> 
                                 </div>
                             </div>

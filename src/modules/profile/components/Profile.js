@@ -1,14 +1,46 @@
-import React from 'react'
+import React, {useState} from 'react'
 import noImage from "../../../Assets/images/profileImage.png";
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import ProfileInput from './ProfileInput';
 import "../style/Profile.css";
 
 function Profile(props) {
+    const [ selectedImg, setSelectedImge ] = useState("");
     console.log(props.profile);
     const handleOnChange = (name, value) =>{
         props.handleChange(name, value);
     }
+    const editProfile = () =>{
+        setSelectedImge("");
+        props.handleEditProfile();
+    }
+
+    const ProfileImgUploadBtn = () =>{
+        const handleOnchange = (e) =>{
+            const { name } = e.target;
+            let file = e.target.files[0];
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function(){
+                setSelectedImge(URL.createObjectURL(file));
+                props.handleChange(name, reader.result);
+            }
+            reader.onerror = function (error) {
+                props.handleChange(name, "");
+            };
+            e.preventDefault();
+        }
+
+        return(
+            <>
+            <label className='absolute top-0 left-0 w-full h-full rounded-full flex items-center cursor-pointer' htmlFor='upload-btn'>
+                <p className="text-md">Select image</p>
+            </label>
+            <input id="upload-btn"className="hidden" type="file" accept="images/*" name="base64File" onChange={handleOnchange}/>
+            </>
+        )
+    }
+
     return (
         <div className="profile-container w-11/12 rounded-3xl border-color7 border mb-8 mx-auto py-4 mt-5 shadow-transactionBoxShadow"> 
             {props.children}
@@ -23,7 +55,14 @@ function Profile(props) {
                             <p className="text-black font-normal text-xl">Profile picture</p>
                         </div>
                         <div className="profile-image-wrapper w-45 text-center">
-                            <img src={noImage} alt="profileImage" className="w-20 h-20 rounded-full m-auto object-cover"  /> 
+                            <div className='w-20 h-20 rounded-full mx-auto relative'>
+                                {
+                                    !props.inputIsDisabled &&
+                                    <ProfileImgUploadBtn />
+                                }
+                                
+                                <img src={ !selectedImg ? (props.profile.imageRef ? props.profile.imageRef : noImage): selectedImg} alt="profileImage" className="w-20 h-20 rounded-full m-auto object-cover"  /> 
+                            </div>
                         </div>
                     </div>
                     <div className="flex items-center">
@@ -54,8 +93,8 @@ function Profile(props) {
                         {
                             props.inputIsDisabled ?
                             <button onClick={props.handleEditProfile} className="bg-blue-900 text-green-50 border-2 border-blue-900 rounded-3xl py-2 w-32 hover:bg-white hover:text-blue-900">Edit Profile</button>:
-                            <div >
-                                <button onClick={props.handleEditProfile} className="bg-blue-900 text-green-50 border-2 border-blue-900 rounded-3xl py-2 hove w-32 hover:bg-white hover:text-blue-900">Cancel</button>
+                            <div>
+                                <button onClick={editProfile} className="bg-blue-900 text-green-50 border-2 border-blue-900 rounded-3xl py-2 hove w-32 hover:bg-white hover:text-blue-900">Cancel</button>
                                 <button onClick={props.editProfile} className="bg-blue-900 text-green-50 border-2 border-blue-900 rounded-3xl py-2 ml-4 w-32 hover:bg-white hover:text-blue-900">Done</button>
                             </div>
                         }

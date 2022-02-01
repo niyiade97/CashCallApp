@@ -65,7 +65,7 @@ function App() {
             <Route  path="admin-disbursed-requests" element={<AdminDisbursedRequestPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
             <Route  path="admin-fund-request" element={<AdminFundRequestPage />} />
-            <Route  path="admin-requests" component={<AdminRequestPage />} />
+            <Route  path="admin-requests" element={<AdminRequestPage />} />
             <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
             <Route  path="admin-cheque-request" element={<AdminChequeRequestPage />} />
             {/* <AdminProtectedRoute path="/dashboard" element={<DashboardPage />} />
@@ -81,12 +81,12 @@ function App() {
             <Route  path="disbursed-requests" element={<DisbursedRequestPage />} />
           
             {/* supervisor */}
-            {/* <SupervisorProtectedRoute  path="supervisor-requests" element={<SupervisorRequestPage />} />
-            <SupervisorProtectedRoute  path="supervisor-profile" element={<SupervisorProfilePage />} />
-            <SupervisorProtectedRoute  path="supervisor-approved-requests" element={<SupervisorApprovedRequestPage />} />
-            <SupervisorProtectedRoute  path="supervisor-disbursed-requests" element={<SupervisorDisbursedRequestPage />} />
-            <SupervisorProtectedRoute  path="supervisor-rejected-requests" element={<SupervisorRejectedRequestsPage />} />
-            <SupervisorProtectedRoute  path="supervisor-pending-requests" element={<SupervisorPendingRequestPage />} /> */}
+            <Route  path="supervisor-requests" element={<SupervisorRequestPage />} />
+            <Route  path="supervisor-profile" element={<SupervisorProfilePage />} />
+            <Route  path="supervisor-approved-requests" element={<SupervisorApprovedRequestPage />} />
+            <Route  path="supervisor-disbursed-requests" element={<SupervisorDisbursedRequestPage />} />
+            <Route  path="supervisor-rejected-requests" element={<SupervisorRejectedRequestsPage />} />
+            <Route  path="supervisor-pending-requests" element={<SupervisorPendingRequestPage />} />
           </Routes>
         </Router>
     </div>

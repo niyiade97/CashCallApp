@@ -5,6 +5,7 @@ import AlertModal from '../../modules/modal/component/AlertModal';
 import Loader from '../../modules/customElement/component/Loader';
 import ChequeRequestModal from '../../modules/modal/component/ChequeRequestModal';
 import ReactDOM from "react-dom";
+import { saveAs } from 'file-saver';
 import axios from 'axios';
 
 function AdminChequeRequestPage() {
@@ -13,7 +14,8 @@ function AdminChequeRequestPage() {
     const departmentID = localStorage.getItem("adminDepartmentID");
     const firstName = localStorage.getItem("adminFirstName");
     const lastName = localStorage.getItem("adminLastName");
-    const pdfDownloadAPI = process.env.REACT_APP_;
+    const pdfDownloadAPI = process.env.REACT_APP_PDF_DOWNLOAD;
+    const baseURL = process.env.REACT_APP_BASE_URL;
     const [loading, setLoading] = useState(false);
     const [alertModalIsActive, setAlertModalIsActive] = useState(false);
     const [message, setMessage] = useState({
@@ -37,26 +39,27 @@ function AdminChequeRequestPage() {
             status: status
         })
     }
-    const downloadPDF = (id, formData) =>{
-        // axios({
-        //     method: 'post',
-        //     responseType: 'arraybuffer', //Force to receive data in a Blob Format
-        //     url: url,
-        //     data: formData
-        // })
-        //     .then(res => {
-        //         let extension = 'pdf';
-        //         let fileName = `${tempFileName}.${extension}`;
+    const downloadPDF = (id) =>{
+        axios({
+            method: 'post',
+            responseType: 'blob', //Force to receive data in a Blob Format
+            url:  baseURL + pdfDownloadAPI +id,
+            headers: {"Authorization" : `Bearer ${token}`} 
+        })
+            .then(res => {
+                let tempFileName ="chquerequest"
+                let extension = 'pdf';
+                let fileName = `${tempFileName}.${extension}`;
     
-        //         const blob = new Blob([res.data], {
-        //             type: 'application/pdf'
-        //         })
+                const blob = new Blob([res.data], {
+                    type: 'application/pdf'
+                })
     
-        //         saveAs(blob, fileName)
-        //     })
-        //     .catch(error => {
-        //         console.log(error.message);
-        //     });
+                saveAs(blob, fileName);
+            })
+            .catch(error => {
+                console.log(error.message);
+            });
     }
 
     const handleCloseAlertModal = (text, status) => {

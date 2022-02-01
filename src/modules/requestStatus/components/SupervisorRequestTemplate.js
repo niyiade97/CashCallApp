@@ -3,6 +3,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import "../style/AllRequest.css";
 import axios from "axios";
 import { IoIosStar } from "react-icons/io";
+import emptyImage from "../../../Assets/images/noImage.png";
 
 function SupervisorRequestTemplate({ requestData, handleClick, clickStatus }){
     const baseURL = process.env.REACT_APP_BASE_URL;
@@ -36,7 +37,7 @@ function SupervisorRequestTemplate({ requestData, handleClick, clickStatus }){
                 return(
                     <tr onClick={handleOnClick.bind(null,request)} className={`request-wrapper border-2 hover:bg-color20  ${clickStatus ? "cursor-pointer" : "pointer-events-none"}`}>
                         <td className="flex py-4 pl-10">
-                            <img className="w-11 h-11 rounded-full mr-5 object-contain" src={request.imageRef} alt="img"/>
+                            <img className="w-11 h-11 rounded-full mr-5 object-cover" src={request.imageRef ? request.imageRef : emptyImage} alt="img"/>
                             <div>
                                 <p className="font-semibold text-sm text-color17 mb-1">{request.purpose.toUpperCase()}</p>
                                 <p className="font-normal text-xs text-color18">{""}</p>

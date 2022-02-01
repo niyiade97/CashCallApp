@@ -55,6 +55,7 @@ function Login(props) {
                         localStorage.setItem("userDepartmentID", res.data.data.departmentID);
                         localStorage.setItem("userFirstName", res.data.data.firstname)
                         localStorage.setItem("userLastName", res.data.data.lastname)
+                        localStorage.setItem("userImage", res.data.data.imageRef);
                         navigate("/fund-request");
                     }
                     else if( res.data.data.userRole === "Supervisor"){
@@ -64,6 +65,7 @@ function Login(props) {
                         localStorage.setItem("superRole", res.data.data.userRole);
                         localStorage.setItem("superFirstName", res.data.data.firstname)
                         localStorage.setItem("superLastName", res.data.data.lastname)
+                         localStorage.setItem("superImage", res.data.data.imageRef);
                         navigate("/supervisor-requests");
                     }
                     else{
@@ -74,6 +76,7 @@ function Login(props) {
                         localStorage.setItem("adminDepartmentID", res.data.data.departmentID);
                         localStorage.setItem("adminFirstName", res.data.data.firstname)
                         localStorage.setItem("adminLastName", res.data.data.lastname)
+                         localStorage.setItem("adminImage", res.data.data.imageRef);
                         navigate("/dashboard");
                     }
                 }

@@ -106,7 +106,7 @@ function CashRequest({ handleLoader, handleAlertModal, userId, token, department
                     userID: parseInt(userId),
                     departmentID: parseInt(departmentID),
                     supervisorID: null,
-                    amount: null,
+                    amount: 0,
                     base64File: "",
                     reason: "",
                 })
@@ -117,7 +117,7 @@ function CashRequest({ handleLoader, handleAlertModal, userId, token, department
                     userID: parseInt(userId),
                     departmentID: parseInt(departmentID),
                     supervisorID: null,
-                    amount: null,
+                    amount: 0,
                     base64File: "",
                     reason: "",
                 })
@@ -173,7 +173,6 @@ function CashRequest({ handleLoader, handleAlertModal, userId, token, department
                         </div>
                     </div>
                 </form>
-                
             </div>
         </div>
     </>

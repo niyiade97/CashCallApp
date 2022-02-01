@@ -65,11 +65,7 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
             errors.beneficiaryBank = "Beneficiary Bank is required";
             errors.status = true;
         }
-        if(!data.base64File){
-            errors.base64File = "Image upload is required";
-            errors.status = true;
-        }
-         return errors;
+        return errors;
     }
     
     const handleOnSubmit = (e) =>{
@@ -113,7 +109,6 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                     base64File:""
                 })
                 handlePreviewPage(true, res.data.data);
-                console.log(res.data);
             }
             else{
                 handleAlertModal(res.data.message, true);
@@ -196,7 +191,7 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                     <TextField type="text" name="beneficiaryName" placeholder="" label="Beneficiary's Name" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.beneficiaryName} value={chequeRequest.beneficiaryName}/>
                     <TextField type="text" name="beneficiaryBank" placeholder="" label="Beneficiary's Bank" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.beneficiaryBank} value={chequeRequest.beneficiaryBank}/>
                     <TextField type="number" name="amount" placeholder="#3000" label="Amount in Figure" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.amount} value={chequeRequest.amount}/>
-                    <UploadButton label="Upload" onChange={handleOnChange} name="base64File"  formError={formErrors.base64File} value={chequeRequest.base64File}/>
+                    <UploadButton label="Upload" onChange={handleOnChange} name="base64File" value={chequeRequest.base64File}/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>
                     </div>

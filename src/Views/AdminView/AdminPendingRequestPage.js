@@ -73,7 +73,7 @@ function AdminPendingRequestPage() {
         }
         {
             modal &&
-            <ApprovalModal data={data} handleBackDropOnClick={handleBackDropOnClick} handleClick={handleBackDropOnClick} loading={handleLoader} handleOtpModal={handleOtpModal}/>
+            <ApprovalModal data={data} handleBackDropOnClick={handleBackDropOnClick} handleClick={handleBackDropOnClick} loading={handleLoader} handleOtpModal={handleOtpModal} token={token} />
         }
             <div className="w-full flex">
                 <PendingRequest handleClick={handleClick} handleLoader={handleLoader}/>

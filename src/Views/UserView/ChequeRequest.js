@@ -4,7 +4,10 @@ import UserDashboardContainer from "../../modules/userManagement/components/User
 import AlertModal from '../../modules/modal/component/AlertModal';
 import Loader from '../../modules/customElement/component/Loader';
 import ChequeRequestModal from '../../modules/modal/component/ChequeRequestModal';
+import axios from "axios";
 import ReactDOM from "react-dom";
+import { saveAs } from 'file-saver';
+
 function ChequeRequestPage() {
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("userToken");
@@ -12,6 +15,8 @@ function ChequeRequestPage() {
     const firstName = localStorage.getItem("userFirstName");
     const lastName = localStorage.getItem("userLastName");
     const [loading, setLoading] = useState(false);
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const pdfDownloadAPI = process.env.REACT_APP_PDF_DOWNLOAD;
     const [alertModalIsActive, setAlertModalIsActive] = useState(false);
     const [message, setMessage] = useState({
         msg: "",
@@ -33,6 +38,28 @@ function ChequeRequestPage() {
             msg: text,
             status: status
         })
+    }
+    const downloadPDF = (id) =>{
+        axios({
+            method: 'post',
+            responseType: 'blob', //Force to receive data in a Blob Format
+            url:  baseURL + pdfDownloadAPI +id,
+            headers: {"Authorization" : `Bearer ${token}`} 
+        })
+            .then(res => {
+                let tempFileName ="chquerequest"
+                let extension = 'pdf';
+                let fileName = `${tempFileName}.${extension}`;
+    
+                const blob = new Blob([res.data], {
+                    type: 'application/pdf'
+                })
+    
+                saveAs(blob, fileName);
+            })
+            .catch(error => {
+                console.log(error.message);
+            });
     }
 
     const handleCloseAlertModal = (text, status) => {
@@ -65,7 +92,7 @@ function ChequeRequestPage() {
                 {
                     chequeModal &&
                     ReactDOM.createPortal(
-                        <ChequeRequestModal data={modalData} handleCloseBackDrop={handlePreview} />,
+                        <ChequeRequestModal data={modalData} handleCloseBackDrop={handlePreview} handleDownload={downloadPDF} />,
                         document.getElementById("chequeRequestModal")
                     )
 
@@ -74,11 +101,12 @@ function ChequeRequestPage() {
                     <ChequeRequest 
                         handleLoader={handleLoader} 
                         handleAlertModal={handleAlertModal} 
-                        handlePreviewPage={handlePreviewPage} />
+                        handlePreviewPage={handlePreviewPage} 
                         userId={userId}
                         token={token}
                         departmentID={departmentID}
                         fullName={firstName + " " + lastName}
+                    />
                 </div>
             </UserDashboardContainer>
         </>

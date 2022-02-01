@@ -5,18 +5,13 @@ import TextField from "../../customElement/component/TextField";
 import axios from 'axios';
 import "../style/CashRequest.css";
 
-function CashRequest({ handleLoader, handleAlertModal }) {
+function CashRequest({ handleLoader, handleAlertModal, userId, token, departmentID, fullName }) {
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const baseURL = process.env.REACT_APP_BASE_URL;
     const supervisorAPI = process.env.REACT_APP_GET_SUPERVISOR_API;
     const createCashRequestAPI = process.env.REACT_APP_CREATE_CASH_REQUEST_API;
     const [ department, setDepartment ] = useState("");
     const [ supervisors, setSupervisors ] = useState([]);
-    const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("userToken");
-    const departmentID = localStorage.getItem("departmentID");
-    const firstName = localStorage.getItem("userFirstName");
-    const lastName = localStorage.getItem("userLastName");
     const [ formErrors, setFormErrors ] = useState({
     })
     const [ cashRequest, setCashRequest ] = useState({
@@ -54,24 +49,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
             
         })
     }
-    // const getDepartmentName = (array, id) =>{
-    //     for(let i=0; i<array.length; i++){
-    //         if(array[i].departmentID === id){
-    //             return array[i].department;
-    //         }
-    //     }
-    //     return null;
-    // }
-    // const getDepartmentByName = (id) =>{
-    //     axios.get(baseURL + departmentAPI,
-    //         { 
-    //             headers: {"Authorization" : `Bearer ${token}`} 
-    //         }
-    //     )
-    //     .then((res) =>{
-    //         localStorage.setItem("departmentName", getDepartmentName(res.data.data, id));
-    //     })
-    // }
+    
     const getSuperVisor = () =>{
         axios.get(baseURL + supervisorAPI,
             { 
@@ -107,15 +85,10 @@ function CashRequest({ handleLoader, handleAlertModal }) {
             errors.supervisor = "Supervisor is required";
             errors.status = true;
         }
-        if(!data.base64File){
-            errors.imageFile = "Select a file";
-            errors.status = true;
-        }
         if(!data.reason){
             errors.purpose = "Request purpose is required";
             errors.status = true;
         }
-       
         return errors;
     }
     const submitCashRequest = (payload) =>{
@@ -133,7 +106,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
                     userID: parseInt(userId),
                     departmentID: parseInt(departmentID),
                     supervisorID: null,
-                    amount: null,
+                    amount: 0,
                     base64File: "",
                     reason: "",
                 })
@@ -144,7 +117,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
                     userID: parseInt(userId),
                     departmentID: parseInt(departmentID),
                     supervisorID: null,
-                    amount: null,
+                    amount: 0,
                     base64File: "",
                     reason: "",
                 })
@@ -189,7 +162,7 @@ function CashRequest({ handleLoader, handleAlertModal }) {
                 </div>
                 <form onSubmit={handleOnSubmit}>
                     <div className="flex flex-wrap">
-                        <TextField type="text" name="name" placeholder="Dolapo Obisesan" label="Name" onChange={handleOnChange} disabled={true} width="2/4"  value={firstName + " " + lastName}/>
+                        <TextField type="text" name="name" placeholder="Dolapo Obisesan" label="Name" onChange={handleOnChange} disabled={true} width="2/4"  value={fullName}/>
                         <TextField name="departmentID" label="Department" onChange={handleOnChange} disabled={true} width="2/4" formError={""} value={department} />
                         <TextField type="number" name="amount" placeholder="#300,000" label="Amount" onChange={handleOnChange} disabled={false} width="2/4"  formError={formErrors.amount} value={cashRequest.amount} />
                         <Select name="supervisorID" placeholder="Adebayo Salami" label="Supervisor" onChange={handleOnChange} disabled={false} options={supervisors} width="2/4" formError={formErrors.supervisor} value={cashRequest.supervisorID} valueKey="fullName"/>
@@ -200,7 +173,6 @@ function CashRequest({ handleLoader, handleAlertModal }) {
                         </div>
                     </div>
                 </form>
-                
             </div>
         </div>
     </>

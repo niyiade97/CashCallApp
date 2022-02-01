@@ -38,7 +38,9 @@ function AdminProfilePage() {
         id: parseInt(userId),
         firstname: "",
         lastname: "",
-        email: ""
+        email: "",
+        base64File: "",
+        imageRef: ""
 
     });
     const [ loading, setLoading ] = useState(false);
@@ -56,8 +58,15 @@ function AdminProfilePage() {
     }
 
     const editProfile = () =>{
-        handleOnLoad(true)
-        axios.post(baseURL + updateProfileAPI, profile,
+        handleOnLoad(true);
+        const payload = {
+            id: profile.id,
+            email: profile.email,
+            firstname: profile.firstname,
+            lastname: profile.lastname,
+            base64File: profile.base64File
+        }
+        axios.post(baseURL + updateProfileAPI, payload,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -81,14 +90,18 @@ function AdminProfilePage() {
             }
         )
         .then((res) =>{
-            handleOnLoad(false)
+            handleOnLoad(false);
+            localStorage.setItem("adminFirstName", res.data.data.firstname);
+            localStorage.setItem("adminLastName", res.data.data.lastname);
+            localStorage.setItem("adminImage", res.data.data.imageRef);
             localStorage.setItem("adminEmail", res.data.data.email);
             setProfile((prevState) =>{
                 return{
                     ...prevState,
                     firstname: res.data.data.firstname,
                     lastname: res.data.data.lastname,
-                    email: res.data.data.email
+                    email: res.data.data.email,
+                    imageRef: res.data.data.imageRef
                 }
                 
             })

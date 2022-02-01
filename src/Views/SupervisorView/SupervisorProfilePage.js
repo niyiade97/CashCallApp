@@ -33,7 +33,9 @@ function SupervisorProfilePage() {
         id: parseInt(userId),
         firstname: "",
         lastname: "",
-        email: ""
+        email: "",
+        base64File: "",
+        imageRef: ""
 
     });
     const [ loading, setLoading ] = useState(false);
@@ -58,8 +60,15 @@ function SupervisorProfilePage() {
     }
 
     const editProfile = () =>{
-        handleOnLoad(true)
-        axios.post(baseURL + updateProfileAPI, profile,
+        handleOnLoad(true);
+        const payload = {
+            id: profile.id,
+            email: profile.email,
+            firstname: profile.firstname,
+            lastname: profile.lastname,
+            base64File: profile.base64File
+        }
+        axios.post(baseURL + updateProfileAPI, payload,
             { 
                 headers: {"Authorization" : `Bearer ${token}`} 
             }
@@ -84,13 +93,18 @@ function SupervisorProfilePage() {
         )
         .then((res) =>{
             handleOnLoad(false)
-            localStorage.setItem("email", res.data.data.email);
+            localStorage.setItem("superEmail", res.data.data.email);
+            localStorage.setItem("superFirstName", res.data.data.firstname)
+            localStorage.setItem("superLastName", res.data.data.lastname)
+            localStorage.setItem("superImage", res.data.data.imageRef);
             setProfile((prevState) =>{
                 return{
                     ...prevState,
                     firstname: res.data.data.firstname,
                     lastname: res.data.data.lastname,
-                    email: res.data.data.email
+                    email: res.data.data.email,
+                    imageRef: res.data.data.imageRef,
+                    base64File:res.data.data.base64File
                 }
                 
             })

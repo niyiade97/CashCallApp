@@ -7,13 +7,15 @@ import TextArea from '../../customElement/component/TextArea';
 import UploadButton from '../../customElement/component/UploadButton';
 import logo from "../../../Assets/images/cashCallLogo.png"
 
-function ChequeRequestModal({handleCloseBackDrop, data}) {
+function ChequeRequestModal({handleCloseBackDrop, data, handleDownload}) {
     const year = new Date().getFullYear();
     const departmentName = localStorage.getItem("departmentName");
     const date = new Date().toUTCString().split(" ");
     const dateToUTC = `${date[0] } ${date[1]} ${date[2]} ${date[3]}`;
-
-
+    
+    const downloadPDF = (id) =>{
+        handleDownload(id);
+    }
     
     return (
         <>
@@ -39,7 +41,7 @@ function ChequeRequestModal({handleCloseBackDrop, data}) {
                                 <div className='w-full my-7'>
                                     <hr className='border-t-2' />
                                 </div>
-                                <TextArea width="full" name="reason" label="Purpose" row="2" disabled={true} value={data.reason} />
+                                <TextArea width="full" name="reason" label="Purpose" row="2" disabled={true} value={data.note} />
                                 <div className='w-full my-7'>
                                     <hr className='border-t-2'/>
                                 </div>
@@ -53,7 +55,6 @@ function ChequeRequestModal({handleCloseBackDrop, data}) {
                                 <TextField type="text" name="beneficiaryName" placeholder="" label="Beneficiary's Name"  disabled={true} width="2/4"  value={data.beneficiaryName}/>
                                 <TextField type="text" name="beneficiaryBank" placeholder="" label="Beneficiary's Bank" disabled={true} width="2/4" value={data.beneficiaryBank}/>
                                 <TextField type="number" name="amount" placeholder="#3000" label="Amount in Figure" disabled={true} width="2/4" value={data.amount}/>
-                                {/* <UploadButton label="Upload" onChange={handleOnChange} name="base64File"  formError={formErrors.base64File} value={chequeRequest.base64File}/> */}
                                 <div className='w-full my-7'>
                                     <hr className='border-t-2'/>
                                 </div>
@@ -64,7 +65,7 @@ function ChequeRequestModal({handleCloseBackDrop, data}) {
                                         <button type="submit" onClick={handleCloseBackDrop} className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Close</button>
                                     </div> 
                                     <div className="m-auto py-3 w-3/12">
-                                        <button type="button" className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Download</button>
+                                        <button type="button" onClick={downloadPDF.bind(null, data.requestID)} className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Download</button>
                                     </div> 
                                 </div>
                             </div>

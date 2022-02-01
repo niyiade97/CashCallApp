@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios';
 import "../style/ApprovalModal.css";
+import noImage from "../../../Assets/images/noImage.png";
 
 function ApprovalModal({ handleBackDropOnClick, handleOtpModal, data, token, email }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
@@ -81,7 +82,7 @@ function ApprovalModal({ handleBackDropOnClick, handleOtpModal, data, token, ema
                                 <p className="text-2xl text-gray-600">Name: </p>
                                 <p className="ml-5 text-3xl">{name}</p>
                             </div>
-                            <img className="h-20 w-20 rounded-full object-cover" src={data.imageRef} alt="img" />
+                            <img className="h-20 w-20 rounded-full object-cover" src={data.imageRef ? data.imageRef : noImage} alt="img" />
                         </div>
                         <div className='py-5'>
                             <div className='flex items-center'>

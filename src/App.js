@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React from "react";
 import "./App.css";
 import "tailwindcss/tailwind.css";
@@ -25,6 +25,9 @@ import ProfilePage from "./Views/UserView/ProfilePage";
 import RejectedRequestsPage from "./Views/UserView/RejectedRequestsPage";
 import UsersPage from "./Views/AdminView/UsersPage";
 
+import AdminCashRequestPage from "./Views/AdminView/AdminCashRequestPage";
+import AdminChequeRequestPage from "./Views/AdminView/AdminChequeRequestPage";
+import AdminFundRequestPage from "./Views/AdminView/AdminFundRequestPage";
 import AdminRequestPage from "./Views/AdminView/AdminRequestPage";
 import AdminApprovedRequestPage from "./Views/AdminView/AdminApprovedRequestPage";
 import AdminPendingRequestPage from "./Views/AdminView/AdminPendingRequestPage";
@@ -35,37 +38,41 @@ import DepartmentPage from "./Views/AdminView/DepartmentPage";
 import AdminRejectedRequestsPage from "./Views/AdminView/AdminRejectedRequestsPage";
 import AdminProfilePage from "./Views/AdminView/AdminProfilePage";
 
+import UserProtectedRoute from "./Utils/auth/UserProtectedRoute";
+import SupervisorProtectedRoute from "./Utils/auth/SupervisorProtectedRoute";
+import AdminProtectedRoute from "./Utils/auth/AdminProtectedRoute";
+
 function App() {
 
   console.log("environment", process.env);
 
   return (
     <div className="font-sans">
-        <BrowserRouter basename={process.env.REACT_APP_SUBFOLDER}>
+         <Router basename={process.env.REACT_APP_SUBFOLDER}>
           <Routes>
-
             {/* auth routes */}
             <Route  path="/" element={<LoginPage />} />
             <Route  path="login" element={<LoginPage />} />
             <Route  path="reset-password" element={<PasswordResetPage />} />
-            <Route  path="forgot-password" element={<ForgotPasswordPage />} />
             
             {/* admin routes */}
-            <Route path="users" element={ <UsersPage  /> }  />
-            <Route path="users/addUser" element={<AddUserPage /> } />
-            <Route path="departments" element={ <DepartmentPage  /> }  />
+            <Route path="users" element={<UsersPage />} />
+            <Route path="departments" element={<DepartmentPage />}  />
             <Route  path="admin-profile" element={<AdminProfilePage />} />
             <Route  path="admin-approved-requests" element={<AdminApprovedRequestPage />} />
             <Route  path="admin-rejected-requests" element={<AdminRejectedRequestsPage />} />
-            <Route  path="admin-pending-requests" element={<AdminPendingRequestPage />} />
+            <Route  path="admin-pending-requests" element={ <AdminPendingRequestPage />} />
             <Route  path="admin-disbursed-requests" element={<AdminDisbursedRequestPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
+            <Route  path="admin-fund-request" element={<AdminFundRequestPage />} />
             <Route  path="admin-requests" element={<AdminRequestPage />} />
-            
+            <Route  path="admin-cash-request" element={<AdminCashRequestPage />} />
+            <Route  path="admin-cheque-request" element={<AdminChequeRequestPage />} />
+            {/* <AdminProtectedRoute path="/dashboard" element={<DashboardPage />} />
             {/* user */}
             <Route  path="requests" element={<AllRequestPage />} />
             <Route  path="profile" element={<ProfilePage />} />
-            <Route path="fund-request" element={<FundRequestPage />} />
+            <Route  path="fund-request" element={<FundRequestPage />} />
             <Route  path="cash-request" element={<CashRequestPage />} />
             <Route  path="cheque-request" element={<ChequeRequestPage />} />
             <Route  path="approved-requests" element={<ApprovedRequestPage />} />
@@ -80,10 +87,8 @@ function App() {
             <Route  path="supervisor-disbursed-requests" element={<SupervisorDisbursedRequestPage />} />
             <Route  path="supervisor-rejected-requests" element={<SupervisorRejectedRequestsPage />} />
             <Route  path="supervisor-pending-requests" element={<SupervisorPendingRequestPage />} />
-          
           </Routes>
-
-        </BrowserRouter>
+        </Router>
     </div>
   );
 }

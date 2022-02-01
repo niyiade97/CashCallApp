@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import ChequeRequest from "../../modules/chequerequest/components/ChequeRequest"
-import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer"
+import DashboardContainer from '../../modules/dashboard/components/DashboardContainer';
 import AlertModal from '../../modules/modal/component/AlertModal';
 import Loader from '../../modules/customElement/component/Loader';
 import ChequeRequestModal from '../../modules/modal/component/ChequeRequestModal';
-import axios from "axios";
 import ReactDOM from "react-dom";
 import { saveAs } from 'file-saver';
+import axios from 'axios';
 
-function ChequeRequestPage() {
-    const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("userToken");
-    const departmentID = localStorage.getItem("userDepartmentID");
-    const firstName = localStorage.getItem("userFirstName");
-    const lastName = localStorage.getItem("userLastName");
-    const [loading, setLoading] = useState(false);
-    const baseURL = process.env.REACT_APP_BASE_URL;
+function AdminChequeRequestPage() {
+    const userId = localStorage.getItem("adminId");
+    const token = localStorage.getItem("adminToken");
+    const departmentID = localStorage.getItem("adminDepartmentID");
+    const firstName = localStorage.getItem("adminFirstName");
+    const lastName = localStorage.getItem("adminLastName");
     const pdfDownloadAPI = process.env.REACT_APP_PDF_DOWNLOAD;
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const [loading, setLoading] = useState(false);
     const [alertModalIsActive, setAlertModalIsActive] = useState(false);
     const [message, setMessage] = useState({
         msg: "",
@@ -75,7 +75,7 @@ function ChequeRequestPage() {
                 loading &&
                 <Loader color="#FFFFFF" />
             }
-            <UserDashboardContainer>
+            <DashboardContainer>
 
                 {
                     alertModalIsActive &&
@@ -106,11 +106,11 @@ function ChequeRequestPage() {
                         token={token}
                         departmentID={departmentID}
                         fullName={firstName + " " + lastName}
-                    />
+                        />
                 </div>
-            </UserDashboardContainer>
+            </DashboardContainer>
         </>
     )
 }
 
-export default ChequeRequestPage;
+export default AdminChequeRequestPage;

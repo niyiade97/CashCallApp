@@ -5,12 +5,8 @@ import "../style/ChequeRequest.css";
 import TextArea from '../../customElement/component/TextArea';
 import axios from 'axios';
 
-function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage }) {
-    const userId = localStorage.getItem("userId");
-    const token = localStorage.getItem("userToken");
-    const departmentID = localStorage.getItem("departmentID");
-    const firstName = localStorage.getItem("userFirstName");
-    const lastName = localStorage.getItem("userLastName");
+function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userId, token, departmentID, fullName}) {
+    
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const baseURL = process.env.REACT_APP_BASE_URL;
     const createChequeRequestAPI = process.env.REACT_APP_CREATE_CHEQUE_REQUEST_API;
@@ -69,11 +65,7 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage }) {
             errors.beneficiaryBank = "Beneficiary Bank is required";
             errors.status = true;
         }
-        if(!data.base64File){
-            errors.base64File = "Image upload is required";
-            errors.status = true;
-        }
-         return errors;
+        return errors;
     }
     
     const handleOnSubmit = (e) =>{
@@ -117,7 +109,6 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage }) {
                     base64File:""
                 })
                 handlePreviewPage(true, res.data.data);
-                console.log(res.data);
             }
             else{
                 handleAlertModal(res.data.message, true);
@@ -200,11 +191,11 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage }) {
                     <TextField type="text" name="beneficiaryName" placeholder="" label="Beneficiary's Name" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.beneficiaryName} value={chequeRequest.beneficiaryName}/>
                     <TextField type="text" name="beneficiaryBank" placeholder="" label="Beneficiary's Bank" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.beneficiaryBank} value={chequeRequest.beneficiaryBank}/>
                     <TextField type="number" name="amount" placeholder="#3000" label="Amount in Figure" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.amount} value={chequeRequest.amount}/>
-                    <UploadButton label="Upload" onChange={handleOnChange} name="base64File"  formError={formErrors.base64File} value={chequeRequest.base64File}/>
+                    <UploadButton label="Upload" onChange={handleOnChange} name="base64File" value={chequeRequest.base64File}/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>
                     </div>
-                    <TextField type="text" name="preparedBy" placeholder="" label="Prepared by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={firstName + " " + lastName}/>
+                    <TextField type="text" name="preparedBy" placeholder="" label="Prepared by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={fullName}/>
                     <TextField type="text" name="approvedBy" placeholder="" label="Approved by:" onChange={handleOnChange} disabled={true} width="2/4" formError={formErrors.name} value={""}/>
                     <div className="m-auto py-3 w-3/12">
                         <button type="submit" className="cheque-request-btn border w-full text-white h-14 rounded-full mx-2 text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">Submit</button>

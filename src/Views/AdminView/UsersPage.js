@@ -87,7 +87,7 @@ function UsersPage(props) {
     return (
         <DashboardContainer>
             <div className="w-full flex">
-                <Users handleOnLoad={handleOnLoad} handleAddUserModal={handleAddUserModal} handleDeleteModal={handleDeleteModal} users={users}>
+                <Users handleOnLoad={handleOnLoad} handleAddUserModal={handleAddUserModal} handleDeleteModal={handleDeleteModal} users={users} totalUser={users.length}>
                 {
                     loading &&
                     <>

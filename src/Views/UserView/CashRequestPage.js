@@ -3,8 +3,10 @@ import CashRequest from "../../modules/cashrequest/components/CashRequest";
 import UserDashboardContainer from "../../modules/userManagement/components/UserDashboardContainer"
 import Loader from "../../modules/customElement/component/Loader"
 import AlertModal from "../../modules/modal/component/AlertModal"
+import { useNavigate } from "react-router-dom";
 
 function CashRequestPage() {
+    const navigate = useNavigate();
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("userToken");
     const departmentID = localStorage.getItem("userDepartmentID");
@@ -29,6 +31,7 @@ function CashRequestPage() {
     }
     const handleCloseAlertModal = (text, status) => {
         setAlertModalIsActive(false);
+        navigate("/fund-request")
     }
     return (
         <>

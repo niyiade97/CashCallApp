@@ -4,6 +4,7 @@ import TextField from '../../customElement/component/TextField';
 import DepartmentDropDown from '../../customElement/component/DepartmentDropDown';
 import axios from 'axios';
 import "../style/AddUser.css";
+import { FaWindowClose } from 'react-icons/fa';
 
 function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
@@ -148,8 +149,11 @@ function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
             </div>
             <div className="fixed transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-3/5 py-10 rounded-xl bg-white z-30">
             <div className="w-11/12 m-auto">
-                <div className="pl-4 pb-3">
+                <div className="pl-4 pb-3 flex justify-between">
                     <h1 className="text-color24 font-bold text-2xl">Add New User</h1>
+                    <i onClick={handleBackDropOnClick} className="text-blue-800 hover:text-blue-500">
+                        <FaWindowClose />
+                    </i>
                 </div>
                 <form onSubmit={handleOnSubmit}>
                 {

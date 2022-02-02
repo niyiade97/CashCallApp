@@ -4,6 +4,6 @@
 }
 .add-user-btn:hover{
     background-color: white;
-    border: 2px solid rgba(1, 58, 142, 1);
+    border: 1px solid rgba(1, 58, 142, 1);
     color: rgba(1, 58, 142, 1);
 }

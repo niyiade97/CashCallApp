@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import CashRequest from "../../modules/cashrequest/components/CashRequest";
-import DashboardContainer from '../../modules/dashboard/components/DashboardContainer';
+import SupervisorCashRequest from "../../modules/cashrequest/components/SupervisorCashRequest";
+import SupervisorDashboardContainer from "../../modules/dashboard/components/SupervisorDashboardContainer";
 import Loader from "../../modules/customElement/component/Loader"
 import AlertModal from "../../modules/modal/component/AlertModal"
 import { useNavigate } from "react-router-dom";
 
-function AdminCashRequestPage() {
-    const userId = localStorage.getItem("adminId");
-    const token = localStorage.getItem("adminToken");
-    const departmentID = localStorage.getItem("adminDepartmentID");
-    const firstName = localStorage.getItem("adminFirstName");
-    const lastName = localStorage.getItem("adminLastName");
+function SupervisorCashRequestPage() {
+    const userId = localStorage.getItem("superId");
+    const token = localStorage.getItem("superToken");
+    const departmentID = localStorage.getItem("superDepartmentID");
+    const firstName = localStorage.getItem("superFirstName");
+    const lastName = localStorage.getItem("superLastName");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [alertModalIsActive, setAlertModalIsActive] = useState(false);
@@ -31,15 +31,16 @@ function AdminCashRequestPage() {
     }
     const handleCloseAlertModal = (text, status) => {
         setAlertModalIsActive(false);
-        navigate("/admin-fund-request");
+        navigate("/supervisor-fund-request");
     }
+
     return (
         <>
             {
                 loading &&
                 <Loader color="#FFFFFF" />
             }
-            <DashboardContainer >
+            <SupervisorDashboardContainer >
                 {
                     alertModalIsActive &&
                     <AlertModal
@@ -52,21 +53,19 @@ function AdminCashRequestPage() {
                     />
                 }
 
-
                 <div className="w-full flex">
-                    <CashRequest 
+                    <SupervisorCashRequest
                         handleLoader={handleLoader} 
                         handleAlertModal={handleAlertModal}
                         userId={userId}
                         token={token}
                         departmentID={departmentID}
-                        fullName={firstName + " " + lastName}
-                        path="admin-fund-request"
+                        fullName={lastName + " " + firstName}
                          />
                 </div>
-            </DashboardContainer>
+            </SupervisorDashboardContainer>
         </>
     )
 }
 
-export default AdminCashRequestPage;
+export default SupervisorCashRequestPage;

@@ -62,6 +62,7 @@ function Login(props) {
                         localStorage.setItem("superId", res.data.data.id);
                         localStorage.setItem("superEmail", res.data.data.email);
                         localStorage.setItem("superToken", res.data.message);
+                        localStorage.setItem("superDepartmentID", res.data.data.departmentID);
                         localStorage.setItem("superRole", res.data.data.userRole);
                         localStorage.setItem("superFirstName", res.data.data.firstname)
                         localStorage.setItem("superLastName", res.data.data.lastname)

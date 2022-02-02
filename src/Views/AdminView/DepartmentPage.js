@@ -77,7 +77,7 @@ function DepartmentPage(props) {
     return (
         <DashboardContainer>
             <div className="w-full flex">
-                <Department departments={departments} handleAddDepartmentModal={handleAddDepartmentModal} handleOnLoad={handleOnLoad} handleDeleteModal={handleDeleteModal}>
+                <Department departments={departments} handleAddDepartmentModal={handleAddDepartmentModal} handleOnLoad={handleOnLoad} handleDeleteModal={handleDeleteModal} totalDepartment={departments.length}>
                 {
                     loading &&
                     <>

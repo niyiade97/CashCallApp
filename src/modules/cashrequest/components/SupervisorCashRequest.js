@@ -1,11 +1,11 @@
 import React, {useEffect, useState } from 'react'
-import Select from "../../customElement/component/Select";
 import UploadButton from "../../customElement/component/UploadButton";
 import TextField from "../../customElement/component/TextField";
 import axios from 'axios';
 import "../style/CashRequest.css";
+import SupervisorSelect from '../../customElement/component/SupervisorSelect';
 
-function CashRequest({ handleLoader, handleAlertModal, userId, token, departmentID, fullName}) {
+function SupervisorCashRequest({ handleLoader, handleAlertModal, userId, token, departmentID, fullName}) {
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const baseURL = process.env.REACT_APP_BASE_URL;
     const supervisorAPI = process.env.REACT_APP_GET_SUPERVISOR_API;
@@ -17,7 +17,7 @@ function CashRequest({ handleLoader, handleAlertModal, userId, token, department
     const [ cashRequest, setCashRequest ] = useState({
         userID: parseInt(userId),
         departmentID: parseInt(departmentID),
-        supervisorID: null,
+        supervisorID: parseInt(userId),
         amount: "",
         reason: "",
         base64File:""
@@ -175,7 +175,7 @@ function CashRequest({ handleLoader, handleAlertModal, userId, token, department
                         <TextField type="text" name="name" placeholder="Dolapo Obisesan" label="Name" onChange={handleOnChange} disabled={true} width="2/4"  value={fullName}/>
                         <TextField name="departmentID" label="Department" onChange={handleOnChange} disabled={true} width="2/4" formError={""} value={department} />
                         <TextField name="amount" type="text" placeholder="#300,000" label="Amount" onChange={handleOnChange} disabled={false} width="2/4"  formError={formErrors.amount} value={cashRequest.amount} />
-                        <Select name="supervisorID" userID={userId} placeholder="Adebayo Salami" label="Supervisor" onChange={handleOnChange} disabled={false} options={supervisors} width="2/4" formError={formErrors.supervisor} value={cashRequest.supervisorID} valueKey="fullName"/>
+                        <SupervisorSelect name="supervisorID" userID={userId} placeholder="Adebayo Salami" label="Supervisor" onChange={handleOnChange} disabled={true} options={supervisors} width="2/4" formError={formErrors.supervisor} value={cashRequest.supervisorID} valueKey="fullName"/>
                         <UploadButton label="Upload" onChange={handleOnChange} name="base64File"  formError={formErrors.imageFile} value={cashRequest.base64File}/>
                         <TextField type="text" name="reason" placeholder="Vehicle Repair" label="Purpose" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.purpose} value={cashRequest.reason} />
                         <div className="cash-request-btn-wrapper w-45 m-auto py-3">
@@ -189,4 +189,4 @@ function CashRequest({ handleLoader, handleAlertModal, userId, token, department
     )
 }
 
-export default CashRequest;
+export default SupervisorCashRequest;

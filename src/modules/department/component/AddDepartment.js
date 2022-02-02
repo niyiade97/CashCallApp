@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import TextField from '../../customElement/component/TextField';
 import axios from 'axios';
-// import "../style/AddUser.css";
+import { FaWindowClose } from 'react-icons/fa';
 
 function AddDepartment({ loading, handleBackDropOnClick, handleGetDepartment }) {
     const createDepartmentAPI = process.env.REACT_APP_CREATE_DEPARTMENT_API;
@@ -111,8 +111,11 @@ function AddDepartment({ loading, handleBackDropOnClick, handleGetDepartment }) 
             </div>
             <div className="absolute transform -translate-y-2/4 -translate-x-2/4 top-2/4 left-2/4 w-3/4 py-14 rounded-xl bg-white z-20">
             <div className="w-11/12 m-auto">
-                <div className="pl-4 pb-3">
-                    <h1 className="text-color24 font-bold text-2xl">Add Departmet</h1>
+                <div className="pl-4 pb-3 flex justify-between">
+                    <h1 className="text-color24 font-bold text-xl">Add Departmet</h1>
+                    <i onClick={handleBackDropOnClick} className="text-blue-800 hover:text-blue-500">
+                        <FaWindowClose />
+                    </i>
                 </div>
                 <form onSubmit={handleOnSubmit}>
                 {
@@ -125,7 +128,7 @@ function AddDepartment({ loading, handleBackDropOnClick, handleGetDepartment }) 
                     <TextField type="text" name="lineManagerEmail" placeholder="niyiade97@gmail.com" label="Line Manager's Email" onChange={handleOnChange} disabled={false} width="2/4" value={departmentDetails.lineManagerEmail} formError={formErrors.lineManagerEmail}/>
                     
                     <div className="w-full py-3 text-center">
-                        <button type="submit" className="add-user-btn border w-5/12 bg-color2 text-white h-14 rounded-full text-lg font-semibold hover:border-color2 hover:bg-white hover:text-color2">
+                        <button type="submit" className="add-user-btn border w-5/12 bg-blue-800 text-white h-14 rounded-full text-lg font-semibold hover:border-blue-800 hover:bg-white hover:text-blue-800">
                         Submit
                         </button>
                     </div>

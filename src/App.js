@@ -11,6 +11,9 @@ import SupervisorApprovedRequestPage from "./Views/SupervisorView/SupervisorAppr
 import SupervisorRejectedRequestsPage from "./Views/SupervisorView/SupervisorRejectedRequestsPage";
 import SupervisorPendingRequestPage from "./Views/SupervisorView/SupervisorPendingRequestPage";
 import SupervisorDisbursedRequestPage from "./Views/SupervisorView/SupervisorDisbursedRequestPage";
+import SupervisorFundRequestPage from "./Views/SupervisorView/SupervisorFundRequestPage"
+import SupervisorCashRequestPage from "./Views/SupervisorView/SupervisorCashRequestPage";
+import SupervisorChequeRequestPage from "./Views/SupervisorView/SupervisorChequeRequestPage";
 
 import ApprovedRequestPage from "./Views/UserView/ApprovedRequestPage";
 import CashRequestPage from "./Views/UserView/CashRequestPage";
@@ -81,6 +84,9 @@ function App() {
             <Route  path="disbursed-requests" element={<DisbursedRequestPage />} />
           
             {/* supervisor */}
+            <Route  path="supervisor-fund-request" element={<SupervisorFundRequestPage />} />
+            <Route  path="supervisor-cash-request" element={<SupervisorCashRequestPage />} />
+            <Route  path="supervisor-cheque-request" element={<SupervisorChequeRequestPage />} />
             <Route  path="supervisor-requests" element={<SupervisorRequestPage />} />
             <Route  path="supervisor-profile" element={<SupervisorProfilePage />} />
             <Route  path="supervisor-approved-requests" element={<SupervisorApprovedRequestPage />} />

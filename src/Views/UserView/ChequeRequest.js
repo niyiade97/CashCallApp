@@ -7,8 +7,10 @@ import ChequeRequestModal from '../../modules/modal/component/ChequeRequestModal
 import axios from "axios";
 import ReactDOM from "react-dom";
 import { saveAs } from 'file-saver';
+import { useNavigate } from "react-router-dom";
 
 function ChequeRequestPage() {
+    const navigate = useNavigate();
     const userId = localStorage.getItem("userId");
     const token = localStorage.getItem("userToken");
     const departmentID = localStorage.getItem("userDepartmentID");
@@ -56,6 +58,7 @@ function ChequeRequestPage() {
                 })
     
                 saveAs(blob, fileName);
+                navigate("/fund-request");
             })
             .catch(error => {
                 console.log(error.message);
@@ -64,9 +67,14 @@ function ChequeRequestPage() {
 
     const handleCloseAlertModal = (text, status) => {
         setAlertModalIsActive(false);
+        navigate("/fund-request");
+    }
+    const handleClosePreview = () =>{
+        setChequeModal(false);
+        navigate("/fund-request");
     }
     const handlePreview = () => {
-        setChequeModal(!chequeModal);
+        setChequeModal(true);
         setAlertModalIsActive(false);
     }
     return (
@@ -92,7 +100,7 @@ function ChequeRequestPage() {
                 {
                     chequeModal &&
                     ReactDOM.createPortal(
-                        <ChequeRequestModal data={modalData} handleCloseBackDrop={handlePreview} handleDownload={downloadPDF} />,
+                        <ChequeRequestModal data={modalData} handleCloseBackDrop={handleClosePreview} handleDownload={downloadPDF} />,
                         document.getElementById("chequeRequestModal")
                     )
 

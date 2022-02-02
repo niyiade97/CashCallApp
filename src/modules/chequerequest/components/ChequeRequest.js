@@ -21,7 +21,8 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
         beneficiaryName: "",
         beneficiaryBank: "",
         amount: 0,
-        base64File:""
+        base64File:"",
+        acctNum : ""
     })
 
     const handleOnChange = (name, value) =>{
@@ -45,10 +46,6 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
              errors.amount = "Amount is required";
              errors.status = true;
          }
-         else if(data.amount > 20000){
-             errors.amount = "Amount can't be greater than #20,000";
-             errors.status = true;
-         }
          if(!data.purpose){
              errors.purpose = "Purpose is required";
              errors.status = true;
@@ -63,6 +60,14 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
          }
          if(!data.beneficiaryBank){
             errors.beneficiaryBank = "Beneficiary Bank is required";
+            errors.status = true;
+        }
+        if(!data.base64File){
+            errors.base64File = "Select a file";
+            errors.status = true;
+        }
+        if(!data.acctNum){
+            errors.base64File = "Account Number is required";
             errors.status = true;
         }
         return errors;
@@ -106,7 +111,8 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                     beneficiaryName: "",
                     beneficiaryBank: "",
                     amount: 0,
-                    base64File:""
+                    base64File:"",
+                    acctNum: ""
                 })
                 handlePreviewPage(true, res.data.data);
             }
@@ -120,7 +126,9 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                     beneficiaryName: "",
                     beneficiaryBank: "",
                     amount: 0,
-                    base64File:""
+                    base64File:"",
+                    acctNum: ""
+
                 })
 
 
@@ -137,7 +145,9 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                 beneficiaryName: "",
                 beneficiaryBank: "",
                 amount: 0,
-                base64File:""
+                base64File:"",
+                acctNum: ""
+
             })
         })
     }
@@ -190,8 +200,9 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                     </div>
                     <TextField type="text" name="beneficiaryName" placeholder="" label="Beneficiary's Name" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.beneficiaryName} value={chequeRequest.beneficiaryName}/>
                     <TextField type="text" name="beneficiaryBank" placeholder="" label="Beneficiary's Bank" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.beneficiaryBank} value={chequeRequest.beneficiaryBank}/>
-                    <TextField type="number" name="amount" placeholder="#3000" label="Amount in Figure" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.amount} value={chequeRequest.amount}/>
-                    <UploadButton label="Upload" onChange={handleOnChange} name="base64File" value={chequeRequest.base64File}/>
+                    <TextField type="text" name="acctNum" placeholder="" label="Account Number" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.acctNum} value={chequeRequest.acctNum}/>
+                    <TextField type="text" name="amount" placeholder="#3000" label="Amount in Figure" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.amount} value={chequeRequest.amount}/>
+                    <UploadButton label="Upload" onChange={handleOnChange} formError={formErrors.base64File} name="base64File" value={chequeRequest.base64File}/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>
                     </div>

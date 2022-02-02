@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import ChequeRequest from "../../modules/chequerequest/components/ChequeRequest"
-import DashboardContainer from '../../modules/dashboard/components/DashboardContainer';
 import AlertModal from '../../modules/modal/component/AlertModal';
 import Loader from '../../modules/customElement/component/Loader';
 import ChequeRequestModal from '../../modules/modal/component/ChequeRequestModal';
+import axios from "axios";
 import ReactDOM from "react-dom";
 import { saveAs } from 'file-saver';
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import SupervisorDashboardContainer from '../../modules/dashboard/components/SupervisorDashboardContainer';
 
-function AdminChequeRequestPage() {
+function ChequeRequestPage() {
     const navigate = useNavigate();
-    const userId = localStorage.getItem("adminId");
-    const token = localStorage.getItem("adminToken");
-    const departmentID = localStorage.getItem("adminDepartmentID");
-    const firstName = localStorage.getItem("adminFirstName");
-    const lastName = localStorage.getItem("adminLastName");
-    const pdfDownloadAPI = process.env.REACT_APP_PDF_DOWNLOAD;
-    const baseURL = process.env.REACT_APP_BASE_URL;
+    const userId = localStorage.getItem("superId");
+    const token = localStorage.getItem("superToken");
+    const departmentID = localStorage.getItem("superDepartmentID");
+    const firstName = localStorage.getItem("superFirstName");
+    const lastName = localStorage.getItem("superLastName");
     const [loading, setLoading] = useState(false);
+    const baseURL = process.env.REACT_APP_BASE_URL;
+    const pdfDownloadAPI = process.env.REACT_APP_PDF_DOWNLOAD;
     const [alertModalIsActive, setAlertModalIsActive] = useState(false);
     const [message, setMessage] = useState({
         msg: "",
@@ -58,7 +58,7 @@ function AdminChequeRequestPage() {
                 })
     
                 saveAs(blob, fileName);
-                navigate("/admin-fund-request");
+                navigate("/supervisor-fund-request");
             })
             .catch(error => {
                 console.log(error.message);
@@ -67,14 +67,13 @@ function AdminChequeRequestPage() {
 
     const handleCloseAlertModal = (text, status) => {
         setAlertModalIsActive(false);
-        navigate("/admin-fund-request");
+        navigate("/supervisor-fund-request");
     }
-    const handleClosePreview = () => {
+    const handleClosePreview = () =>{
         setChequeModal(false);
-        setAlertModalIsActive(false);
-        navigate("/admin-fund-request");
+        navigate("/supervisor-fund-request");
     }
-    const handlePreview = () =>{
+    const handlePreview = () => {
         setChequeModal(true);
         setAlertModalIsActive(false);
     }
@@ -84,7 +83,7 @@ function AdminChequeRequestPage() {
                 loading &&
                 <Loader color="#FFFFFF" />
             }
-            <DashboardContainer>
+            <SupervisorDashboardContainer>
 
                 {
                     alertModalIsActive &&
@@ -115,11 +114,11 @@ function AdminChequeRequestPage() {
                         token={token}
                         departmentID={departmentID}
                         fullName={firstName + " " + lastName}
-                        />
+                    />
                 </div>
-            </DashboardContainer>
+            </SupervisorDashboardContainer>
         </>
     )
 }
 
-export default AdminChequeRequestPage;
+export default ChequeRequestPage;

@@ -30,11 +30,7 @@ function SuperNav() {
                     <img src={logo} alt="logo" className="w-36 h-16 object-cover" />
                 </div>
                 <div className="side-bar-nav-container pt-20">
-                    <p className="nav-container flex justify-start items-center text-color5 my-8 hover:text-color2 group focus:text-color2 cursor-pointer" onClick={handleDropDown}>
-                        <i className="text-2xl group-focus:text-color2">{<BiDollarCircle />}</i>
-                        <p className="font-bold text-sm pl-5">Fund Requests</p>
-                            <i className="pl-3"><IoMdArrowDropdown /></i>
-                    </p>
+                    <Nav path="/supervisor-fund-request" text="Fund Requests" icon={<BiDollarCircle />} dropDownIsActive={true} handleClick={handleDropDown}/>
                     <ul className={`${dropDownStatus ? "block" : "hidden" } font-bold text-sm pl-10 duration-1000 transition-all ease-in-out`}>
                         <li className="relative py-2 hover:text-color24">
                             <Link to="/supervisor-requests">All requests</Link>

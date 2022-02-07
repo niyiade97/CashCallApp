@@ -21,6 +21,9 @@ function TextField({label, onChange, disabled, placeholder, name, type, width, v
             }
             _value = parseInt(tempValue).toLocaleString('en-US');
         }
+        else if(type === "number") {
+            _value = parseInt(value);
+        }
         e.preventDefault();
         onChange(name, _value);
     }

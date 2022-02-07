@@ -20,9 +20,9 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
         reason: "",
         beneficiaryName: "",
         beneficiaryBank: "",
-        amount: 0,
+        amount: "",
         base64File:"",
-        acctNum : ""
+        accountNo : ""
     })
 
     const handleOnChange = (name, value) =>{
@@ -35,6 +35,7 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
     }
 
     const validate = (data) =>{
+        console.log((/^\d+$/.test(data.accountNo)));
         const errors ={
          status: false
         }
@@ -46,6 +47,18 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
              errors.amount = "Amount is required";
              errors.status = true;
          }
+         if(!data.accountNo){
+            errors.accountNo = "Account Number is required";
+            errors.status = true;
+        }
+        else if(!(/^\d+$/.test(data.accountNo))){
+            errors.accountNo = "Account Number is not valid";
+            errors.status = true;
+        }
+        else if(data.accountNo.length !== 10){
+            errors.accountNo = "Account Number must be 10 valid digits";
+            errors.status = true;
+        }
          if(!data.purpose){
              errors.purpose = "Purpose is required";
              errors.status = true;
@@ -66,10 +79,7 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
             errors.base64File = "Select a file";
             errors.status = true;
         }
-        if(!data.acctNum){
-            errors.base64File = "Account Number is required";
-            errors.status = true;
-        }
+       
         return errors;
     }
     
@@ -88,6 +98,7 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
             formData.append("beneficiaryName", chequeRequest.beneficiaryName);
             formData.append("beneficiaryBank", chequeRequest.beneficiaryBank);
             formData.append("base64File", chequeRequest.base64File);
+            formData.append("accountNo", chequeRequest.accountNo);
             submitChequeRequest(formData);
         }
     }
@@ -112,12 +123,13 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                     beneficiaryBank: "",
                     amount: 0,
                     base64File:"",
-                    acctNum: ""
+                    acctNum: "",
+                    accountNo:""
                 })
                 handlePreviewPage(true, res.data.data);
             }
             else{
-                handleAlertModal(res.data.message, true);
+                handleAlertModal(res.data.message, false);
                 setChequeRequest({
                     userID: parseInt(userId),
                     departmentID: parseInt(departmentID),
@@ -125,9 +137,9 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                     reason: "",
                     beneficiaryName: "",
                     beneficiaryBank: "",
-                    amount: 0,
+                    amount: "",
                     base64File:"",
-                    acctNum: ""
+                    accountNo: ""
 
                 })
 
@@ -144,9 +156,9 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                 reason: "",
                 beneficiaryName: "",
                 beneficiaryBank: "",
-                amount: 0,
+                amount: "",
                 base64File:"",
-                acctNum: ""
+                accountNo: ""
 
             })
         })
@@ -200,7 +212,7 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                     </div>
                     <TextField type="text" name="beneficiaryName" placeholder="" label="Beneficiary's Name" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.beneficiaryName} value={chequeRequest.beneficiaryName}/>
                     <TextField type="text" name="beneficiaryBank" placeholder="" label="Beneficiary's Bank" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.beneficiaryBank} value={chequeRequest.beneficiaryBank}/>
-                    <TextField type="text" name="acctNum" placeholder="" label="Account Number" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.acctNum} value={chequeRequest.acctNum}/>
+                    <TextField type="text" name="accountNo" placeholder="" label="Account Number" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.accountNo} value={chequeRequest.accountNo}/>
                     <TextField type="text" name="amount" placeholder="#3000" label="Amount in Figure" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.amount} value={chequeRequest.amount}/>
                     <UploadButton label="Upload" onChange={handleOnChange} formError={formErrors.base64File} name="base64File" value={chequeRequest.base64File}/>
                     <div className='w-full my-7'>

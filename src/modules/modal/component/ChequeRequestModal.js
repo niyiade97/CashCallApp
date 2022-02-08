@@ -41,11 +41,11 @@ function ChequeRequestModal({handleCloseBackDrop, data, handleDownload}) {
                                 <div className='w-full my-7'>
                                     <hr className='border-t-2' />
                                 </div>
-                                <TextArea width="full" name="reason" label="Purpose" row="2" disabled={true} value={data.note} />
+                                <TextArea width="full" name="reason" label="Purpose" row="2" disabled={true} value={data.purpose} />
                                 <div className='w-full my-7'>
                                     <hr className='border-t-2'/>
                                 </div>
-                                <TextArea width="full" name="purpose" label="Sir / Madam," row="5" disabled={true} value={data.purpose} />
+                                <TextArea width="full" name="purpose" label="Sir / Madam," row="5" disabled={true} value={data.reason} />
                                 <div className='w-full my-7'>
                                     <hr className='border-t-2'/>
                                 </div>
@@ -54,8 +54,8 @@ function ChequeRequestModal({handleCloseBackDrop, data, handleDownload}) {
                                 </div>
                                 <TextField type="text" name="beneficiaryName" placeholder="" label="Beneficiary's Name"  disabled={true} width="2/4"  value={data.beneficiaryName}/>
                                 <TextField type="text" name="beneficiaryBank" placeholder="" label="Beneficiary's Bank" disabled={true} width="2/4" value={data.beneficiaryBank}/>
-                                <TextField type="text" name="acctNum" placeholder="" label="Account Number" disabled={false} width="2/4"  value={""}/>
-                                <TextField type="number" name="amount" placeholder="#3000" label="Amount in Figure" disabled={true} width="2/4" value={data.amount}/>
+                                <TextField type="text" name="accountNo" placeholder="" label="Account Number" disabled={true} width="2/4"  value={data.accountNo}/>
+                                <TextField type="text" name="amount" placeholder="#3000" label="Amount in Figure" disabled={true} width="2/4" value={data.amount}/>
                                 <div className='w-full my-7'>
                                     <hr className='border-t-2'/>
                                 </div>

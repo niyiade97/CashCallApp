@@ -20,32 +20,26 @@ function Dashboard() {
     const stats =[
         {
             statType:"All Request",
-            stat: "no investment this week",
             amount:requestWeeklyStat.allamount
         },
         {
             statType:"Cash Request",
-            stat: "15% more this week",
             amount: requestWeeklyStat.cashamount
         },
         {
             statType:"Cheque Request",
-            stat: "15% more this week",
             amount:requestWeeklyStat.chequeamount
         },
         {
             statType:"Pending Request",
-            stat: "no investment this week",
             amount: requestWeeklyStat.pendingrequest
         },
         {
             statType:"Approved Request",
-            stat: "no investment this week",
             amount:requestWeeklyStat.approvedrequest
         },
         {
             statType:"Declined Request",
-            stat: "no investment this week",
             amount:requestWeeklyStat.declinedrequest
         },
     ]
@@ -67,13 +61,12 @@ function Dashboard() {
         })
     }
     
-    const StatCard = ({ statType, stat, amount}) =>{
+    const StatCard = ({ statType, amount}) =>{
         return(
             <div className='stat-card-wrapper p-4'>
                 <div className='flex justify-between items-start'>
                     <div>
                         <h1>{statType}</h1>
-                        <p>{stat}</p>
                     </div>
                     <div className="text-3xl">
                         <BiDotsVerticalRounded />

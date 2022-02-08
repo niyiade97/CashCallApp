@@ -93,7 +93,7 @@ function ChequeRequestPage() {
                         messageText2=""
                         status={message.status}
                         handleClick={handleCloseAlertModal}
-                        btnStatus={true}
+                        btnStatus={message.status}
                         handlePreview={handlePreview}
                     />
                 }

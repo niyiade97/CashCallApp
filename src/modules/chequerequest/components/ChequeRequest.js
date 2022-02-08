@@ -199,11 +199,11 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                     <div className='w-full my-7'>
                         <hr className='border-t-2' />
                     </div>
-                    <TextArea width="full" name="reason" label="Purpose" row="2" value={chequeRequest.reason} formError={formErrors.reason} onChange={handleOnChange}/>
+                    <TextArea width="full" name="purpose" label="Purpose" row="2" value={chequeRequest.purpose} formError={formErrors.purpose} onChange={handleOnChange}/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>
                     </div>
-                    <TextArea width="full" name="purpose" label="Sir / Madam," row="5" value={chequeRequest.purpose} formError={formErrors.purpose} onChange={handleOnChange}/>
+                    <TextArea width="full" name="reason" label="Sir / Madam," row="5" value={chequeRequest.reason} formError={formErrors.reason} onChange={handleOnChange}/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>
                     </div>

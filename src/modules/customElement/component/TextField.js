@@ -1,7 +1,6 @@
 import React from 'react'
 
 function TextField({label, onChange, disabled, placeholder, name, type, width, value, formError}) {
-    
    
     
     const handleOnchange = (e) =>{

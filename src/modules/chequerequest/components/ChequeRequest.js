@@ -213,7 +213,7 @@ function ChequeRequest({ handleLoader, handleAlertModal,handlePreviewPage, userI
                     <TextField type="text" name="beneficiaryName" placeholder="" label="Beneficiary's Name" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.beneficiaryName} value={chequeRequest.beneficiaryName}/>
                     <TextField type="text" name="beneficiaryBank" placeholder="" label="Beneficiary's Bank" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.beneficiaryBank} value={chequeRequest.beneficiaryBank}/>
                     <TextField type="text" name="accountNo" placeholder="" label="Account Number" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.accountNo} value={chequeRequest.accountNo}/>
-                    <TextField type="text" name="amount" placeholder="#3000" label="Amount in Figure" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.amount} value={chequeRequest.amount}/>
+                    <TextField type="text" name="amount" placeholder="₦3000" label="Amount in Figure" onChange={handleOnChange} disabled={false} width="2/4" formError={formErrors.amount} value={chequeRequest.amount}/>
                     <UploadButton label="Upload" onChange={handleOnChange} formError={formErrors.base64File} name="base64File" value={chequeRequest.base64File}/>
                     <div className='w-full my-7'>
                         <hr className='border-t-2'/>

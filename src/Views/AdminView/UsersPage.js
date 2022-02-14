@@ -8,12 +8,14 @@ import axios from "axios";
 import DeleteModal from "../../modules/modal/component/DeleteModal"
 import { useSelector, useDispatch } from "react-redux";
 import { addUsers, fetchAsyncUsers } from '../../redux/users/userSlice';
-import api from "../../Utils/api";
+import { getUser,deleteUser } from "../../services/users"
+
 
 function UsersPage(props) {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     
-    // const userList = useSelector((state) => state.users.value)
+    const userList = useSelector((state) => state.users)
+    
     const usersAPI = process.env.REACT_APP_GET_USERS_API;
     const [ loading, setLoading ] = useState(false);
     const [ addUserModal, setAdUserModal ] = useState(false);
@@ -22,7 +24,7 @@ function UsersPage(props) {
     const deleteUserAPI = process.env.REACT_APP_DELETE_USER_API;
     const token = localStorage.getItem("adminToken");
     const [ deleteModal, setDeleteModal] = useState(false);
-    const [ id, setId ] = useState(null);
+    const [ deleteData, setDeleteData ] = useState({});
     
     const handleOnLoad = (state) =>{
         setLoading(state)
@@ -30,8 +32,9 @@ function UsersPage(props) {
     const handleAddUserModal = () =>{
         setAdUserModal(!addUserModal);
     }
-    const handleDeleteModal = (id) =>{
-        setId(id);
+    const handleDeleteModal = (data) =>{
+        setDeleteData(data);
+        console.log(data)
         setDeleteModal(!deleteModal);
     }
     const onclick = () =>{
@@ -39,55 +42,38 @@ function UsersPage(props) {
     }
 
     const handleDelete = () =>{
-        axios.post(baseURL + deleteUserAPI + id,{},
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{ 
-            console.log(res)
-            getUsers();
-            setDeleteModal(false);
-        })
-        .catch(err =>{
-            console.log(err);
-        })
+        deleteUser(deleteData.id)
+            .then((res) =>{ 
+                console.log(res)
+                // dispatch(deleteUser(deleteData.index));
+                getUsers();
+                setDeleteModal(false);
+            })
+            .catch(err =>{
+                console.log(err);
+            })
     }
 
     const getUsers = async () =>{
-        // const response = await api
-        // .get(usersAPI)
-        // .catch(err =>{
-        //     console.log(err);
-        // })
-        // dispatch(addUsers(response.data));
-        handleOnLoad(true)
-        axios.get(baseURL + usersAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
+        // handleOnLoad(true)
+        getUser()
         .then((res) =>{
             handleOnLoad(false)
-            setUsers(res.data.data.map((data) =>{
-                return{
-                    data
-                }
-            }))
-            // dispatch(addUser(res.data.data));
+            dispatch(addUsers(res.data.data));
         })
         .catch(err =>{
+            // err.response..status
             handleOnLoad(false);
         })
     }
     useEffect(() => {
-        // dispatch(fetchAsyncUsers())
+        console.log(userList)
         getUsers();
     }, [])
     return (
         <DashboardContainer>
             <div className="w-full flex">
-                <Users handleOnLoad={handleOnLoad} handleAddUserModal={handleAddUserModal} handleDeleteModal={handleDeleteModal} users={users} totalUser={users.length}>
+                <Users handleOnLoad={handleOnLoad} handleAddUserModal={handleAddUserModal} handleDeleteModal={handleDeleteModal} users={userList}>
                 {
                     loading &&
                     <>

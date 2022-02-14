@@ -8,7 +8,7 @@ import { FaWindowClose } from 'react-icons/fa';
 
 function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
-    const token = localStorage.getItem("adminToken");
+    const token = localStorage.getItem("token");
     const [ departments, setDepartments ] = useState([]);
      const baseURL = process.env.REACT_APP_BASE_URL;
     const addUserAPI = process.env.REACT_APP_ADD_USER_API;

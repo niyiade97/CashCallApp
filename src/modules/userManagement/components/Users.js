@@ -1,16 +1,11 @@
 import React from 'react'
 import { IoAddOutline } from 'react-icons/io5';
-import { FiSearch } from 'react-icons/fi'
 import { BsArrowUpShort } from 'react-icons/bs'
 import UserTemplate from './UserTemplate';
 import "../style/Users.css";
-import { useSelector } from "react-redux";
-import { getAllUsers } from '../../../redux/users/userSlice';
-import { render } from 'react-dom';
 
 function Users(props) {
-    // const users = useSelector(getAllUsers);
-    // console.log(users);
+    
     return (
         <div className="w-full h-screen mb-8 py-4 mt-5 relative"> 
             {props.children}

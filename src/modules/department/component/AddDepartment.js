@@ -1,12 +1,9 @@
-import React,{useEffect, useState} from 'react'
+import React,{ useState } from 'react'
 import TextField from '../../customElement/component/TextField';
-import axios from 'axios';
 import { FaWindowClose } from 'react-icons/fa';
+import { createDepartment } from  "../../../services/departments";
 
-function AddDepartment({ loading, handleBackDropOnClick, handleGetDepartment }) {
-    const createDepartmentAPI = process.env.REACT_APP_CREATE_DEPARTMENT_API;
-    const token = localStorage.getItem("adminToken");
-     const baseURL = process.env.REACT_APP_BASE_URL;
+function AddDepartment({ loading, handleBackDropOnClick, getDepartments }) {
     const [ message, setMessage ] = useState({
         msg: "",
         status:""
@@ -19,6 +16,7 @@ function AddDepartment({ loading, handleBackDropOnClick, handleGetDepartment }) 
         lineManagerName:"",
         lineManagerEmail:""
     });
+
     const handleOnSubmit = (e) =>{
         e.preventDefault();
         setFormErrors(validate(departmentDetails));
@@ -28,8 +26,6 @@ function AddDepartment({ loading, handleBackDropOnClick, handleGetDepartment }) 
             }
             AddNewDepartment(payload);
         }
-        // console.log(userDtails);
-       
     }
     
     const handleOnChange = (name, value) =>{
@@ -40,6 +36,7 @@ function AddDepartment({ loading, handleBackDropOnClick, handleGetDepartment }) 
             }
         })
     }
+
     const validate = (data) =>{
         const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
         const errors ={
@@ -75,36 +72,31 @@ function AddDepartment({ loading, handleBackDropOnClick, handleGetDepartment }) 
             setMessage("");
         }, 4000);
     }
+
     const AddNewDepartment = (payload) =>{
         loading(true);
-        axios.post(baseURL + createDepartmentAPI , payload,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
+        createDepartment(payload)
+            .then((res)=>{
+                if(res.data.isSuccess){
+                    getDepartments();
+                    loading(false);
+                    ClearInput();
+                    setMessage({
+                        msg: "Department Added Successfully !!",
+                        status:"1"
+                    });
+                }
+                else{
+                    loading(false);
+                    ClearInput();
+                    setMessage({
+                        msg: res.data.message,
+                        status:"0"
+                    });
+                }
             })
-        .then((res)=>{
-            if(res.data.isSuccess){
-                handleGetDepartment();
-                loading(false);
-                ClearInput();
-                setMessage({
-                    msg: "Department Added Successfully !!",
-                    status:"1"
-                });
-                
-               
-            }
-            else{
-                loading(false);
-                ClearInput();
-                setMessage({
-                    msg: res.data.message,
-                    status:"0"
-                });
-            }
-        })
     }
-    useEffect(() => {
-    }, [])
+
     return (
         <>
              <div className={`fixed top-0 w-full h-full bg-black opacity-50 z-${20}`} onClick={handleBackDropOnClick}>

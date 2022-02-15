@@ -4,14 +4,14 @@ import TextField from '../../customElement/component/TextField';
 import DepartmentDropDown from '../../customElement/component/DepartmentDropDown';
 import axios from 'axios';
 import "../style/AddUser.css";
+import { createUser } from '../../../services/users';
 import { FaWindowClose } from 'react-icons/fa';
 
-function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
+function AddUser({ loading, handleBackDropOnClick, handleGetUsers, getUsers }) {
     const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
     const token = localStorage.getItem("token");
     const [ departments, setDepartments ] = useState([]);
      const baseURL = process.env.REACT_APP_BASE_URL;
-    const addUserAPI = process.env.REACT_APP_ADD_USER_API;
     const [ message, setMessage ] = useState({
         msg: "",
         status:""
@@ -114,30 +114,26 @@ function AddUser({ loading, handleBackDropOnClick, handleGetUsers }) {
     }
     const AddNewUser = (payload) =>{
         loading(true);
-        console.log(payload)
-        axios.post(baseURL + addUserAPI , payload,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
+        createUser(payload)
+            .then((res)=>{
+                if(res.data.isSuccess){
+                    getUsers();
+                    loading(false);
+                    ClearInput();
+                    setMessage({
+                        msg: "User Added Successfully !!",
+                        status:"1"
+                    });
+                }
+                else{
+                    loading(false);
+                    ClearInput();
+                    setMessage({
+                        msg: res.data.message,
+                        status:"0"
+                    });
+                }
             })
-        .then((res)=>{
-            if(res.data.isSuccess){
-                handleGetUsers();
-                loading(false);
-                ClearInput();
-                setMessage({
-                    msg: "User Added Successfully !!",
-                    status:"1"
-                });
-            }
-            else{
-                loading(false);
-                ClearInput();
-                setMessage({
-                    msg: res.data.message,
-                    status:"0"
-                });
-            }
-        })
     }
     
     useEffect(() => {

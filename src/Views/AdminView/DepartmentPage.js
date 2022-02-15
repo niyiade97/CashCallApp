@@ -3,17 +3,18 @@ import DashboardContainer from "../../modules/dashboard/components/DashboardCont
 import Department from "../../modules/department/component/Departments"
 import BackDrop from "../../modules/customElement/component/BackDrop"
 import Loader from "../../modules/customElement/component/Loader"
-import axios from "axios";
+
 import AddDepartment from '../../modules/department/component/AddDepartment';
 import DeleteModal from '../../modules/modal/component/DeleteModal';
+import { useSelector, useDispatch } from "react-redux";
+import { getDepartment } from "../../services/departments";
+import { createDepartments, deleteDepartment } from "../../redux/slice/departmentSlice";
 
 function DepartmentPage(props) {
-    const baseURL = process.env.REACT_APP_BASE_URL;
-    const departmentAPI = process.env.REACT_APP_GET_DEPARTMENT_API;
-    const deleteDepartmentAPI = process.env.REACT_APP_DELETE_DEPARTMENT_API;
-    const token = localStorage.getItem("adminToken");
+    const departmentList = useSelector((state) => state.departments.department);
+    const dispatch = useDispatch();
+
     const [ addDepartmentModal, setAddDepartmentModal ] = useState(false);
-    const [ departments, setDepartments ] = useState([]);
     const [ deleteModal, setDeleteModal] = useState(false);
     const [ loading, setLoading ] = useState(false); 
     const [ id, setId ] = useState(null);
@@ -31,53 +32,39 @@ function DepartmentPage(props) {
         setAddDepartmentModal(!addDepartmentModal);
     }
 
-    const getDepartment = () =>{
-        handleOnLoad(true);
-        axios.get(baseURL + departmentAPI,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            handleOnLoad(false);
-            setDepartments(res.data.data.map((data) =>{
-                return{
-                    departmentID: data.departmentID,
-                    department: data.department
-                }
-            }))
-        })
-        .catch(err =>{
-            handleOnLoad(false);
-            console.log(err);
-        })
+    const loadDepartment = () =>{
+        getDepartment()
+            .then((res) =>{
+                dispatch(createDepartments(res.data.data));
+                // setDepartments(res.data.data.map((data) =>{
+                //     return{
+                //         departmentID: data.departmentID,
+                //         department: data.department
+                //     }
+                // }))
+            })
+            .catch(err =>{
+                console.log(err);
+            })
     }
 
     const handleDelete = () =>{
-        axios.post(baseURL + deleteDepartmentAPI + id,{},
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{ 
-            console.log(res)
-            getDepartment();
-            setDeleteModal(false);
-        })
-        .catch(err =>{
-            console.log(err);
-        })
-    }
-    const onclick = () =>{
-        
+        deleteDepartment(id)
+            .then((res) =>{ 
+                loadDepartment();
+                setDeleteModal(false);
+            })
+            .catch(err =>{
+                console.log(err);
+            })
     }
     useEffect(() => {
-        getDepartment();
+        loadDepartment();
     }, [])
     return (
         <DashboardContainer>
             <div className="w-full flex">
-                <Department departments={departments} handleAddDepartmentModal={handleAddDepartmentModal} handleOnLoad={handleOnLoad} handleDeleteModal={handleDeleteModal} totalDepartment={departments.length}>
+                <Department departments={departmentList} handleAddDepartmentModal={handleAddDepartmentModal} handleOnLoad={handleOnLoad} handleDeleteModal={handleDeleteModal} totalDepartment={departmentList.length}>
                 {
                     loading &&
                     <>
@@ -100,7 +87,7 @@ function DepartmentPage(props) {
                     />
                 }
                 {
-                    addDepartmentModal &&  <AddDepartment loading={handleOnLoad} handleBackDropOnClick={handleAddDepartmentModal} handleGetDepartment={getDepartment}/>
+                    addDepartmentModal &&  <AddDepartment loading={handleOnLoad} handleBackDropOnClick={handleAddDepartmentModal} getDepartments={loadDepartment}/>
                 }
                 </Department>
             </div>

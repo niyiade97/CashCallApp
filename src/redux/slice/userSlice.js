@@ -1,9 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import api from  "../../Utils/api";
-import { useDispatch } from "react-redux";
-const usersAPI = process.env.REACT_APP_GET_USERS_API;
-const deleteUserAPI = process.env.REACT_APP_DELETE_USER_API;
-
 
 
 // export const fetchAsyncUsers = createAsyncThunk("users/fetchAsyncUsers",  
@@ -51,7 +46,6 @@ const userSlice = createSlice({
                 const tempArr = state.users.splice(index, 1); // 2nd parameter means remove one item only
                 state.users = tempArr;
             }
-
         }
     }
     // extraReducers: {

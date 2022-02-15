@@ -4,25 +4,17 @@ import Users from "../../modules/userManagement/components/Users"
 import BackDrop from "../../modules/customElement/component/BackDrop"
 import Loader from "../../modules/customElement/component/Loader"
 import AddUser from "../../modules/userManagement/components/AddUser"
-import axios from "axios";
 import DeleteModal from "../../modules/modal/component/DeleteModal"
 import { useSelector, useDispatch } from "react-redux";
-import { addUsers, fetchAsyncUsers } from '../../redux/users/userSlice';
+import { addUsers } from '../../redux/slice/userSlice';
 import { getUser,deleteUser } from "../../services/users"
 
 
-function UsersPage(props) {
+function UsersPage() {
     const dispatch = useDispatch();
-    
     const userList = useSelector((state) => state.users)
-    
-    const usersAPI = process.env.REACT_APP_GET_USERS_API;
     const [ loading, setLoading ] = useState(false);
     const [ addUserModal, setAdUserModal ] = useState(false);
-    const [ users, setUsers ] = useState([]);
-    const baseURL = process.env.REACT_APP_BASE_URL;
-    const deleteUserAPI = process.env.REACT_APP_DELETE_USER_API;
-    const token = localStorage.getItem("adminToken");
     const [ deleteModal, setDeleteModal] = useState(false);
     const [ deleteData, setDeleteData ] = useState({});
     
@@ -34,7 +26,6 @@ function UsersPage(props) {
     }
     const handleDeleteModal = (data) =>{
         setDeleteData(data);
-        console.log(data)
         setDeleteModal(!deleteModal);
     }
     const onclick = () =>{
@@ -44,8 +35,6 @@ function UsersPage(props) {
     const handleDelete = () =>{
         deleteUser(deleteData.id)
             .then((res) =>{ 
-                console.log(res)
-                // dispatch(deleteUser(deleteData.index));
                 getUsers();
                 setDeleteModal(false);
             })
@@ -55,21 +44,17 @@ function UsersPage(props) {
     }
 
     const getUsers = async () =>{
-        // handleOnLoad(true)
         getUser()
         .then((res) =>{
-            handleOnLoad(false)
             dispatch(addUsers(res.data.data));
         })
         .catch(err =>{
-            // err.response..status
-            handleOnLoad(false);
         })
     }
     useEffect(() => {
-        console.log(userList)
         getUsers();
     }, [])
+
     return (
         <DashboardContainer>
             <div className="w-full flex">
@@ -96,7 +81,7 @@ function UsersPage(props) {
                     />
                 }
                 {
-                    addUserModal &&  <AddUser loading={handleOnLoad} handleBackDropOnClick={handleAddUserModal} handleGetUsers={getUsers}/>
+                    addUserModal &&  <AddUser loading={handleOnLoad} handleBackDropOnClick={handleAddUserModal} handleGetUsers={getUsers} getUsers={getUsers}/>
                 }
                 
                 </Users>

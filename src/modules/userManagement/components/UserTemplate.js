@@ -1,11 +1,9 @@
 import React from 'react'
-import { GrPowerReset } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import image from "../../../Assets/images/adepics.jpeg";
 import "../style/UserTemplate.css";
 
 function UserTemplate({ users, handleDeleteModal  }) {
-    console.log(users.users)
     const handleOnDelete = (data) =>{
         handleDeleteModal(data);
     }

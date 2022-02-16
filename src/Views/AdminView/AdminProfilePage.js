@@ -6,10 +6,14 @@ import Loader from "../../modules/customElement/component/Loader"
 import ChangePasswordModal from '../../modules/modal/component/ChangePasswordModal';
 import DashboardContainer from '../../modules/dashboard/components/DashboardContainer';
 import AlertModal from '../../modules/modal/component/AlertModal';
+import { useSelector, useDispatch } from "react-redux";
+import { getProfile, editProfile } from "../../services/profile"
+import { createProfile, updateProfile} from "../../redux/slice/profileSlice"
 
 function AdminProfilePage() {
+    const dispatch = useDispatch();
+    const profileList = useSelector((state) => state.profile)
     const baseURL = process.env.REACT_APP_BASE_URL;
-    const profileAPI = process.env.REACT_APP_GET_PROFILE_API;
     const updateProfileAPI = process.env.REACT_APP_UPDATE_PROFILE_API;
     const changePasswordAPI = process.env.REACT_APP_CHANGE_PASSWORD_API;
     const token = localStorage.getItem("adminToken");
@@ -66,35 +70,26 @@ function AdminProfilePage() {
             lastname: profile.lastname,
             base64File: profile.base64File
         }
-        axios.post(baseURL + updateProfileAPI, payload,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
-        .then((res) =>{
-            handleOnLoad(false)
-            setInputIsDisabled(true);
-            getProfile();
-           
-        })
-        .catch(err =>{
-            handleOnLoad(false);
-        })
+        editProfile(payload)
+            .then((res) =>{
+                handleOnLoad(false)
+                setInputIsDisabled(true);
+                loadProfile();
+            })
+            .catch(err =>{
+                handleOnLoad(false);
+            })
     }
 
-    const getProfile = () =>{
-        handleOnLoad(true)
-        axios.get(baseURL + profileAPI + userId,
-            { 
-                headers: {"Authorization" : `Bearer ${token}`} 
-            }
-        )
+    const loadProfile = () =>{
+        getProfile(userId)
         .then((res) =>{
-            handleOnLoad(false);
-            localStorage.setItem("adminFirstName", res.data.data.firstname);
-            localStorage.setItem("adminLastName", res.data.data.lastname);
-            localStorage.setItem("adminImage", res.data.data.imageRef);
-            localStorage.setItem("adminEmail", res.data.data.email);
+            dispatch(createProfile(res.data.data));
+            // handleOnLoad(false);
+            // localStorage.setItem("adminFirstName", res.data.data.firstname);
+            // localStorage.setItem("adminLastName", res.data.data.lastname);
+            // localStorage.setItem("adminImage", res.data.data.imageRef);
+            // localStorage.setItem("adminEmail", res.data.data.email);
             setProfile((prevState) =>{
                 return{
                     ...prevState,
@@ -103,7 +98,6 @@ function AdminProfilePage() {
                     email: res.data.data.email,
                     imageRef: res.data.data.imageRef
                 }
-                
             })
         })
         .catch(err =>{
@@ -150,7 +144,7 @@ function AdminProfilePage() {
     }
 
     useEffect(() => {
-        getProfile();
+        loadProfile();
     }, [])
 
     return (

@@ -4,6 +4,7 @@ import Loader from "../modules/customElement/component/Loader";
 import Login from "../modules/authentication/components/Login";
 function LoginPage() {
     const [ loading, setLoading ] = useState(false);
+    
     const handleOnLoad = (state) =>{
         setLoading(state);
     }

@@ -6,7 +6,6 @@ import "../style/Profile.css";
 
 function Profile(props) {
     const [ selectedImg, setSelectedImge ] = useState("");
-    console.log(props.profile);
     const handleOnChange = (name, value) =>{
         props.handleChange(name, value);
     }
@@ -60,7 +59,6 @@ function Profile(props) {
                                     !props.inputIsDisabled &&
                                     <ProfileImgUploadBtn />
                                 }
-                                
                                 <img src={ !selectedImg ? (props.profile.imageRef ? props.profile.imageRef : noImage): selectedImg} alt="profileImage" className="w-20 h-20 rounded-full m-auto object-cover"  /> 
                             </div>
                         </div>

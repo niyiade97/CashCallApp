@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React from "react";
+import React, {useEffect} from "react";
 import "./App.css";
 import "tailwindcss/tailwind.css";
 import AddUserPage from "./Views/AdminView/AddUserPage";
@@ -45,9 +45,8 @@ import UserProtectedRoute from "./Utils/auth/UserProtectedRoute";
 import SupervisorProtectedRoute from "./Utils/auth/SupervisorProtectedRoute";
 import AdminProtectedRoute from "./Utils/auth/AdminProtectedRoute";
 
-function App() {
 
-  console.log("environment", process.env);
+function App() {
 
   return (
     <div className="font-sans">

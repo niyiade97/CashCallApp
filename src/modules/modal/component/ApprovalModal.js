@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react'
 import axios from 'axios';
 import "../style/ApprovalModal.css";
 import noImage from "../../../Assets/images/noImage.png";
+import addComma from '../../customElement/component/addComma';
 
 function ApprovalModal({ handleBackDropOnClick, handleOtpModal, data, token, email }) {
     const baseURL = process.env.REACT_APP_BASE_URL;
@@ -87,7 +88,7 @@ function ApprovalModal({ handleBackDropOnClick, handleOtpModal, data, token, ema
                         <div className='py-5'>
                             <div className='flex items-center'>
                                 <p className="text-2xl text-gray-600">Amount: </p>
-                                <p className="ml-5 text-3xl">{data.amount}</p>
+                                <p className="ml-5 text-3xl">{`₦${addComma(data.amount)}`}</p>
                             </div>
                         </div>
                         <div className='py-5'>

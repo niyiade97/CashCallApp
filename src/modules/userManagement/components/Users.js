@@ -1,16 +1,11 @@
 import React from 'react'
 import { IoAddOutline } from 'react-icons/io5';
-import { FiSearch } from 'react-icons/fi'
 import { BsArrowUpShort } from 'react-icons/bs'
 import UserTemplate from './UserTemplate';
 import "../style/Users.css";
-import { useSelector } from "react-redux";
-import { getAllUsers } from '../../../redux/users/userSlice';
-import { render } from 'react-dom';
 
 function Users(props) {
-    const users = useSelector(getAllUsers);
-    console.log(users);
+    
     return (
         <div className="w-full h-screen mb-8 py-4 mt-5 relative"> 
             {props.children}
@@ -19,7 +14,7 @@ function Users(props) {
                     <div className="user-header flex items-center w-2/4">
                         <h1 className="text-color13 font-bold text-xl pl-10">All Users</h1>
                         <div className="mx-5 w-2 h-5 bg-color29"></div>
-                        <p className="text-color29 text-sm font-bold">{`${props.totalUser} total`}</p>
+                        <p className="text-color29 text-sm font-bold">{`${Object.keys(props.users).length > 0 ? props.users.users.length : 0} total`}</p>
                     </div>
                     <div className="flex justify-end items-center pr-4 w-2/4">
                         

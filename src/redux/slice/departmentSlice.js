@@ -1,4 +1,6 @@
 import { createSlice  } from "@reduxjs/toolkit";
+import { getDepartment } from "../../services/departments";
+
 
 const initialState = {
     department : []

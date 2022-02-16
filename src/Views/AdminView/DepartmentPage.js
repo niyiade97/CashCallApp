@@ -7,8 +7,8 @@ import Loader from "../../modules/customElement/component/Loader"
 import AddDepartment from '../../modules/department/component/AddDepartment';
 import DeleteModal from '../../modules/modal/component/DeleteModal';
 import { useSelector, useDispatch } from "react-redux";
-import { getDepartment } from "../../services/departments";
-import { createDepartments, deleteDepartment } from "../../redux/slice/departmentSlice";
+import { getDepartment, deleteDepartment } from "../../services/departments";
+import { createDepartments } from "../../redux/slice/departmentSlice";
 
 function DepartmentPage(props) {
     const departmentList = useSelector((state) => state.departments.department);

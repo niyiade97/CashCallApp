@@ -8,17 +8,24 @@ function TextField({label, onChange, disabled, placeholder, name, type, width, v
         const {name, value} = e.target;
         var _value = value;
         if(name === "amount" && value !== ""){
-            let tempArr = value.toString().split(",");
+            if(!isNaN(parseInt(value))){
+                let tempArr = value.toString().split(",");
             
-            if(tempArr.length > 1){
-                for(let i=0; i<tempArr.length; i++){
-                    tempValue += tempArr[i];
+                if(tempArr.length > 1){
+                    for(let i=0; i<tempArr.length; i++){
+                        tempValue += tempArr[i];
+                    }
                 }
+                else{
+                    tempValue = tempArr[0];
+                } 
+                _value = parseInt(tempValue).toLocaleString('en-US');
             }
             else{
-                tempValue = tempArr[0];
+                _value = "";
             }
-            _value = parseInt(tempValue).toLocaleString('en-US');
+            
+           
         }
         else if(type === "number") {
             _value = parseInt(value);

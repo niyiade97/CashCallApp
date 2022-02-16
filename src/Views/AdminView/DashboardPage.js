@@ -12,17 +12,12 @@ function DashboardPage() {
 
     return (
         <DashboardContainer >
-        {
-            loading &&
-            <Loader />
-        }
-           
+        { loading && <Loader /> }
         <div className="w-full flex h-full">
             <Dashboard onLoad={handleOnLoad} />
         </div>
         </DashboardContainer>
     )
 }
-
 
 export default DashboardPage;

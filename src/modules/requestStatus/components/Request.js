@@ -3,16 +3,31 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import "../style/AllRequest.css";
 import { IoIosStar } from "react-icons/io";
 import emptyImage from "../../../Assets/images/noImage.png";
-
+import addComma from '../../customElement/component/addComma';
 
 function Request({ requestData, handleClick, clickStatus }){
     const baseURL = process.env.REACT_APP_BASE_URL;
     const generateUserProfile = process.env.REACT_APP_GET_PROFILE_API;
     const token = localStorage.getItem("adminToken");
 
+   
     const handleOnClick = (request) =>{
         handleClick(request);
     }
+
+    // const addComma = (value) =>{
+    //     let tempValue = ""
+    //     let tempArr = value.toString().split(",");
+    //         if(tempArr.length > 1){
+    //             for(let i=0; i<tempArr.length; i++){
+    //                 tempValue += tempArr[i];
+    //             }
+    //         }
+    //         else{
+    //             tempValue = tempArr[0];
+    //         } 
+    //         return parseInt(tempValue).toLocaleString('en-US');
+    // }
 
     return (
             requestData.map((request) =>{
@@ -29,7 +44,7 @@ function Request({ requestData, handleClick, clickStatus }){
                             </div>
                         </td>
                         <td className="py-4">
-                            <p className="font-semibold text-sm text-color17">{request.amount}</p>
+                            <p className="font-semibold text-sm text-color17">{`₦${addComma(request.amount)}`}</p>
                             <p className="font-normal text-xs text-color18">{request.type ? request.type + " Request" : "" }</p>
                         </td>
                         <td className="py-4">

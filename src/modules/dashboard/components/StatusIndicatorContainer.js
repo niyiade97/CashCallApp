@@ -9,9 +9,9 @@ function StatusIndicatorcontainer() {
     return (
         <div className="status-indicator-container">
             <div className="m-auto w-3/4">
-                <StatusIndicator icon={<IoCheckmarkCircleSharp />} iconColor="#06AB2B" text="Approved Request" />
-                <StatusIndicator icon={<IoIosInformationCircle />} iconColor="#ECF102" text="Pending Request" />
-                <StatusIndicator icon={<GoCalendar />} iconColor="#FE8794" text="Request History" />
+                <StatusIndicator icon={<IoCheckmarkCircleSharp />} iconColor="#06AB2B" path="/" text="Approved Request" />
+                <StatusIndicator icon={<IoIosInformationCircle />} iconColor="#ECF102" path="/" text="Pending Request" />
+                <StatusIndicator icon={<GoCalendar />} iconColor="#FE8794" path="/" text="Request History" />
             </div>
         </div>
     )

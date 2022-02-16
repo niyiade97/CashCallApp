@@ -73,6 +73,7 @@ function Login(props) {
                         localStorage.setItem("adminId", res.data.data.id);
                         localStorage.setItem("adminEmail", res.data.data.email);
                         localStorage.setItem("token", res.data.message);
+                        localStorage.setItem("adminToken", res.data.message);
                         localStorage.setItem("adminRole", res.data.data.userRole);
                         localStorage.setItem("adminDepartmentID", res.data.data.departmentID);
                         localStorage.setItem("adminFirstName", res.data.data.firstname)

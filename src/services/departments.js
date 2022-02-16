@@ -2,7 +2,7 @@ import http from "../../src/Utils/axios";
 
 const departmentURLs = {
     GET_DEPARTMENT_URL: "department/departments",
-    DELETE_DEPARTMENT_URL: "users/",
+    DELETE_DEPARTMENT_URL: "department/delete/ ",
     CREATE_DEPARTMENT_URL: "department/create"
 }
 
@@ -15,5 +15,6 @@ const deleteDepartment = async (id) =>{
 const createDepartment = async (payload) =>{
     return await http.post(departmentURLs.CREATE_DEPARTMENT_URL, payload)
 }
+
 
 export { getDepartment, deleteDepartment, createDepartment };
